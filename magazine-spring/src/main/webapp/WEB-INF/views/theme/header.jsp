@@ -3,12 +3,13 @@
 <div id="nav-top">
 	<ul>
 		<li>
-			<a href="">Sign in</a>
+			<a href="login"><s:message code="sign-in" /></a>
 		</li>
 		<li>
-			<a href="">Register</a>
+			<a href=""><s:message code="register"/></a>
 		</li>
 	</ul>
+	Current Locale : ${pageContext.response.locale}
 </div>
 <div id="nav-mid">
 	<ul>

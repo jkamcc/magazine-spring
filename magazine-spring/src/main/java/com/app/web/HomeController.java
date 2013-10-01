@@ -36,4 +36,24 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model) {
+		
+		return "login";
+	}
+	
+	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
+	public String loginerror(Model model) {
+ 
+		model.addAttribute("error", "true");
+		return "login";
+ 
+	}
+ 
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(Model model) {
+ 
+		return "login";
+ 
+	}
 }

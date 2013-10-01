@@ -6,12 +6,15 @@
 <tiles-definitions>
 	<definition name="template" template="/WEB-INF/views/theme/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/theme/header.jsp"/>
-		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/views/theme/footer.jsp"/>
 	</definition>
 	
 	<definition name="home" extends="template">
-		<put-attribute name="body" value="/WEB-INF/views/home.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/home.jsp"/>
 	</definition>
+	
+	<definition name="login" extends="template">
+    	<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+    </definition>
 	
 </tiles-definitions>

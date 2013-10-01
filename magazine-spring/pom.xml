@@ -12,6 +12,7 @@
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -30,6 +31,25 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 
@@ -136,6 +156,11 @@
 			<artifactId>sass-maven-plugin</artifactId>
 			<version>1.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jvnet.mcvp</groupId>
+			<artifactId>maven-css-validator-plugin</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -196,6 +221,31 @@
 						</resource>
 					</resources>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.mcvp</groupId>
+				<artifactId>maven-css-validator-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<id>package</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>validate</goal>
+						</goals>
+						<configuration>
+							<cssValidationFailureIgnore>true</cssValidationFailureIgnore>
+							<!-- CSS Profile (css21 is default) -->
+							<profile>css3</profile>
+							<warning>2</warning>
+							<!-- Included CSS files (src/main/webapp/**/*.css is default) -->
+							<includes>
+								<include>src/main/resources/**/*.css</include>
+								<include>src/main/webapp/**/*.css</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

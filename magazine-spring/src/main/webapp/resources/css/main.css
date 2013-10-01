@@ -1,54 +1,40 @@
-#header {
-  background: none repeat scroll 0 0 white;
-  margin: 0;
-  padding: 0;
-}
-#header li {
-  list-style: none outside none;
-  display: inline;
-  margin: 10px;
-}
-#header a {
-  color: #2f538f;
-}
-#header a:hover {
-  color: #a7b4c9;
-}
-#header .section {
-  padding-right: 12px;
-  margin-left: 2px;
-  border-right: 1px solid #cdd6e4;
-  font: normal 16px/17px "proxima-nova", arial;
-}
-#header #nav-top {
-  float: right;
-  margin-right: 50px;
-  margin-top: -20px;
-}
-#header #nav-top a {
-  font: 300 13px "proxima-nova", arial;
-}
-#header #nav-mid {
-  text-transform: uppercase;
-}
-#header #nav-mid #title {
-  padding-right: 110px;
-}
-#header #nav-mid #title a {
-  font-size: 30px;
-  font-family: "Times New Roman", Times, serif;
-  color: black;
-}
-#header #nav-bot {
-  background: none repeat scroll 0 0 #2f538f;
-  height: 20px;
-}
+/*
+Syntax error: Invalid CSS after "@import ": expected file to import (string or url()), was "compass"
+        on line 1 of /Users/juancarrillo/Documents/workspace-sts-3.3.0.RELEASE/magazine-spring/magazine-spring/src/main/webapp/resources/css/sass/main.scss
 
-#body {
-  background-color: ThreeDFace;
-  min-height: 400px;
-}
+1: @import compass
+2: 
+3: html {
+4: 	font-family: sans-serif;
+5: }
+6: 
 
-#footer {
-  background-color: WindowFrame;
-}
+Backtrace:
+/Users/juancarrillo/Documents/workspace-sts-3.3.0.RELEASE/magazine-spring/magazine-spring/src/main/webapp/resources/css/sass/main.scss:1
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:1147:in `expected'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:1084:in `expected'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:1066:in `expr!'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:314:in `import_directive'
+org/jruby/RubyKernel.java:1439:in `loop'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:313:in `import_directive'
+org/jruby/RubyKernel.java:2105:in `send'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:175:in `special_directive'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:147:in `directive'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:553:in `block_child'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:543:in `block_contents'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:82:in `stylesheet'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/scss/parser.rb:27:in `parse'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/engine.rb:342:in `_to_tree'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/engine.rb:315:in `_render'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/engine.rb:262:in `render'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:341:in `update_stylesheet'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:203:in `update_stylesheets'
+org/jruby/RubyArray.java:1620:in `each'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+file:/Users/juancarrillo/.m2/repository/org/jasig/maven/sass-maven-plugin/1.1.0/sass-maven-plugin-1.1.0.jar!/gems/sass-3.2.6/lib/sass/plugin.rb:81:in `update_stylesheets'
+<script>:15:in `(root)'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"@import \": expected file to import (string or url()), was \"compass\"\A         on line 1 of /Users/juancarrillo/Documents/workspace-sts-3.3.0.RELEASE/magazine-spring/magazine-spring/src/main/webapp/resources/css/sass/main.scss\A \A 1: @import compass\A 2: \A 3: html {\A 4: 	font-family: sans-serif;\A 5: }\A 6: "; }

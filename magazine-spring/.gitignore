@@ -1,6 +1,6 @@
 /target
 /deployWar.sh
-/.settings
+/.settings/
 /.classpath
 /.project
 /.springBeans

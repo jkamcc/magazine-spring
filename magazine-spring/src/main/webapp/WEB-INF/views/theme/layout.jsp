@@ -9,8 +9,8 @@
 <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/main.css"/>'>
 </head>
 <body>
-	<div id="header"><tiles:insertAttribute name="header"/></div>
-	<div id="body"><tiles:insertAttribute name="body"/></div>
-	<div id="footer"><tiles:insertAttribute name="footer"/></div>
+	<div id="header"><t:insertAttribute name="header"/></div>
+	<div id="content"><t:insertAttribute name="content"/></div>
+	<div id="footer"><t:insertAttribute name="footer"/></div>
 </body>
 </html>
