@@ -69,7 +69,12 @@ body, input, select, textarea, button {
 }
 
 #footer {
-  background-color: WindowFrame;
+  background-color: #3333CC;
+  color: White;
+}
+#footer .footerText, #footer .footerHour {
+  margin-left: 20px;
+  text-align: center;
 }
 
 .errorblock {

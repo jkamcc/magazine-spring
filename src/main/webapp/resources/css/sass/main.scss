@@ -77,7 +77,13 @@ body, input, select, textarea, button {
 }
 
 #footer {
-    background-color: WindowFrame;
+    background-color: #3333CC;
+    color: White;
+    .footerText, .footerHour {
+    	margin-left: 20px;
+    	text-align: center;
+    }
+    
 }
 
 .errorblock {
