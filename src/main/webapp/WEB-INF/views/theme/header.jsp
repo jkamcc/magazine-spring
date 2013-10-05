@@ -6,7 +6,7 @@
 			<a href="login"><s:message code="sign-in" /></a>
 		</li>
 		<li>
-			<a href=""><s:message code="register"/></a>
+			<a href="register"><s:message code="register"/></a>
 		</li>
 	</ul>
 	Current Locale : ${pageContext.response.locale}

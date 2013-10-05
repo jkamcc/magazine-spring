@@ -77,10 +77,21 @@ body, input, select, textarea, button {
   text-align: center;
 }
 
-.errorblock {
-  color: #ff0000;
-  background-color: #ffEEEE;
-  border: 3px solid red;
+label.error {
+  background-color: #EFD0D0;
+  background-image: linear-gradient(#f8d8d8, #efd0d0);
+  background-repeat: repeat-x;
+  border-color: #DA9797;
+  color: #991111;
+}
+
+.message-error {
+  background-color: #EFD0D0;
+  background-image: linear-gradient(#f8d8d8, #efd0d0);
+  background-repeat: repeat-x;
+  border-color: #DA9797;
+  color: #991111;
+  border-radius: 3px 3px 3px 3px;
   padding: 8px;
   margin: 16px;
 }

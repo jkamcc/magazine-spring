@@ -86,10 +86,21 @@ body, input, select, textarea, button {
     
 }
 
-.errorblock {
-	color: #ff0000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
+@mixin error {
+	background-color: #EFD0D0;
+    background-image: linear-gradient(#F8D8D8, #EFD0D0);
+    background-repeat: repeat-x;
+    border-color: #DA9797;
+    color: #991111;
+}
+
+label.error {
+	@include error;
+}
+
+.message-error {
+	@include error;
+	border-radius: 3px 3px 3px 3px;
 	padding: 8px;
 	margin: 16px;
 }

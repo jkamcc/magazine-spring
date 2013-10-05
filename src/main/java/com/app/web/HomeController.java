@@ -47,13 +47,17 @@ public class HomeController {
  
 		model.addAttribute("error", "true");
 		return "login";
- 
 	}
  
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
  
 		return "login";
+	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.GET)
+	public String register(Model model) {
  
+		return "register";
 	}
 }
