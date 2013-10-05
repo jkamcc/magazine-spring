@@ -2,8 +2,7 @@
 
 <div id="login" class="auth-form">
 
-	<form name='f' action="<c:url value='j_spring_security_check' />"
-		method='POST'>
+	<form name='login_fm' action="<c:url value='j_spring_security_check' />" method='POST'>
 
 		<div class="auth-form-header">
 			<h1>
@@ -19,11 +18,11 @@
 		</c:if>
 		
 		<div class="auth-form-body">
-			<label for="j_username" />
+			<label for="j_username" >
 				<s:message code="login-user" />
 			</label> 
 			<input class="input-block" type='text' name='j_username' value=''> 
-			<label for="j_password" />
+			<label for="j_password">
 				<s:message code="login-password" />
 			</label> 
 			<input class="input-block" type='password' name='j_password' /> 

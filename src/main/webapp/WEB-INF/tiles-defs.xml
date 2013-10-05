@@ -14,7 +14,11 @@
 	</definition>
 	
 	<definition name="login" extends="template">
-    	<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+    </definition>
+    
+    <definition name="register" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/register.jsp" />
     </definition>
 	
 </tiles-definitions>
