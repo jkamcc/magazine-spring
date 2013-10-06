@@ -222,7 +222,7 @@
 					</resources>
 				</configuration>
 			</plugin>
-			<plugin>
+		<!-- <plugin>
 				<groupId>org.jvnet.mcvp</groupId>
 				<artifactId>maven-css-validator-plugin</artifactId>
 				<version>1.0.0</version>
@@ -235,10 +235,10 @@
 						</goals>
 						<configuration>
 							<cssValidationFailureIgnore>true</cssValidationFailureIgnore>
-							<!-- CSS Profile (css21 is default) -->
+							CSS Profile (css21 is default) 
 							<profile>css3</profile>
 							<warning>2</warning>
-							<!-- Included CSS files (src/main/webapp/**/*.css is default) -->
+							Included CSS files (src/main/webapp/**/*.css is default)
 							<includes>
 								<include>src/main/resources/**/*.css</include>
 								<include>src/main/webapp/**/*.css</include>
@@ -246,7 +246,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 </project>

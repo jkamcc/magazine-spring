@@ -2,14 +2,10 @@
 
 <div id="login" class="auth-form">
 
-	<form name='login_fm' action="<c:url value='j_spring_security_check' />" method='POST'>
+	<form class="form-signin" name='login_fm' action="<c:url value='j_spring_security_check' />" method='POST'>
 
-		<div class="auth-form-header">
-			<h1>
-				<s:message code="sign-in" />
-			</h1>
-		</div>
-		
+		<h2 class="form-signin-heading"><s:message code="sign-in" /></h2>
+
 		<c:if test="${not empty error}">
 			<div class="message error">
 				Your login attempt was not successful, try again.<br /> Caused :
@@ -17,16 +13,16 @@
 			</div>
 		</c:if>
 		
-		<div class="auth-form-body">
-			<label for="j_username" ><s:message code="login-user" /></label> 
-			<input class="input-block" type='text' name='j_username' value='' required/> 
-			<label for="j_password"><s:message code="password"/></label> 
-			<input class="input-block" type='password' name='j_password' required/> 
-			<input class="button submit" type="submit" value='<s:message code="sign-in"/>' />
-		</div>
+		<input name="j_username" type="text" class="input-block-level" placeholder='<s:message code="login-user" />'>
+		<input name="j_password" type="password" class="input-block-level" placeholder="Password">
+		<label class="checkbox">
+			<input type="checkbox" value="remember-me"> Remember me
+		</label>
+		<button class="btn btn-large btn-primary" type="submit"><s:message code="sign-in"/></button>
 	</form>
+	
 </div>
 
 <script type="text/javascript">
-	$('form[name="login_fm"]').validate();
+$('form[name="login_fm"]').validate();
 </script>

@@ -10,6 +10,3 @@
 </p>
 
 <p class="footerHour"> ${serverTime}. </p>
-
-
-
