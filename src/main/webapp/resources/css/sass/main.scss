@@ -37,6 +37,16 @@ footer {
     }   
 }
 
+.errorDiv {
+	margin-left: 60px;	
+	.textoError{
+		text-align: center; 
+		float:right;
+		margin-left: 30px;
+	}
+}
+	
+
 /*
 html {
 	font-family: sans-serif;

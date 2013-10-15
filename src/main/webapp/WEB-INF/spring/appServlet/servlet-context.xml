@@ -64,4 +64,21 @@
 		</beans:property>
 	</beans:bean>
 
+	
+	
+	<!--  <bean
+	class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+	<bean class="com.app.web.HomeController" />
+	
+	<bean
+	  class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	  <property name="exceptionMappings">
+		<props>
+			<prop key="com.app.web.GenericException">theme/error	</prop>
+			<prop key="java.lang.Exception">theme/error</prop>
+		</props>
+	  </property>
+	</bean>-->
+ 
 </beans:beans>

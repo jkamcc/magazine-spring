@@ -35,6 +35,15 @@ footer .footerText, footer .footerHour {
   text-align: center;
 }
 
+.errorDiv {
+  margin-left: 60px;
+}
+.errorDiv .textoError {
+  text-align: center;
+  float: right;
+  margin-left: 30px;
+}
+
 /*
 html {
 	font-family: sans-serif;
