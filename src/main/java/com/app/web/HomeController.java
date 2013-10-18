@@ -83,11 +83,10 @@ public class HomeController extends AbstractController  {
 	 }
 	
 	@ExceptionHandler(Exception.class)
+	@RequestMapping(value="/error", method = RequestMethod.GET)
 	public ModelAndView handleAllException(Exception ex) {
- 
-		ModelAndView model = new ModelAndView("error");
-		return model;
- 
+		//ModelAndView model = new ModelAndView("error");
+		return new ModelAndView("/views/error.jsp");
 	}
 	
 }

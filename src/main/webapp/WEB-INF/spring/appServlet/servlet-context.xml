@@ -67,8 +67,8 @@
 	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 	  <beans:property name="exceptionMappings">
 		<beans:props>
-			<beans:prop key="com.app.web.exception.GenericException"> theme/error </beans:prop>
-			<beans:prop key= "java.lang.Exception">theme/error</beans:prop>
+			<beans:prop key="com.app.web.exception.GenericException"> error </beans:prop>
+			<beans:prop key= "java.lang.Exception">error</beans:prop>
 		</beans:props>
 	  </beans:property>
 	</beans:bean>

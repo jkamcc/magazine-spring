@@ -1,4 +1,12 @@
 <%@include file="init.jsp" %>
+<!-- <%@ taglib uri="/views/tie.tld" prefix="tiles" %> 
+
+
+<tiles:insert page="/theme/layout.jsp" flush="true">  
+  <tiles:put name="header" value="/theme/header.jsp" />       
+  <tiles:put name="footer" value="/theme/footer.jsp" />     
+</tiles:insert>
+-->
 
 <div class="errorDiv" style="display: inline-block;">
 	<div class="imagenError" style="float: left;">
