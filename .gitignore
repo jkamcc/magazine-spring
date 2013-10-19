@@ -4,4 +4,6 @@
 /.classpath
 /.project
 /.springBeans
-copyWar.bat
+/copyWar.bat
+/.idea
+/web.iml
