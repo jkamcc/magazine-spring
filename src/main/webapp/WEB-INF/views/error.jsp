@@ -1,5 +1,5 @@
 <%@include file="init.jsp" %>
-<!-- <%@ taglib uri="/views/tie.tld" prefix="tiles" %> 
+<!--
 
 
 <tiles:insert page="/theme/layout.jsp" flush="true">  

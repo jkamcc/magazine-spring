@@ -16,16 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
-
-import com.app.web.exception.GenericException;
 
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController extends AbstractController  {
+public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -71,22 +68,11 @@ public class HomeController extends AbstractController  {
 		return "register";
 	}
 	
-	@RequestMapping(value="/error", method = RequestMethod.GET)
-	public String error(Model model) {
-		return "error";
-	}
-	
-	protected ModelAndView handleRequestInternal(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		 
-			throw new GenericException("E888", "This is custom message - ABC");
-	 }
-	
 	@ExceptionHandler(Exception.class)
-	@RequestMapping(value="/error", method = RequestMethod.GET)
+	@RequestMapping(value="/error")
 	public ModelAndView handleAllException(Exception ex) {
-		//ModelAndView model = new ModelAndView("error");
-		return new ModelAndView("/views/error.jsp");
+		ModelAndView model = new ModelAndView("error");
+		return model;
 	}
 	
 }
