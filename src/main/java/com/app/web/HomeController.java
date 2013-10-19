@@ -71,6 +71,11 @@ public class HomeController extends AbstractController  {
 		return "register";
 	}
 	
+	@RequestMapping(value="/article", method = RequestMethod.GET)
+	public String article(Model model) {
+		return "article";
+	}
+	
 	@RequestMapping(value="/error", method = RequestMethod.GET)
 	public String error(Model model) {
 		return "error";
