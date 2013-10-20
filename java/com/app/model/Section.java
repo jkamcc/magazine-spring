@@ -2,9 +2,12 @@ package com.app.model;
 
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,10 +39,23 @@ public class Section implements Serializable {
 		this.sectionId = sectionId;
 	}
 	
+	public Set<Article> getArticulos() {
+		return articulos;
+	}
+
+	public void setArticulos(Set<Article> articulos) {
+		this.articulos = articulos;
+	}
+	
 	@Id
+	@GeneratedValue
     @Column(name="sectionid")
     private long sectionId;
 
-    @Column(name="sectionarticle")
+	@Column (name="section" )
     private String section;
+	
+	@OneToMany (mappedBy="articleid")
+    private Set<Article> articulos;
+   
 }
