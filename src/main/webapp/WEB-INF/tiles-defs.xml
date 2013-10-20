@@ -21,6 +21,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/register.jsp" />
     </definition>
     
+    <definition name="article" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/article.jsp" />
+    </definition>
+    
     <definition name="error" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/error.jsp" />
     </definition>

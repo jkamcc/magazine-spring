@@ -56,7 +56,7 @@ public class User implements Serializable {
     @Column(name="profileId")
     private long profileId;
 
-    @Column(name="username")
+    @Column(name="profile")
     private int profile;
 
 }
