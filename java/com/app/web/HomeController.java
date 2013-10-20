@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController  {
+public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -62,9 +62,9 @@ public class HomeController  {
 	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public String register(Model model) {
- 
 		return "register";
 	}
+
 	
 	@RequestMapping(value="/article", method = RequestMethod.GET)
 	public ModelAndView article() {
@@ -80,10 +80,10 @@ public class HomeController  {
 	}
 	
 	@ExceptionHandler(Exception.class)
-	@RequestMapping(value="/error", method = RequestMethod.GET)
+	@RequestMapping(value="/error")
 	public ModelAndView handleAllException(Exception ex) {
-		//ModelAndView model = new ModelAndView("error");
-		return new ModelAndView("/views/error.jsp");
+		ModelAndView model = new ModelAndView("error");
+		return model;
 	}
 	
 }

@@ -53,6 +53,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -161,7 +167,7 @@
 			<artifactId>maven-css-validator-plugin</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-        <dependency>
+		<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.26</version>
@@ -169,9 +175,19 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.2.6.Final</version>
+            <version>4.2.4.Final</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>7.0.41</version>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.18.0-GA</version>
+        </dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
