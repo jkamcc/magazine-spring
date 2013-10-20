@@ -2,7 +2,9 @@ package com.app.web;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,21 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
-
-import com.app.web.exception.GenericException;
 
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController extends AbstractController  {
+public class HomeController  {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -72,20 +67,17 @@ public class HomeController extends AbstractController  {
 	}
 	
 	@RequestMapping(value="/article", method = RequestMethod.GET)
-	public String article(Model model) {
-		return "article";
+	public ModelAndView article() {
+//		Article article = new Article();
+		Map<String, Object> model = new HashMap<String, Object>();
+//		model.put("articles",article);
+		return new ModelAndView("article", model);
 	}
 	
-	@RequestMapping(value="/error", method = RequestMethod.GET)
-	public String error(Model model) {
-		return "error";
+	@RequestMapping(value="/editarticle", method = RequestMethod.GET)
+	public String editarticle(Model model) {
+		return "editarticle";
 	}
-	
-	protected ModelAndView handleRequestInternal(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		 
-			throw new GenericException("E888", "This is custom message - ABC");
-	 }
 	
 	@ExceptionHandler(Exception.class)
 	@RequestMapping(value="/error", method = RequestMethod.GET)

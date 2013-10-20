@@ -25,6 +25,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/article.jsp" />
     </definition>
     
+    <definition name="editarticle" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/editarticle.jsp" />
+    </definition>
+    
     <definition name="error" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/error.jsp" />
     </definition>
