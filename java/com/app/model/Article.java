@@ -1,7 +1,7 @@
 package com.app.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,12 +34,15 @@ public class Article {
 	@Column (name= "author" )
 	private String author;
 	
-	@Column (name="sectionid" )
 	@ManyToOne 
 	@JoinColumn (name="sectionid")
 	private int sectionid;
 	
+	@OneToMany (mappedBy="commentId")
+	private Set<Comment> comentarios;
 	
+	
+
 	public Article(){ };
 	
 	public Article (Timestamp datearticle, String subject, String article, String author, int sectionid){
@@ -49,6 +53,13 @@ public class Article {
 		this.sectionid= sectionid;
 	}
 	
+	public Set<Comment> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(Set<Comment> comentarios) {
+		this.comentarios = comentarios;
+	}
 	
 	public void setSubject(String subject){
 		this.subject= subject;

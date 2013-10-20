@@ -2,9 +2,13 @@ package com.app.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,6 +48,7 @@ public class User implements Serializable {
     }
 
     @Id
+    @GeneratedValue
     @Column(name="userId")
     private long userId;
 
@@ -59,4 +64,6 @@ public class User implements Serializable {
     @Column(name="profile")
     private int profile;
 
+    @OneToMany (mappedBy="commentId" )
+    private Set<Comment> comentarios;
 }
