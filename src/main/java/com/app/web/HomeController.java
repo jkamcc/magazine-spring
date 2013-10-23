@@ -4,11 +4,10 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.app.persistence.dao.UserDao;
-import org.hibernate.Session;
+import com.app.persistence.model.User;
+import com.app.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.inject.Inject;
 
 /**
  * Handles requests for the application home page.
@@ -25,7 +25,8 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    private UserDao userDao;
+//    @Inject
+//    private UserService userService;
 
     /**
      * Simply selaects the home view to render by returning its name.
@@ -41,7 +42,8 @@ public class HomeController {
 
         model.addAttribute("serverTime", formattedDate );
 
-        Session sql = userDao.getCurrentSession();
+        //User user = userService.findOne(0);
+        //Session sql = userDao.getCurrentSession();
         //User user = (User) userDao.findOne(1);
 
         //logger.info(user.getEmail());
@@ -83,15 +85,7 @@ public class HomeController {
     public ModelAndView handleAllException(Exception e) {
         logger.error(e.getMessage());
         e.printStackTrace();
-        ModelAndView model = new ModelAndView("error");
-        return model;
+        return new ModelAndView("error");
     }
 
-    public  UserDao getUserDao(){
-        return userDao;
-    }
-
-    public void setUserDao(UserDao userDao){
-        this.userDao = userDao;
-    }
 }

@@ -1,4 +1,4 @@
-package com.app.persistence.dao;
+package com.app.service;
 
 import com.app.persistence.dao.common.DaoOperations;
 import com.app.persistence.model.User;
@@ -7,6 +7,6 @@ import com.app.persistence.model.User;
  * @author juancarrillo
  *         Date: 23/10/13
  */
-public interface UserDao extends DaoOperations<User> {
+public interface UserService extends DaoOperations<User>{
 
 }
