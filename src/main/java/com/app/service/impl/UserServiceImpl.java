@@ -7,6 +7,7 @@ import com.app.service.UserService;
 import com.app.service.common.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author juancarrillo
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Transactional(propagation= Propagation.REQUIRED)
  */
 @Service
+@Transactional
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
     private UserDao userDao;
