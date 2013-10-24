@@ -6,18 +6,6 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-    <!-- Tiles -->
-    <bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
-
-    <bean
-            class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles-defs.xml</value>
-            </list>
-        </property>
-    </bean>
-
     <!-- Internationalization -->
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -43,17 +31,7 @@
         </property>
     </bean>
 
-    <!-- Exception Handler -->
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <prop key= "java.lang.Exception">error</prop>
-                <prop key="SomeOtherExceptions">error</prop>
-            </props>
-        </property>
-    </bean>
-
-    <import resource="security-context.xml"/>
     <import resource="hibernate.xml"/>
+    <import resource="security-context.xml"/>
 
 </beans>

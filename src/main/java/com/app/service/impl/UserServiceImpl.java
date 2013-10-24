@@ -16,11 +16,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
-    @Autowired
     private UserDao userDao;
 
     public UserServiceImpl() {
         super();
+    }
+
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override

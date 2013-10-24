@@ -25,8 +25,8 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-//    @Inject
-//    private UserService userService;
+    @Inject
+    private UserService userService;
 
     /**
      * Simply selaects the home view to render by returning its name.
@@ -42,7 +42,7 @@ public class HomeController {
 
         model.addAttribute("serverTime", formattedDate );
 
-        //User user = userService.findOne(0);
+        User user = userService.findOne(0);
         //Session sql = userDao.getCurrentSession();
         //User user = (User) userDao.findOne(1);
 

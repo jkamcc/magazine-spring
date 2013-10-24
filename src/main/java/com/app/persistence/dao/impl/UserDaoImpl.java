@@ -1,5 +1,6 @@
 package com.app.persistence.dao.impl;
 
+import com.app.persistence.dao.UserDao;
 import com.app.persistence.dao.common.AbstractHibernateDAO;
 import com.app.persistence.model.User;
 import org.hibernate.Session;
@@ -15,7 +16,7 @@ import java.io.Serializable;
  * Date: 20/10/13
  */
 @Repository("userDao")
-public class UserDaoImpl extends AbstractHibernateDAO<User> {
+public class UserDaoImpl extends AbstractHibernateDAO<User> implements UserDao {
 
     public UserDaoImpl() {
         super();
