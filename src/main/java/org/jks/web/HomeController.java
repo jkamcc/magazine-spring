@@ -1,12 +1,11 @@
-package com.app.web;
+package org.jks.web;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.app.persistence.model.User;
-import com.app.service.TestService;
-import com.app.service.UserService;
+import org.jks.model.User;
+import org.jks.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -26,11 +25,8 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-//    @Inject
-//    private UserService userService;
-
     @Inject
-    TestService testService;
+    private UserService userService;
 
     /**
      * Simply selaects the home view to render by returning its name.
@@ -46,12 +42,7 @@ public class HomeController {
 
         model.addAttribute("serverTime", formattedDate );
 
-        testService.test();
-//        User user = userService.findOne(0);
-        //Session sql = userDao.getCurrentSession();
-        //User user = (User) userDao.findOne(1);
-
-        //logger.info(user.getEmail());
+        User user = userService.getUserById(1);
 
         return "home";
     }

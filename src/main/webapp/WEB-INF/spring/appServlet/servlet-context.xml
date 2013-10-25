@@ -18,7 +18,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-    <context:component-scan base-package="com.app.web" />
+    <context:component-scan base-package="org.jks.web" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->

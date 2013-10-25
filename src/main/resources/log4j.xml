@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.app.web">
+	<logger name="org.jks.web">
 		<level value="info" />
 	</logger>
 	

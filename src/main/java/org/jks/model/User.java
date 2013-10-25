@@ -1,4 +1,4 @@
-package com.app.persistence.model;
+package org.jks.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
