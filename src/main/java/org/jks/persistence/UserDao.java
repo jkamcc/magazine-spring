@@ -1,5 +1,4 @@
 package org.jks.persistence;
-
 import org.jks.model.User;
 
 /**

@@ -1,5 +1,7 @@
 package org.jks.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +15,7 @@ import javax.persistence.Id;
  */
 @javax.persistence.Table(name = "SectionArticle", schema = "", catalog = "magazine")
 @Entity
-public class Section {
+public class Section implements Serializable {
     private int sectionid;
     private String sectionArticle;
 
