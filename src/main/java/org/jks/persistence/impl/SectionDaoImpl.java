@@ -1,5 +1,7 @@
 package org.jks.persistence.impl;
 
+import java.util.List;
+
 import org.jks.model.Section;
 import org.jks.persistence.SectionDao;
 import org.jks.persistence.common.AbstractHibernateDAO;
@@ -19,23 +21,28 @@ public class SectionDaoImpl extends AbstractHibernateDAO<Section> implements Sec
 
 	    @Override
 	    public void addSection(Section section) {
-
+	    	this.getCurrentSession().saveOrUpdate(section);
 	    }
 
 
 	    @Override
 	    public void updateSection(Section section) {
-	        //To change body of implemented methods use File | Settings | File Templates.
+	    	this.getCurrentSession().update(section);
 	    }
 
 	    @Override
 	    public void deleteSection(Section section) {
-	        //To change body of implemented methods use File | Settings | File Templates.
+	        this.getCurrentSession().delete(section);
 	    }
 	    
 	    @Override
 	    public Section getSectionByName (String name){
 	    	return null;
 	    }
-
+	    
+	    @Override
+	    public List<Section> getSections(){
+	    	return this.findAll();
+	    }
+	    
 }

@@ -2,6 +2,7 @@ package org.jks.web;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,31 +16,37 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.inject.Inject;
+
 import org.jks.model.*;
+import org.jks.service.SectionService;
+import org.jks.service.UserService;
 
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class SeccionController {
+public class SectionController {
 
-	private static SessionFactory factory; 
-
-	@RequestMapping(value = "/agregarSeccion", method = RequestMethod.GET)
+	 @Inject
+	 private SectionService sectionService;
+	 
+	 
+	@RequestMapping(value = "/addSection", method = RequestMethod.GET)
+	public String addSection(Model model) {
+        return "addSection";
+    }
+	
+	/*@RequestMapping(value = "/addSection", method = RequestMethod.PUT)
 	public String agregarSeccion(String nuevaSeccion){
-		Session session= factory.openSession();
-		Transaction tx= null;
 		try{
-			tx= session.beginTransaction();
-			Section seccion= new Section();
-			seccion.setSectionArticle("Anuncios");
-			session.save(seccion);
+			sectionService.agregarSeccion("Anuncios");
 		}
 		catch(HibernateException e){
 		
 		}
-		return "login";
-	}
+		return "addSection";
+	}*/
 }

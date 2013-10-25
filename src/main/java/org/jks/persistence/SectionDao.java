@@ -1,4 +1,6 @@
 package org.jks.persistence;
+import java.util.List;
+
 import org.jks.model.Section;
 
 
@@ -15,4 +17,6 @@ public interface SectionDao {
 	void updateSection(Section section);
 
 	void deleteSection(Section section);
+	
+	List<Section> getSections();
 }
