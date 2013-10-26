@@ -1,6 +1,5 @@
 package org.jks.persistence.impl;
 
-import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Restrictions;
 import org.jks.domain.User;
 import org.jks.persistence.UserDao;
