@@ -1,6 +1,6 @@
 package org.jks.service;
 
-import org.jks.model.User;
+import org.jks.domain.User;
 
 import java.util.List;
 

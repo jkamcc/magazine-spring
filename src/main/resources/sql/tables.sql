@@ -36,5 +36,3 @@ CREATE TABLE UserArticle(
 	CONSTRAINT pk_user PRIMARY KEY (userid)
 );
 
-INSERT INTO UserArticle (username, email,profile,profileid)
-values ("jks","jks@example.com","admin",0);

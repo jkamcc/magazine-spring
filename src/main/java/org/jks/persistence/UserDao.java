@@ -1,6 +1,6 @@
 package org.jks.persistence;
 
-import org.jks.model.User;
+import org.jks.domain.User;
 
 /**
  * @author juancarrillo

@@ -1,6 +1,6 @@
 package org.jks.service.impl;
 
-import org.jks.model.User;
+import org.jks.domain.User;
 import org.jks.persistence.UserDao;
 import org.jks.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
