@@ -1,8 +1,6 @@
 package org.jks.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -23,6 +21,7 @@ public class User implements Serializable {
 
     @javax.persistence.Column(name = "userid")
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     public int getUserid() {
         return userid;
     }

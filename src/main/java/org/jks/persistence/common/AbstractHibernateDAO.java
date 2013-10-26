@@ -31,7 +31,8 @@ public abstract class AbstractHibernateDAO<T, E extends Serializable> implements
 
     @Override
     public List<T> findAll() {
-        return getCurrentSession().createQuery("from " + clazz.getName()).list();
+        return getCurrentSession().createCriteria(clazz.getName()).list();
+                //getCurrentSession().createQuery("from " + clazz.getName()).list();
     }
 
 //    @Override

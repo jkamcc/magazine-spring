@@ -1,1 +1,1 @@
-delete from UserArticle where userid=2;
+delete from UserArticle

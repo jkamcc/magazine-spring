@@ -10,8 +10,13 @@ import java.util.List;
  */
 public interface UserService {
 
+    public void addUser(User user);
+
     public User getUserById(int userId);
 
-    public List<User> getUsers(int start, int end);
+    public User getUserByEmail(String email);
 
+    public List<User> getUsers();
+
+    public User getUserByUsername(String username);
 }

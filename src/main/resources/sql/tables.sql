@@ -28,7 +28,7 @@ CREATE TABLE CommentArticle(
 );
 
 CREATE TABLE UserArticle(
-	userid int,
+	userid int AUTO_INCREMENT,
 	username varchar(20) unique,
 	email varchar(50) unique,
 	profile varchar(30),

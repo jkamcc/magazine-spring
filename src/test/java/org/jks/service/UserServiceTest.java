@@ -1,5 +1,6 @@
 package org.jks.service;
 
+import org.jks.domain.Profile;
 import org.jks.domain.User;
 import org.junit.Before;
 import org.junit.After;
@@ -11,7 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.jdbc.SimpleJdbcTestUtils;
 
-import static org.junit.Assert.assertEquals;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * @author juancarrillo
@@ -41,15 +44,34 @@ public class UserServiceTest extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
-    public void testFindUser() {
+    public void testFindUserById() {
         User user = userService.getUserById(2);
 
         assertEquals("test", user.getUsername());
     }
 
-//    @Test
-//    public void testAddUser() {
-//        User user = new User();
-//    }
+    @Test
+    public void testFindAllUsers() {
+        List<User> users = userService.getUsers();
+        assertFalse(users.isEmpty());
+    }
+
+    @Test
+    public void testFindUserByName() {
+        User user = userService.getUserByUsername("test");
+        assertNotNull(user);
+    }
+
+    @Test
+    public void testAddUser() {
+        User user = new User();
+        user.setUsername("test2");
+        user.setEmail("test2@test.com");
+        user.setProfile(Profile.ADMINISTRATOR.toString());
+        user.setProfileid(Profile.ADMINISTRATOR.getValue());
+        userService.addUser(user);
+        User user2 = userService.getUserByUsername("test2");
+        assertEquals(user.getUsername(), user2.getUsername());
+    }
 
 }

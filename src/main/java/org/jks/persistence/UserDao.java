@@ -10,9 +10,8 @@ import java.util.List;
  */
 public interface UserDao extends GenericDao<User, Integer> {
 
-//    List<User> getUserByName(String username);
-//
-//    User getUserByEmail(String email);
+    User getUserByEmail(String email);
 
+    User getUserByUsername(String username);
 
 }
