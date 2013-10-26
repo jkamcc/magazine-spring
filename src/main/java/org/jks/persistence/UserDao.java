@@ -1,22 +1,18 @@
 package org.jks.persistence;
 
 import org.jks.domain.User;
+import org.jks.persistence.common.GenericDao;
 
+import java.util.List;
 
 /**
  * @author juancarrillo
- * Date: 23/10/13
  */
-public interface UserDao  {
+public interface UserDao extends GenericDao<User, Integer> {
 
-    void addUser(User user);
+//    List<User> getUserByName(String username);
+//
+//    User getUserByEmail(String email);
 
-    User getUserById(int id);
-
-    void updateUser(User user);
-
-    void deleteUser(User user);
-
-    void deleteUserById(int id);
 
 }

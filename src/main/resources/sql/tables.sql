@@ -28,7 +28,7 @@ CREATE TABLE CommentArticle(
 );
 
 CREATE TABLE UserArticle(
-	userid int AUTO_INCREMENT,
+	userid int,
 	username varchar(20) unique,
 	email varchar(50) unique,
 	profile varchar(30),
@@ -36,3 +36,5 @@ CREATE TABLE UserArticle(
 	CONSTRAINT pk_user PRIMARY KEY (userid)
 );
 
+INSERT INTO UserArticle (username, email,profile,profileid)
+values ("jks","jks@example.com","admin",0);

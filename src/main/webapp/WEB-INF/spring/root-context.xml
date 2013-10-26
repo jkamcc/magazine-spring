@@ -31,7 +31,7 @@
         </property>
     </bean>
 
-    <import resource="hibernate.xml"/>
-    <import resource="security-context.xml"/>
+    <import resource="classpath:hibernate.xml"/>
+    <import resource="classpath:security-context.xml"/>
 
 </beans>

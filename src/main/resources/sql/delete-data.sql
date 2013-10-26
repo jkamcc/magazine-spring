@@ -1,0 +1,1 @@
+delete from UserArticle where userid=2;
