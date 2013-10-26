@@ -1,4 +1,4 @@
-package org.jks.model;
+package org.jks.domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
