@@ -2,9 +2,10 @@ package org.jks.persistence;
 
 import org.jks.domain.User;
 
+
 /**
  * @author juancarrillo
- *         Date: 23/10/13
+ * Date: 23/10/13
  */
 public interface UserDao  {
 
