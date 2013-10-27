@@ -6,7 +6,6 @@ import org.jks.persistence.UserDao;
 import org.jks.persistence.common.AbstractHibernateDAO;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 /**
  * @author juancarrillo
