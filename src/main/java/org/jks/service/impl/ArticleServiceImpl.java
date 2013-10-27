@@ -24,8 +24,14 @@ public class ArticleServiceImpl implements ArticleService {
 
 	    @Override
 	    public List<Article> getArticles(int start, int end) {
-	        return null;
+	        return articleDao.findAll();
 	    }
+
+		@Override
+		public void addArticle(Article article) {
+			articleDao.create(article);
+			
+		}
 
 
 }
