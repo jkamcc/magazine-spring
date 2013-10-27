@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * @author juancarrillo
  */
 @ContextConfiguration(locations = "classpath:hibernate.xml" )
-public class UserServiceTest extends AbstractJUnit4SpringContextTests {
+public class TestServices extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private UserService userService;
@@ -63,6 +63,12 @@ public class UserServiceTest extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
+    public void testFindUserByEmail() {
+        User user = userService.getUserByEmail("test@example.com");
+        assertNotNull(user);
+    }
+
+    @Test
     public void testAddUser() {
         User user = new User();
         user.setUsername("test2");
@@ -72,6 +78,23 @@ public class UserServiceTest extends AbstractJUnit4SpringContextTests {
         userService.addUser(user);
         User user2 = userService.getUserByUsername("test2");
         assertEquals(user.getUsername(), user2.getUsername());
+    }
+
+    @Test
+    public void testUpdateUser() {
+        User user = userService.getUserById(2);
+        user.setEmail("testUpdate@example.com");
+        userService.updateUser(user);
+        User user2 = userService.getUserById(2);
+        assertEquals(user.getEmail(), user2.getEmail());
+    }
+
+    @Test
+    public void testDeleteUser() {
+        User user = userService.getUserById(2);
+        userService.deleteUser(user);
+        user = userService.getUserById(2);
+        assertNull(user);
     }
 
 }

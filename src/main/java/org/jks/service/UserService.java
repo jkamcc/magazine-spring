@@ -19,4 +19,10 @@ public interface UserService {
     public List<User> getUsers();
 
     public User getUserByUsername(String username);
+
+    public void updateUser(User user);
+
+    public void deleteUser(User user);
+
+    public void deleteUser(int userId);
 }
