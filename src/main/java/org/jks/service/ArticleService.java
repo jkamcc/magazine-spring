@@ -12,6 +12,6 @@ public interface ArticleService {
 
     public List<Article> getArticles(int start, int end);
     
-    
+    public Article getArticleBySubject(String subject);
     
 }

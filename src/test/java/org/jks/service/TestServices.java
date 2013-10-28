@@ -1,5 +1,6 @@
 package org.jks.service;
 
+import org.jks.domain.Article;
 import org.jks.domain.Profile;
 import org.jks.domain.User;
 import org.junit.Before;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.jdbc.SimpleJdbcTestUtils;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -24,7 +26,9 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private ArticleService articleService;
+    
     @Autowired
     private SimpleJdbcTemplate jdbcTemplate;
 
@@ -95,6 +99,22 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         userService.deleteUser(user);
         user = userService.getUserById(2);
         assertNull(user);
+    }
+    
+    @Test 
+    public void testAddArticle(){
+    	Article article = new Article();
+    	article.setSectionid(1);
+    	java.util.Date date= new java.util.Date();
+    	Timestamp datearticle = new Timestamp(date.getTime());
+    	article.setDatearticle(datearticle);
+    	article.setAuthor("KJS");
+    	article.setArticle("contenido del articulo de prueba desde maven");
+    	article.setSubject("Prueba mvn");
+    	
+    	articleService.addArticle(article);
+        Article article2 = articleService.getArticleBySubject("Prueba mvn");
+        assertEquals(article.getAuthor(), article2.getAuthor());
     }
 
 }
