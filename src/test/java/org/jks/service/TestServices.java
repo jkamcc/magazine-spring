@@ -2,6 +2,7 @@ package org.jks.service;
 
 import org.jks.domain.Article;
 import org.jks.domain.Profile;
+import org.jks.domain.Section;
 import org.jks.domain.User;
 import org.junit.Before;
 import org.junit.After;
@@ -28,6 +29,8 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     private UserService userService;
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private SectionService sectionService;
     
     @Autowired
     private SimpleJdbcTemplate jdbcTemplate;
@@ -116,5 +119,33 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         Article article2 = articleService.getArticleBySubject("Prueba mvn");
         assertEquals(article.getAuthor(), article2.getAuthor());
     }
-
+    
+    
+    @Test
+    public void testFindSectionById(int sectionId){
+    	Section section= sectionService.getSectionById(-30);
+    	assertNull(section);
+    }
+    
+    @Test
+    public void testAddSection(){
+    	Section section= new Section();
+    	section.setSectionid(-1);
+    	section.setSectionArticle("Prueba");
+    	sectionService.addSection(section);
+    	Section section2= sectionService.getSectionByName("Prueba");
+    	assertEquals(section.getSectionid(), section2.getSectionid());
+    }
+    
+    @Test
+    public void testFindSections(){
+    	List<Section> sections = sectionService.getSections();
+        assertFalse(sections.isEmpty());
+    }
+    
+    @Test
+    public void testFindSectionByName(){
+    	Section section= sectionService.getSectionByName("Sección Principal");
+    	assertNotNull(section);
+    }
 }
