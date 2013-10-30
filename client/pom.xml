@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jks</groupId>
-	<artifactId>web</artifactId>
-	<name>magazine-spring</name>
+	<artifactId>client</artifactId>
+	<name>magazine-spring-client</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
@@ -15,9 +15,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>4.2.4.Final</hibernate.version>
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
+
 	</properties>
 	<dependencies>
-
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -42,19 +42,8 @@
             <artifactId>spring-asm</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
-
+		
+		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -72,6 +61,18 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
 
 		<!-- AspectJ -->
 		<dependency>
@@ -156,7 +157,21 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-extras</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-servlet</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.jasig.maven</groupId>
 			<artifactId>sass-maven-plugin</artifactId>
@@ -205,16 +220,23 @@
             <version>2.2.2</version>
         </dependency>
 
-        <!-- JSON -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.12</version>
-        </dependency>
-
     </dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -235,6 +257,55 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jasig.maven</groupId>
+				<artifactId>sass-maven-plugin</artifactId>
+				<version>1.1.0</version>
+				<executions>
+					<execution>
+						<id>package</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>update-stylesheets</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<resources>
+						<resource>
+							<source>
+								<directory>${basedir}/src/main/webapp/resources/css/sass</directory>
+							</source>
+							<destination>${project.basedir}/src/main/webapp/resources/css</destination>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+		<!-- <plugin>
+				<groupId>org.jvnet.mcvp</groupId>
+				<artifactId>maven-css-validator-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<id>package</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>validate</goal>
+						</goals>
+						<configuration>
+							<cssValidationFailureIgnore>true</cssValidationFailureIgnore>
+							CSS Profile (css21 is default) 
+							<profile>css3</profile>
+							<warning>2</warning>
+							Included CSS files (src/main/webapp/**/*.css is default)
+							<includes>
+								<include>src/main/resources/**/*.css</include>
+								<include>src/main/webapp/**/*.css</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> -->
 		</plugins>
 	</build>
 </project>

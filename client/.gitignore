@@ -1,0 +1,10 @@
+/target
+/deployWar.sh
+/.settings/
+/.classpath
+/.project
+/.springBeans
+/copyWar.bat
+/web.iml
+/.idea
+/.DS_Store

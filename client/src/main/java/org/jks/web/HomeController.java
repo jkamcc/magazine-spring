@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.jks.domain.User;
-import org.jks.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,9 +24,6 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    @Inject
-    private UserService userService;
-
     /**
      * Simply selaects the home view to render by returning its name.
      */
@@ -41,9 +37,6 @@ public class HomeController {
         String formattedDate = dateFormat.format(date);
 
         model.addAttribute("serverTime", formattedDate );
-
-        //User user = userService.getUserById(1);
-        userService.deleteUserById(100);
 
         return "home";
     }
