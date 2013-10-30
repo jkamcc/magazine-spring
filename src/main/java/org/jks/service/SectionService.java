@@ -6,7 +6,7 @@ public interface SectionService {
 
 	public void addSection(Section section);
 	
-    public Section getSectionById(int sectionId);
+    public Section getSectionById(long sectionId);
 
     public List<Section> getSections();
     

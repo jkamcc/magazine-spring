@@ -12,7 +12,7 @@ public interface UserService {
 
     public void addUser(User user);
 
-    public User getUserById(int userId);
+    public User getUserById(long userId);
 
     public User getUserByEmail(String email);
 
@@ -24,5 +24,5 @@ public interface UserService {
 
     public void deleteUser(User user);
 
-    public void deleteUserById(int userId);
+    public void deleteUserById(long userId);
 }

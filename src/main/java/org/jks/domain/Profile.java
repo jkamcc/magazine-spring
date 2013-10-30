@@ -4,15 +4,15 @@ package org.jks.domain;
  * @author juancarrillo
  */
 public enum Profile {
-    ADMINISTRATOR(0), CONTENT_CREATOR(1), NORMAL(2) ;
+    ADMINISTRATOR((byte)0), CONTENT_CREATOR((byte)1), NORMAL((byte)2) ;
 
-    private final int value;
+    private final byte value;
 
-    private Profile(int value) {
+    private Profile(byte value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public byte getValue() {
         return value;
     }
 }

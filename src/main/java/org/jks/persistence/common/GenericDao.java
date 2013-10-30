@@ -13,6 +13,8 @@ public interface GenericDao<E, K> {
 
     List<E> findAll();
 
+    List<E> find(int start, int end);
+
     E update(E entity);
 
     void delete(E entity);

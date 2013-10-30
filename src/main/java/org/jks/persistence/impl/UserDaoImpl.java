@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @author juancarrillo
  */
 @Repository("userDao")
-public class UserDaoImpl extends AbstractHibernateDAO<User, Integer> implements UserDao {
+public class UserDaoImpl extends AbstractHibernateDAO<User, Long> implements UserDao {
 
     public UserDaoImpl() {
         setClazz(User.class);
@@ -27,6 +27,11 @@ public class UserDaoImpl extends AbstractHibernateDAO<User, Integer> implements 
     public User getUserByEmail(String email) {
         Preconditions.checkNotNull(email);
         return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
+    }
+
+    @Override
+    public void deleteUserById(long userId) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
 

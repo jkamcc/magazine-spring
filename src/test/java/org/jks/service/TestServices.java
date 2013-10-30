@@ -121,7 +121,7 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     @Test 
     public void testAddArticle(){
     	Article article = new Article();
-    	article.setSectionid(1);
+    	article.setSectionid(Long.valueOf(1));
     	java.util.Date date= new java.util.Date();
     	Timestamp datearticle = new Timestamp(date.getTime());
     	article.setDatearticle(datearticle);
@@ -135,6 +135,12 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
+    public void testFindArticles() {
+        List<Article> articles = articleService.getArticles(0, 3);
+        assertFalse(articles.isEmpty());
+    }
+
+    @Test
     public void testFindSectionById(){
     	Section section= sectionService.getSectionById(-30);
     	assertNull(section);
@@ -143,11 +149,11 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     @Test
     public void testAddSection(){
     	Section section= new Section();
-    	section.setSectionid(-1);
+    	//section.setSectionid(Long.valueOf(-1));
     	section.setSectionArticle("Prueba");
     	sectionService.addSection(section);
     	Section section2= sectionService.getSectionByName("Prueba");
-    	assertEquals(section.getSectionid(), section2.getSectionid());
+    	assertEquals(section.getSectionArticle(), section2.getSectionArticle());
     }
     
     @Test

@@ -1,35 +1,30 @@
 package org.jks.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created with IntelliJ IDEA.
- * User: juancarrillo
- * Date: 19/10/13
- * Time: 22:33
- * To change this template use File | Settings | File Templates.
+ * @author juancarrillo
  */
 @javax.persistence.Table(name = "SectionArticle", schema = "", catalog = "magazine")
 @Entity
-public class Section implements Serializable {
-    private int sectionid;
-    private String sectionArticle;
+public class Section {
+    private long sectionid;
 
-    @javax.persistence.Column(name = "sectionid")
+    @javax.persistence.Column(name = "sectionid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
     @Id
-    public int getSectionid() {
+    public long getSectionid() {
         return sectionid;
     }
 
-    public void setSectionid(int sectionid) {
+    public void setSectionid(long sectionid) {
         this.sectionid = sectionid;
     }
 
-    @javax.persistence.Column(name = "sectionArticle")
+    private String sectionArticle;
+
+    @javax.persistence.Column(name = "sectionArticle", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getSectionArticle() {
         return sectionArticle;
@@ -55,7 +50,7 @@ public class Section implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = sectionid;
+        int result = (int) (sectionid ^ (sectionid >>> 32));
         result = 31 * result + (sectionArticle != null ? sectionArticle.hashCode() : 0);
         return result;
     }

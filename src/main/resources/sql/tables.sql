@@ -2,6 +2,7 @@ CREATE TABLE UserArticle(
   userid bigint AUTO_INCREMENT,
   username varchar(20) unique,
   email varchar(50) unique,
+  name varchar(100),
   profile varchar(30),
   profileid tinyint,
   CONSTRAINT pk_user PRIMARY KEY (userid)
@@ -9,23 +10,21 @@ CREATE TABLE UserArticle(
 
 CREATE TABLE SectionArticle (
 	sectionid bigint AUTO_INCREMENT,
-	sectionArticle varchar(30),
+	sectionArticle varchar(50),
 	CONSTRAINT pk_section PRIMARY KEY (sectionid)
 );
 
 CREATE TABLE Article(
 	articleid bigint AUTO_INCREMENT,
-	datearticle timestamp,
+	datearticle datetime,
 	subject varchar (50),
 	article longtext,
-	author bigint,
+	author varchar(100),
 	sectionid bigint,
 
 	CONSTRAINT pk_article PRIMARY KEY (articleid),
 	CONSTRAINT fk_section_article FOREIGN KEY
-	(sectionid) REFERENCES SectionArticle(sectionid),
-  CONSTRAINT fk_user_id FOREIGN KEY
-  (author) REFERENCES UserArticle(userid)
+	(sectionid) REFERENCES SectionArticle(sectionid)
 );
 
 CREATE TABLE CommentArticle(
@@ -44,3 +43,4 @@ CREATE TABLE CommentArticle(
 
 INSERT INTO UserArticle (username, email,profile,profileid)
 values ("jks","jks@example.com","admin",0);
+

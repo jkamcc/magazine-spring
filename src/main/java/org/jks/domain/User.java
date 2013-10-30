@@ -1,36 +1,30 @@
 package org.jks.domain;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created with IntelliJ IDEA.
- * User: juancarrillo
- * Date: 19/10/13
- * Time: 22:33
- * To change this template use File | Settings | File Templates.
+ * @author juancarrillo
  */
 @javax.persistence.Table(name = "UserArticle", schema = "", catalog = "magazine")
 @Entity
-public class User implements Serializable {
-    private int userid;
-    private String username;
-    private String email;
-    private String profile;
-    private Integer profileid;
+public class User {
+    private long userid;
 
-    @javax.persistence.Column(name = "userid")
+    @javax.persistence.Column(name = "userid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    public int getUserid() {
+    public long getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(long userid) {
         this.userid = userid;
     }
 
-    @javax.persistence.Column(name = "username")
+    private String username;
+
+    @javax.persistence.Column(name = "username", nullable = true, insertable = true, updatable = true, length = 20, precision = 0)
     @Basic
     public String getUsername() {
         return username;
@@ -40,7 +34,9 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    @javax.persistence.Column(name = "email")
+    private String email;
+
+    @javax.persistence.Column(name = "email", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getEmail() {
         return email;
@@ -50,7 +46,21 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    @javax.persistence.Column(name = "profile")
+    private String name;
+
+    @javax.persistence.Column(name = "name", nullable = true, insertable = true, updatable = true, length = 100, precision = 0)
+    @Basic
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String profile;
+
+    @javax.persistence.Column(name = "profile", nullable = true, insertable = true, updatable = true, length = 30, precision = 0)
     @Basic
     public String getProfile() {
         return profile;
@@ -60,13 +70,15 @@ public class User implements Serializable {
         this.profile = profile;
     }
 
-    @javax.persistence.Column(name = "profileid")
+    private Byte profileid;
+
+    @javax.persistence.Column(name = "profileid", nullable = true, insertable = true, updatable = true, length = 3, precision = 0)
     @Basic
-    public Integer getProfileid() {
+    public Byte getProfileid() {
         return profileid;
     }
 
-    public void setProfileid(Integer profileid) {
+    public void setProfileid(Byte profileid) {
         this.profileid = profileid;
     }
 
@@ -79,6 +91,7 @@ public class User implements Serializable {
 
         if (userid != user.userid) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (profile != null ? !profile.equals(user.profile) : user.profile != null) return false;
         if (profileid != null ? !profileid.equals(user.profileid) : user.profileid != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
@@ -88,9 +101,10 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = userid;
+        int result = (int) (userid ^ (userid >>> 32));
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (profile != null ? profile.hashCode() : 0);
         result = 31 * result + (profileid != null ? profileid.hashCode() : 0);
         return result;

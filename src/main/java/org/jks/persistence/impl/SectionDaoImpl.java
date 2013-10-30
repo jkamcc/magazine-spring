@@ -6,7 +6,7 @@ import org.jks.persistence.common.AbstractHibernateDAO;
 import org.springframework.stereotype.Repository;
 
 @Repository("sectionDao")
-public class SectionDaoImpl  extends AbstractHibernateDAO<Section, Integer> implements SectionDao{
+public class SectionDaoImpl  extends AbstractHibernateDAO<Section, Long> implements SectionDao{
 
 	public SectionDaoImpl() {
         setClazz(Section.class);

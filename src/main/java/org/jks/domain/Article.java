@@ -3,35 +3,35 @@ package org.jks.domain;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: juancarrillo
- * Date: 19/10/13
- * Time: 22:33
- * To change this template use File | Settings | File Templates.
+ * @author juancarrillo
  */
 @Entity
 public class Article {
-    private int articleid;
+    private long articleid;
     private Timestamp datearticle;
     private String subject;
     private String article;
     private String author;
-    private Integer sectionid;
+    private Long sectionid;
+    private String sectionName;
+    private List<Comment> comments;
 
-    @javax.persistence.Column(name = "articleid")
+    @javax.persistence.Column(name = "articleid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
     @Id
-    public int getArticleid() {
+    public long getArticleid() {
         return articleid;
     }
 
-    public void setArticleid(int articleid) {
+    public void setArticleid(long articleid) {
         this.articleid = articleid;
     }
 
-    @javax.persistence.Column(name = "datearticle")
+    @javax.persistence.Column(name = "datearticle", nullable = true, insertable = true, updatable = true, length = 19, precision = 0)
     @Basic
     public Timestamp getDatearticle() {
         return datearticle;
@@ -41,7 +41,7 @@ public class Article {
         this.datearticle = datearticle;
     }
 
-    @javax.persistence.Column(name = "subject")
+    @javax.persistence.Column(name = "subject", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getSubject() {
         return subject;
@@ -51,7 +51,7 @@ public class Article {
         this.subject = subject;
     }
 
-    @javax.persistence.Column(name = "article")
+    @javax.persistence.Column(name = "article", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Basic
     public String getArticle() {
         return article;
@@ -61,7 +61,7 @@ public class Article {
         this.article = article;
     }
 
-    @javax.persistence.Column(name = "author")
+    @javax.persistence.Column(name = "author", nullable = true, insertable = true, updatable = true, length = 100, precision = 0)
     @Basic
     public String getAuthor() {
         return author;
@@ -71,13 +71,13 @@ public class Article {
         this.author = author;
     }
 
-    @javax.persistence.Column(name = "sectionid")
+    @javax.persistence.Column(name = "sectionid", nullable = true, insertable = true, updatable = true, length = 19, precision = 0)
     @Basic
-    public Integer getSectionid() {
+    public Long getSectionid() {
         return sectionid;
     }
 
-    public void setSectionid(Integer sectionid) {
+    public void setSectionid(Long sectionid) {
         this.sectionid = sectionid;
     }
 
@@ -101,12 +101,31 @@ public class Article {
 
     @Override
     public int hashCode() {
-        int result = articleid;
+        int result = (int) (articleid ^ (articleid >>> 32));
         result = 31 * result + (datearticle != null ? datearticle.hashCode() : 0);
         result = 31 * result + (subject != null ? subject.hashCode() : 0);
         result = 31 * result + (article != null ? article.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
         result = 31 * result + (sectionid != null ? sectionid.hashCode() : 0);
         return result;
+    }
+
+    @Transient
+    public String getSectionName() {
+        return sectionName;
+    }
+    @Transient
+    public void setSectionName(String sectionName) {
+        this.sectionName = sectionName;
+    }
+
+    @Transient
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    @Transient
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

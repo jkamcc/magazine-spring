@@ -20,7 +20,7 @@ public class SectionServiceImpl implements SectionService {
     }
 	
     @Override
-    public Section getSectionById(int sectionId){
+    public Section getSectionById(long sectionId){
     	return sectionDao.findOne(sectionId);
     }
 

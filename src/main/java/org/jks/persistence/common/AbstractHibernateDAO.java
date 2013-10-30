@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.google.common.base.Preconditions;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,17 @@ public abstract class AbstractHibernateDAO<T, E extends Serializable> implements
     @Override
     public List<T> findAll() {
         return getCurrentSession().createCriteria(clazz.getName()).list();
-                //getCurrentSession().createQuery("from " + clazz.getName()).list();
     }
 
-//    @Override
+    @Override
+    public List<T> find(int start, int end) {
+        Query q = getCurrentSession().createQuery("FROM " + clazz.getName());
+        q.setFirstResult(start);
+        q.setMaxResults(end);
+        return q.list();
+    }
+
+    @Override
     public T update( T entity) {
         Preconditions.checkNotNull(entity);
         return (T) getCurrentSession().merge(entity);
