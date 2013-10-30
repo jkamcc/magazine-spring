@@ -1,6 +1,8 @@
 package org.jks.service;
 
+import org.jks.domain.Article;
 import org.jks.domain.Profile;
+import org.jks.domain.Section;
 import org.jks.domain.User;
 import org.junit.Before;
 import org.junit.After;
@@ -12,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.jdbc.SimpleJdbcTestUtils;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -24,7 +27,11 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private ArticleService articleService;
+    @Autowired
+    private SectionService sectionService;
+    
     @Autowired
     private SimpleJdbcTemplate jdbcTemplate;
 
@@ -109,6 +116,50 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         userService.deleteUser(user);
         //userService.deleteUser(user);
         //userService.deleteUserById(2);
+    }
+    
+    @Test 
+    public void testAddArticle(){
+    	Article article = new Article();
+    	article.setSectionid(1);
+    	java.util.Date date= new java.util.Date();
+    	Timestamp datearticle = new Timestamp(date.getTime());
+    	article.setDatearticle(datearticle);
+    	article.setAuthor("KJS");
+    	article.setArticle("contenido del articulo de prueba desde maven");
+    	article.setSubject("Prueba mvn");
+    	
+    	articleService.addArticle(article);
+        Article article2 = articleService.getArticleBySubject("Prueba mvn");
+        assertEquals(article.getAuthor(), article2.getAuthor());
+    }
+
+    @Test
+    public void testFindSectionById(){
+    	Section section= sectionService.getSectionById(-30);
+    	assertNull(section);
+    }
+    
+    @Test
+    public void testAddSection(){
+    	Section section= new Section();
+    	section.setSectionid(-1);
+    	section.setSectionArticle("Prueba");
+    	sectionService.addSection(section);
+    	Section section2= sectionService.getSectionByName("Prueba");
+    	assertEquals(section.getSectionid(), section2.getSectionid());
+    }
+    
+    @Test
+    public void testFindSections(){
+    	List<Section> sections = sectionService.getSections();
+        assertFalse(sections.isEmpty());
+    }
+    
+    @Test
+    public void testFindSectionByName(){
+    	Section section= sectionService.getSectionByName("Sección Principal");
+    	assertNotNull(section);
     }
 
 }

@@ -33,4 +33,9 @@ public class ArticleServiceImpl implements ArticleService {
 			
 		}
 
+		@Override
+		public Article getArticleBySubject(String subject) {
+			return articleDao.getArticleBySubject(subject);
+		}
+
 }
