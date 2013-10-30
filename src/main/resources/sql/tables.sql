@@ -1,39 +1,45 @@
+CREATE TABLE UserArticle(
+  userid bigint AUTO_INCREMENT,
+  username varchar(20) unique,
+  email varchar(50) unique,
+  profile varchar(30),
+  profileid tinyint,
+  CONSTRAINT pk_user PRIMARY KEY (userid)
+);
+
 CREATE TABLE SectionArticle (
-	sectionid int AUTO_INCREMENT,
+	sectionid bigint AUTO_INCREMENT,
 	sectionArticle varchar(30),
 	CONSTRAINT pk_section PRIMARY KEY (sectionid)
 );
 
 CREATE TABLE Article(
-	articleid int AUTO_INCREMENT,
+	articleid bigint AUTO_INCREMENT,
 	datearticle timestamp,
 	subject varchar (50),
-	article varchar(50000),
-	author varchar(50),
-	sectionid int,
+	article longtext,
+	author bigint,
+	sectionid bigint,
 
 	CONSTRAINT pk_article PRIMARY KEY (articleid),
 	CONSTRAINT fk_section_article FOREIGN KEY
-	(sectionid) REFERENCES SectionArticle(sectionid)
+	(sectionid) REFERENCES SectionArticle(sectionid),
+  CONSTRAINT fk_user_id FOREIGN KEY
+  (author) REFERENCES UserArticle(userid)
 );
 
 CREATE TABLE CommentArticle(
-	commentid int AUTO_INCREMENT,
-	dateComment timestamp,
-	commentarticle varchar(5000),
-	articleid int,
+	commentid bigint AUTO_INCREMENT,
+	dateComment datetime,
+	commentarticle longtext,
+	articleid bigint,
+  author bigint,
+
 	CONSTRAINT pk_comment PRIMARY KEY (commentid),
 	CONSTRAINT fk_comment_article FOREIGN KEY
-	(articleid) REFERENCES Article(articleid)
-);
-
-CREATE TABLE UserArticle(
-	userid int AUTO_INCREMENT,
-	username varchar(20) unique,
-	email varchar(50) unique,
-	profile varchar(30),
-	profileid int,
-	CONSTRAINT pk_user PRIMARY KEY (userid)
+	(articleid) REFERENCES Article(articleid) ,
+  CONSTRAINT fk_author FOREIGN KEY
+  (author) REFERENCES UserArticle(userid)
 );
 
 INSERT INTO UserArticle (username, email,profile,profileid)
