@@ -15,6 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>4.2.4.Final</hibernate.version>
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
+
 	</properties>
 	<dependencies>
 		<!-- Spring -->

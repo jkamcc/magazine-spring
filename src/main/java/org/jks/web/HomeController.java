@@ -42,7 +42,8 @@ public class HomeController {
 
         model.addAttribute("serverTime", formattedDate );
 
-        User user = userService.getUserById(1);
+        //User user = userService.getUserById(1);
+        userService.deleteUserById(100);
 
         return "home";
     }

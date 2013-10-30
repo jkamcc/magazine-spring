@@ -3,6 +3,7 @@ package org.jks.persistence.common;
 import java.io.Serializable;
 import java.util.List;
 
+import com.google.common.base.Preconditions;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,19 @@ public abstract class AbstractHibernateDAO<T, E extends Serializable> implements
     private SessionFactory sessionFactory;
 
     protected final void setClazz(final Class<T> clazzToSet) {
+        Preconditions.checkNotNull(clazzToSet);
         clazz = clazzToSet;
     }
 
     @Override
     public final void create(T entity) {
+        Preconditions.checkNotNull(entity);
         getCurrentSession().save(entity);
     }
 
     @Override
     public T findOne(E key) {
+        Preconditions.checkNotNull(key);
         return (T) getCurrentSession().get(clazz, key);
     }
 
@@ -37,13 +41,13 @@ public abstract class AbstractHibernateDAO<T, E extends Serializable> implements
 
 //    @Override
     public T update( T entity) {
-//        Preconditions.checkNotNull(entity);
+        Preconditions.checkNotNull(entity);
         return (T) getCurrentSession().merge(entity);
     }
 
     @Override
     public final void delete(final T entity) {
-//        Preconditions.checkNotNull(entity);
+        Preconditions.checkNotNull(entity);
         getCurrentSession().delete(entity);
     }
 

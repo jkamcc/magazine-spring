@@ -50,6 +50,12 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         assertEquals("test", user.getUsername());
     }
 
+    @Test(expected=NullPointerException.class)
+    public void testFindUserNullId() {
+        Integer id = null;
+        User user = userService.getUserById(id);
+    }
+
     @Test
     public void testFindAllUsers() {
         List<User> users = userService.getUsers();
@@ -95,6 +101,14 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         userService.deleteUser(user);
         user = userService.getUserById(2);
         assertNull(user);
+    }
+
+    @Test
+    public void deleteNonExistentUser() {
+        User user = userService.getUserByUsername("test");
+        userService.deleteUser(user);
+        //userService.deleteUser(user);
+        //userService.deleteUserById(2);
     }
 
 }

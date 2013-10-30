@@ -1,5 +1,6 @@
 package org.jks.persistence.impl;
 
+import com.google.common.base.Preconditions;
 import org.hibernate.criterion.Restrictions;
 import org.jks.domain.User;
 import org.jks.persistence.UserDao;
@@ -18,11 +19,13 @@ public class UserDaoImpl extends AbstractHibernateDAO<User, Integer> implements 
 
     @Override
     public User getUserByUsername(String username) {
+        Preconditions.checkNotNull(username);
         return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq("username", username)).uniqueResult();
     }
 
     @Override
     public User getUserByEmail(String email) {
+        Preconditions.checkNotNull(email);
         return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
     }
 
