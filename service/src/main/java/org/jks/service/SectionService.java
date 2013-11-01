@@ -1,5 +1,6 @@
 package org.jks.service;
 import java.util.List;
+
 import org.jks.domain.Section;
 
 public interface SectionService {
@@ -11,4 +12,8 @@ public interface SectionService {
     public List<Section> getSections();
     
     public Section getSectionByName(String subject);
+    
+    public void updateSection(Section section);
+
+    public void deleteSection(Section section);
 }

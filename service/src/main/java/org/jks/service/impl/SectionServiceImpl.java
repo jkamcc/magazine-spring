@@ -34,4 +34,13 @@ public class SectionServiceImpl implements SectionService {
     	return sectionDao.getSectionByName(subject);
     }
     
+    @Override
+    public void updateSection(Section section){
+    	sectionDao.update(section);
+    }
+
+    @Override
+    public void deleteSection(Section section){
+    	 sectionDao.delete(section);
+    }
 }
