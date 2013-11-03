@@ -3,6 +3,9 @@ package org.jks.domain;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @author juancarrillo
@@ -44,6 +47,17 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    private String password;
+
+    @javax.persistence.Column(name = "password", nullable = false, insertable = true, updatable = true, length = 40, precision = 0)
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     private String name;
@@ -108,5 +122,18 @@ public class User {
         result = 31 * result + (profile != null ? profile.hashCode() : 0);
         result = 31 * result + (profileid != null ? profileid.hashCode() : 0);
         return result;
+    }
+
+    @Transient
+    public static String sha1(String input) throws NoSuchAlgorithmException {
+
+        MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+        byte[] result = mDigest.digest(input.getBytes());
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < result.length; i++) {
+            sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
     }
 }

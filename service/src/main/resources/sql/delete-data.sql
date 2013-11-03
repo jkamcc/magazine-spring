@@ -1,3 +1,4 @@
-delete from UserArticle where userid=2;
+delete from UserArticle;
 delete from Article;
 delete from SectionArticle;
+delete from CommentArticle;

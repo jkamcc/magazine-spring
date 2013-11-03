@@ -40,9 +40,9 @@ public class ArticleDaoImpl extends AbstractHibernateDAO<Article, Long> implemen
     @Override
     public List<Article> find(int start, int end) {
 
-        String q = "FROM " + Article.class.getName() + " as a ORDER BY a.datearticle desc";
+        String hsql = "FROM " + Article.class.getName() + " as a ORDER BY a.datearticle desc";
 
-        Query query = getCurrentSession().createQuery(q);
+        Query query = getCurrentSession().createQuery(hsql);
         query.setFirstResult(start);
         query.setMaxResults(end);
 
@@ -54,7 +54,6 @@ public class ArticleDaoImpl extends AbstractHibernateDAO<Article, Long> implemen
         return getCurrentSession().createCriteria(Article.class.getName())
                .addOrder(Order.desc("datearticle")).list();
     }
-
 
 	@Override
 	public void deleteArticleById(long articleId) {

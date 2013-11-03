@@ -1,5 +1,6 @@
 package org.jks.persistence.impl;
 
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.jks.domain.Article;
@@ -26,7 +27,20 @@ public class CommentDaoImpl extends AbstractHibernateDAO<Comment, Long> implemen
 
     @Override
     public List<Comment> getCommentsByArticleId(long articleId, int start, int end) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+
+        if (end == -1) {
+            return getCommentsByArticleId(articleId);
+        }
+
+        String hsql = "FROM "+ Comment.class.getName() + " as ArticleT";
+        hsql += " where ArticleT.articleid = " + articleId;
+        hsql += " ORDER BY ArticleT.dateComment DESC";
+
+        Query q = getCurrentSession().createQuery(hsql);
+        q.setFirstResult(start);
+        q.setMaxResults(end);
+
+        return q.list();
     }
 
 	@Override

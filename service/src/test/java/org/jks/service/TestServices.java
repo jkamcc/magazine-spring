@@ -1,52 +1,56 @@
 package org.jks.service;
 
-import org.jks.domain.Article;
-import org.jks.domain.Profile;
-import org.jks.domain.Section;
-import org.jks.domain.User;
+import org.jks.domain.*;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import org.springframework.test.jdbc.SimpleJdbcTestUtils;
+import org.springframework.test.jdbc.JdbcTestUtils;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * @author juancarrillo
- */
 @ContextConfiguration(locations = "classpath:hibernate.xml" )
 public class TestServices extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private ArticleService articleService;
+
     @Autowired
     private SectionService sectionService;
+
+    @Autowired
+    private CommentService commentService;
     
     @Autowired
-    private SimpleJdbcTemplate jdbcTemplate;
-
-    private final String createScript = "src/main/resources/sql/insert-data.sql";
-    private final String deleteScript = "src/main/resources/sql/delete-data.sql";
+    private JdbcTemplate jdbcTemplate;
 
     @Before
     public void insertData() {
-        SimpleJdbcTestUtils.executeSqlScript(jdbcTemplate,
+        String createScript = "src/main/resources/sql/insert-data.sql";
+        JdbcTestUtils.executeSqlScript(jdbcTemplate,
                 new FileSystemResource(createScript), false);
+        jdbcTemplate.execute("INSERT INTO UserArticle (userid, username, email,profile,profileid, name, password)\n" +
+                "values (2, \"test\",\"test@example.com\",\"admin\",0, \"test user user\", SHA1('admin'));");
+        jdbcTemplate.execute("INSERT INTO Article (articleid, datearticle,subject,article,author,sectionid)\n" +
+                "values (1, CURRENT_TIMESTAMP,\"Primera Prueba\",\"Este es el articulo de prueba de la aplicación de Juan Camilo Carrillo, Sharon Corrales, Karen Miranda.\",\"Todos\",1);");
     }
 
     @After
     public void deleteData() {
-        SimpleJdbcTestUtils.executeSqlScript(jdbcTemplate,
+        String deleteScript = "src/main/resources/sql/delete-data.sql";
+
+        JdbcTestUtils.executeSqlScript(jdbcTemplate,
                 new FileSystemResource(deleteScript), false);
     }
 
@@ -60,7 +64,7 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     @Test(expected=NullPointerException.class)
     public void testFindUserNullId() {
         Integer id = null;
-        User user = userService.getUserById(id);
+        userService.getUserById(id);
     }
 
     @Test
@@ -82,15 +86,16 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
-    public void testAddUser() {
-//        User user = new User();
-//        user.setUsername("test2");
-//        user.setEmail("test2@test.com");
-//        user.setProfile(Profile.ADMINISTRATOR.toString());
-//        user.setProfileid(Profile.ADMINISTRATOR.getValue());
-//        userService.addUser(user);
-//        User user2 = userService.getUserByUsername("test2");
-//        assertEquals(user.getUsername(), user2.getUsername());
+    public void testAddUser() throws NoSuchAlgorithmException {
+        User user = new User();
+        user.setUsername("test2");
+        user.setEmail("test2@test.com");
+        user.setPassword(User.sha1("test"));
+        user.setProfile(Profile.ADMINISTRATOR.toString());
+        user.setProfileid(Profile.ADMINISTRATOR.getValue());
+        userService.addUser(user);
+        User user2 = userService.getUserByUsername("test2");
+        assertEquals(user.getUsername(), user2.getUsername());
     }
 
     @Test
@@ -110,18 +115,18 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         assertNull(user);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void deleteNonExistentUser() {
         User user = userService.getUserByUsername("test");
         userService.deleteUser(user);
-        //userService.deleteUser(user);
-        //userService.deleteUserById(2);
+        userService.deleteUser(user);
+        userService.deleteUserById(2);
     }
     
     @Test 
     public void testAddArticle(){
     	Article article = new Article();
-    	article.setSectionid(Long.valueOf(1));
+    	article.setSectionid((long) 1);
     	java.util.Date date= new java.util.Date();
     	Timestamp datearticle = new Timestamp(date.getTime());
     	article.setDatearticle(datearticle);
@@ -149,7 +154,6 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     @Test
     public void testAddSection(){
     	Section section= new Section();
-    	//section.setSectionid(Long.valueOf(-1));
     	section.setSectionArticle("Prueba");
     	sectionService.addSection(section);
     	Section section2= sectionService.getSectionByName("Prueba");
@@ -168,4 +172,23 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     	assertNotNull(section);
     }
 
+    @Test
+    public void findComments() {
+        List<Comment> comments = commentService.getComments(1, 0, 2);
+        assertFalse(comments.isEmpty());
+    }
+
+    @Test
+    public void testCompleteArticle() throws Exception {
+        Article article = articleService.getCompleteArticle(1, 2);
+        assertNotNull(article);
+        assertNotNull(article.getSubject());
+        assertFalse(article.getComments().isEmpty());
+    }
+
+    @Test
+    public void validatePassword() throws Exception {
+        User user = userService.getUserById(2);
+        assertEquals(User.sha1("admin"), user.getPassword());
+    }
 }

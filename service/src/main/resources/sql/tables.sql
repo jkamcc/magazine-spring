@@ -2,6 +2,7 @@ CREATE TABLE UserArticle(
   userid bigint AUTO_INCREMENT,
   username varchar(20) unique,
   email varchar(50) unique,
+  password varchar(40) not null,
   name varchar(100),
   profile varchar(30),
   profileid tinyint,
@@ -41,6 +42,6 @@ CREATE TABLE CommentArticle(
   (author) REFERENCES UserArticle(userid)
 );
 
-INSERT INTO UserArticle (username, email,profile,profileid)
-values ("jks","jks@example.com","admin",0);
+INSERT INTO UserArticle (userid, username, email,profile,profileid)
+values (1, "jks","jks@example.com","admin",0);
 

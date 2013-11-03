@@ -28,7 +28,7 @@ public interface ArticleService {
 
     public List<Article> getArticles();
 
-    public List<Article> getCompleteArticles(int comments);
+    public List<Article> getCompleteArticles(int quantity, int comments);
 
     public Article getArticleBySubject(String subject);
 

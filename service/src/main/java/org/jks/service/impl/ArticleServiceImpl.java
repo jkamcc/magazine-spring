@@ -3,7 +3,6 @@ package org.jks.service.impl;
 import java.util.List;
 
 import org.jks.domain.Article;
-import org.jks.domain.Section;
 import org.jks.persistence.ArticleDao;
 import org.jks.persistence.CommentDao;
 import org.jks.persistence.SectionDao;
@@ -33,12 +32,18 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article getCompleteArticle(long articleId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+
+        return getCompleteArticle(articleId, -1);
     }
 
     @Override
     public Article getCompleteArticle(long articleId, int comments) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+
+        Article article = articleDao.findOne(articleId);
+        article.setComments(commentDao.getCommentsByArticleId(articleId, 0, comments));
+        article.setSectionName(sectionDao.findOne(article.getSectionid()).getSectionArticle());
+
+        return article;
     }
 
     @Override
@@ -52,14 +57,21 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> getCompleteArticles(int comments) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<Article> getCompleteArticles(int quantity, int comments) {
+
+        List<Article> articles = articleDao.find(0, quantity);
+
+        for (Article article : articles) {
+            article.setComments(commentDao.getCommentsByArticleId(article.getArticleid(), 0, comments));
+            article.setSectionName(sectionDao.findOne(article.getSectionid()).getSectionArticle());
+        }
+
+        return articles;
     }
 
     @Override
     public void addArticle(Article article) {
         articleDao.create(article);
-
     }
 
     @Override
@@ -81,6 +93,5 @@ public class ArticleServiceImpl implements ArticleService {
     public void deleteArticleById(long articleId) {
         articleDao.deleteArticleById(articleId);
     }
-
 
 }
