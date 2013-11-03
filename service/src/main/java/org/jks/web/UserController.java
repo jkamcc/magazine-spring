@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * Handles requests for the application home page.
  */
 @Controller
-//@RequestMapping("user")
+@RequestMapping("user")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -33,24 +33,10 @@ public class UserController {
     @RequestMapping(value = "/{id}")
     @ResponseBody
     public User getById(@PathVariable Long id) {
-
-        User user = userService.getUserById(1);
+        logger.info("Requesting User Id "+ id);
+        User user = userService.getUserById(id);
 
         return user;
-    }
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Locale locale, Model model) {
-        logger.info("Welcome home! The client locale is {}.", locale);
-
-        Date date = new Date();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-        String formattedDate = dateFormat.format(date);
-
-        model.addAttribute("serverTime", formattedDate );
-
-        return "home";
     }
 
 }

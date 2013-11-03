@@ -60,8 +60,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(long userId) {
         User user = userDao.findOne(userId);
         userDao.delete(user);
-
     }
-
 
 }

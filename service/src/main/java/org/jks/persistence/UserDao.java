@@ -13,6 +13,4 @@ public interface UserDao extends GenericDao<User, Long> {
 
     User getUserByUsername(String username);
 
-    void deleteUserById(long userId);
-
 }

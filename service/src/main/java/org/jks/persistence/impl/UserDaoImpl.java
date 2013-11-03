@@ -29,10 +29,4 @@ public class UserDaoImpl extends AbstractHibernateDAO<User, Long> implements Use
         return (User) getCurrentSession().createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
     }
 
-    @Override
-    public void deleteUserById(long userId) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-
 }

@@ -11,4 +11,11 @@ public interface SectionService {
     public List<Section> getSections();
     
     public Section getSectionByName(String subject);
+
+    public void updateSection(Section section);
+
+    public void deleteSection(Section section);
+
+    public void deleteSectionById(long sectionId);
+
 }
