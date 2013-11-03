@@ -54,4 +54,13 @@ public class ArticleDaoImpl extends AbstractHibernateDAO<Article, Long> implemen
         return getCurrentSession().createCriteria(Article.class.getName())
                .addOrder(Order.desc("datearticle")).list();
     }
+
+
+	@Override
+	public void deleteArticleById(long articleId) {
+		Article article = (Article) getCurrentSession().createCriteria(Article.class)
+                .add(Restrictions.eq("articleId", articleId));
+		delete(article);		
+	}   
+    
 }

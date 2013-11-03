@@ -69,17 +69,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void updateArticle(Article article) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        articleDao.update(article);
     }
 
     @Override
     public void deleteArticle(Article article) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        articleDao.delete(article);
     }
 
     @Override
     public void deleteArticleById(long articleId) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        articleDao.deleteArticleById(articleId);
     }
 
 

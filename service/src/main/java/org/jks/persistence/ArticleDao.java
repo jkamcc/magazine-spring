@@ -15,4 +15,5 @@ public interface ArticleDao  extends GenericDao<Article, Long>  {
 	
 	public List<Article> getArticlesInSection(long section);
 
+    public void deleteArticleById(long articleId);
 }

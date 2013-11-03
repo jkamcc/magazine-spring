@@ -6,16 +6,16 @@
 <c:if test="${!empty article}">
 	<p>
 		Título:
-		<c:out value="${article.}"/>
+		<c:out value="${article.subject}"/>
 	</p>
 	
 	<p>
 		Fecha:
-		<c:out value="${article.}"/>
+		<c:out value="${article.datearticle}"/>
 	</p>
 	
 	<p>
-		<c:out value="${article.}"/>
+		<c:out value="${article.article}"/>
 	</p>
 	
 </c:if>
