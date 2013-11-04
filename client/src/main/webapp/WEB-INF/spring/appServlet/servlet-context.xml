@@ -20,13 +20,6 @@
 
     <context:component-scan base-package="org.jks.web" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
-		in the /WEB-INF/views directory -->
-	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean> -->
-
     <!-- Tiles Resolver -->
     <bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
 

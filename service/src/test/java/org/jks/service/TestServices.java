@@ -1,6 +1,7 @@
 package org.jks.service;
 
 import org.jks.domain.*;
+import org.jks.service.UserService;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
