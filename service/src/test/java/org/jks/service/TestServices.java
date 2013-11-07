@@ -94,6 +94,7 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         User user = new User();
         user.setUsername("test2");
         user.setEmail("test2@test.com");
+        user.setName("Test User");
         user.setPassword(User.sha1("test"));
         user.setProfile(Profile.ADMINISTRATOR.toString());
         user.setProfileid(Profile.ADMINISTRATOR.getValue());

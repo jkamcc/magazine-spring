@@ -42,6 +42,5 @@ CREATE TABLE CommentArticle(
   (author) REFERENCES UserArticle(userid)
 );
 
--- INSERT INTO UserArticle (userid, username, email,profile,profileid)
--- values (1, "jks","jks@example.com","admin",0);
+-- INSERT INTO UserArticle (userid, username, email,profile,profileid) values (1, "jks","jks@example.com","admin",0);
 

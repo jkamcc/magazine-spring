@@ -3,12 +3,14 @@ package org.jks.web;
 import com.google.common.base.Preconditions;
 import org.jks.domain.User;
 import org.jks.service.UserService;
+import org.jks.web.common.RestMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 /**
  * Handles requests for the application home page.
@@ -33,6 +35,14 @@ public class UserController {
         Preconditions.checkNotNull(user, "User with id "+ id + " cannot be found.");
 
         return user;
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public RestMessage createUser(@Valid @RequestBody User user) throws Exception {
+        Preconditions.checkNotNull(user, "User object not received like expected.");
+        userService.addUser(user);
+        return new RestMessage("Created user " + user);
     }
 
     // Ka cuales códigos de http se devuelven cuando no existe un usuario,
