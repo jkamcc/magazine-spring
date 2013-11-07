@@ -21,8 +21,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.notNullValue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -113,7 +115,7 @@ public class TestsRest {
         mockMvc.perform(post("/user/create")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(userJson)
-            )   //.andDo(print())
+        )   //.andDo(print())
                 .andExpect(status().isNotAcceptable());
     }
 
@@ -150,5 +152,46 @@ public class TestsRest {
                 .content(userJson)
         )   .andDo(print())
             .andExpect(status().isNotAcceptable());
+    }
+
+    @Test
+    public void updateUser() throws Exception {
+        User user = new User();
+        user.setUserid(2);
+        user.setUsername("test2updated");
+        user.setPassword(User.sha1("password"));
+        user.setEmail("test@mail.com");
+        user.setName("Test User");
+        user.setProfile(Profile.ADMINISTRATOR.toString());
+        user.setProfileid(Profile.ADMINISTRATOR.getValue());
+        String userJson = TestUtil.convertObjectToJson(user);
+
+        mockMvc.perform(put("/user/update")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(userJson)
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.message", notNullValue()));
+
+        mockMvc.perform(get("/user/2"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.username", is("test2updated")));
+    }
+
+    @Test
+    public void testDeleteUser() throws Exception {
+        mockMvc.perform(delete("/user/delete/2")
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.message", notNullValue()));
+
+        mockMvc.perform(get("/user/2"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.message", notNullValue()));
+
     }
 }

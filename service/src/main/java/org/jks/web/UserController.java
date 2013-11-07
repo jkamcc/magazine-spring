@@ -40,9 +40,22 @@ public class UserController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public RestMessage createUser(@Valid @RequestBody User user) throws Exception {
-        Preconditions.checkNotNull(user, "User object not received like expected.");
         userService.addUser(user);
         return new RestMessage("Created user " + user);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @ResponseBody
+    public RestMessage updateUser(@Valid @RequestBody User user) throws Exception {
+        userService.updateUser(user);
+        return new RestMessage("Created user " + user);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public RestMessage deleteUserById(@PathVariable Long id) {
+        userService.deleteUserById(id);
+        return  new RestMessage("Deleted user "+ id);
     }
 
     // Ka cuales códigos de http se devuelven cuando no existe un usuario,
