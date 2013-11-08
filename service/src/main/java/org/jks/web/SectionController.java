@@ -30,5 +30,11 @@ public class SectionController {
 	        sectionService.addSection(section);
 	        return "Seccion agregada: " + section.toString();
 	    }
+	    
+	   /* @RequestMapping(value="showSections", method= RequestMethod.GET)
+	    @ResponseBody
+	    public List<Section> getSections() {
+	        return sectionService.getSections();
+	    }/*/
 
 }
