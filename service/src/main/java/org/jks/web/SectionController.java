@@ -1,7 +1,10 @@
 package org.jks.web;
 
+import java.util.List;
+
 import org.jks.domain.Section;
 import org.jks.service.SectionService;
+import org.jks.web.common.RestMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,17 +27,16 @@ public class SectionController {
 	    @Inject
 	    private SectionService sectionService;
 	    
-	    @RequestMapping(value="addSection", method= RequestMethod.POST)
+	    @RequestMapping(value="/addSection", method= RequestMethod.POST)
 	    @ResponseBody
-	    public String saveSection(Section section) {
+	    public RestMessage saveSection(Section section) {
 	        sectionService.addSection(section);
-	        return "Seccion agregada: " + section.toString();
+	        return new RestMessage( "Seccion agregada: "); 
 	    }
 	    
-	   /* @RequestMapping(value="showSections", method= RequestMethod.GET)
+	    @RequestMapping(value="/showSections", method= RequestMethod.GET)
 	    @ResponseBody
 	    public List<Section> getSections() {
 	        return sectionService.getSections();
-	    }/*/
-
+	    }
 }
