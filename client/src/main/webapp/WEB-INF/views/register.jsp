@@ -14,6 +14,9 @@
 		<label for="username"><s:message code="username"/></label>
 		<input id="username" class="input-block" name="username" type="text" >
 
+        <label for="name"><s:message code="name"/></label>
+        <input id="name" name="name" type="text">
+
 		<label for="email"><s:message code="email" /></label>
 		<input id="email" class="input-block" name="email" type="text">
 
@@ -34,6 +37,9 @@
         $('#register_fm').validate({
             rules: {
                 username: {
+                    required: true
+                },
+                name: {
                     required: true
                 },
                 email: {

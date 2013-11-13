@@ -10,7 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.validation.Valid;
 
 /**
  * @author juancarrillo
@@ -33,10 +36,15 @@ public class UserController {
         return "register";
     }
 
-    @RequestMapping(value = "register", method= RequestMethod.POST)
+    @RequestMapping(value = "/register", method= RequestMethod.POST)
     public String createUser(User user, BindingResult result, Model model) {
 
+        try {
+            restTemplate.postForObject("http://localhost:8080/service/user/create", user, User.class);
 
+        } catch (RestClientException e) {
+            e.printStackTrace();
+        }
 
         return "register";
     }

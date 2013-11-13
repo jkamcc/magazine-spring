@@ -3,6 +3,7 @@ package org.jks.domain;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 /**
  * @author juancarrillo
@@ -26,6 +27,7 @@ public class Section {
 
     @javax.persistence.Column(name = "sectionArticle", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
+    @Size(max=50)
     public String getSectionArticle() {
         return sectionArticle;
     }
