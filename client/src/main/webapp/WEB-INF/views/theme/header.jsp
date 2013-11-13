@@ -28,8 +28,8 @@
 					</li>
 				</ul>
 				<div class="navbar-form pull-right">
-					<button href="login" type="button" class="btn"><s:message code="sign-in"/></button>
-					<button href="register" type="button" class="btn"><s:message code="register"/></button>
+					<a href="login"><s:message code="sign-in"/></a>
+					<a href='<c:url value="/users/register"/>'><s:message code="register"/></a>
 				</div>
 			</div><!--/.nav-collapse -->
 		</div>

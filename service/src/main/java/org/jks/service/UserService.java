@@ -20,6 +20,10 @@ public interface UserService {
 
     public User getUserByUsername(String username);
 
+    public boolean checkExistUsername(String username);
+
+    public boolean checkExistPassword(String password);
+
     public void updateUser(User user);
 
     public void deleteUser(User user);

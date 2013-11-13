@@ -13,4 +13,8 @@ public interface UserDao extends GenericDao<User, Long> {
 
     User getUserByUsername(String username);
 
+    boolean checkExistUsername(String username);
+
+    boolean checkExistPassword(String password);
+
 }

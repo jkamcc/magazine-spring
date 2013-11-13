@@ -60,11 +60,6 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping(value="/register", method = RequestMethod.GET)
-    public String register(Model model) {
-        return "register";
-    }
-
     @RequestMapping(value="/article", method = RequestMethod.GET)
     public String article(Model model) {
         return "article";

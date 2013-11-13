@@ -1,3 +1,6 @@
+/*@import url('bootstrap.css');
+@import url('bootstrap-responsive.css');
+*/
 body {
   padding-top: 60px;
   padding-bottom: 40px;
@@ -42,6 +45,20 @@ footer .footerText, footer .footerHour {
   text-align: center;
   float: right;
   margin-left: 30px;
+}
+
+label.valid {
+  width: 24px;
+  height: 24px;
+  background: url(../img/valid.png) center center no-repeat;
+  display: inline-block;
+  text-indent: -9999px;
+}
+label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
 }
 
 /*

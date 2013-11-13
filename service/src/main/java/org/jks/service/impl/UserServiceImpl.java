@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * @author juancarrillo
  * Date: 23/10/13
-@Transactional(propagation= Propagation.REQUIRED)
  */
 @Service
 @Transactional
@@ -39,6 +38,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
+    }
+
+    @Override
+    public boolean checkExistUsername(String username) {
+        return userDao.checkExistUsername(username);
+    }
+
+    @Override
+    public boolean checkExistPassword(String password) {
+        return userDao.checkExistPassword(password);
     }
 
     @Override

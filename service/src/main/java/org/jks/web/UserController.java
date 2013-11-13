@@ -58,6 +58,19 @@ public class UserController {
         return  new RestMessage("Deleted user "+ id);
     }
 
+    @RequestMapping(params = "username", method = RequestMethod.GET)
+    @ResponseBody
+    public RestMessage getUserName(@RequestParam(value="username") String username) {
+
+        logger.info("Requesting Username "+ username);
+
+        User user = userService.getUserByUsername(username);
+
+        //Preconditions.checkNotNull(user, "User with username "+ username + " cannot be found.");
+
+        return new RestMessage(user==null? "yes": "no");
+    }
+
     // Ka cuales códigos de http se devuelven cuando no existe un usuario,
     // o cuando falló el update, insert?
     // lo q falta es validar todas las entradas, crear los cruds, todos los errores son manejados por RestErrorHandler

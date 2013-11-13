@@ -84,6 +84,12 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
+    public void testExistUsername() throws Exception {
+        boolean exist = userService.checkExistUsername("test");
+        assertTrue(exist);
+    }
+
+    @Test
     public void testFindUserByEmail() {
         User user = userService.getUserByEmail("test@example.com");
         assertNotNull(user);

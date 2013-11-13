@@ -31,6 +31,7 @@
         </property>
     </bean>
 
+    <import resource="classpath:rest-client.xml"/>
     <import resource="classpath:security-context.xml"/>
 
 </beans>
