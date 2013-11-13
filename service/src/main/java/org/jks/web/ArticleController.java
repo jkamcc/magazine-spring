@@ -3,18 +3,17 @@ package org.jks.web;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.jks.domain.Article;
 import org.jks.service.ArticleService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jks.web.common.RestMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.base.Preconditions;
 
@@ -24,16 +23,12 @@ import com.google.common.base.Preconditions;
 @Controller
 @RequestMapping("article")
 public class ArticleController {
-	private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
-
-    @Inject
+	@Inject
     private ArticleService articleService;
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Article getById(@PathVariable Long id) {
-
-        logger.info("Requesting User Id "+ id);
 
         Article article = articleService.getArticleById(id);
 
@@ -96,9 +91,13 @@ public class ArticleController {
         return listArticles;
     }
     
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public void updateArticle(){
-    	//FALTA MANDAR EL OBJETO
+    
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, 
+    		headers = "Accept=application/json", consumes = "application/json")
+    @ResponseBody
+    public RestMessage updateArticle(@Valid @RequestBody Article article){
+    	articleService.updateArticle(article);
+    	 return new RestMessage("Updated article " + article);
     }
     
     @RequestMapping(value = "/delete/{articleId}", method = RequestMethod.DELETE)
@@ -109,8 +108,8 @@ public class ArticleController {
     @RequestMapping(value = "/create", method = RequestMethod.POST, 
     		headers = "Accept=application/json", consumes = "application/json")
     @ResponseBody
-    public String createArticle(@RequestBody String article){ 
-    	//articleService.addArticle(article);
-    	return article;    	
+    public RestMessage createArticle(@Valid @RequestBody Article article){ 
+    	articleService.addArticle(article);
+    	 return new RestMessage("Created Article " + article);  	
     }
 }

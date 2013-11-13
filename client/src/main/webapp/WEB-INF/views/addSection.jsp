@@ -1,6 +1,21 @@
 <%@include file="init.jsp"%>
 
 <div>
+	<h1> Edici&oacuten de secciones </h1>
+	<!-- Muestra las secciones de la pagina -->
+	<form name="sectionsForm" id="sectionsForm">
+		<table name="listaSecciones" id="listaSecciones">
+			<thead>
+				<tr>
+					<th> Nombre de secci&oacuten</th>
+					<th> </th>
+				</tr>
+			</thead>
+		</table>
+	</form>
+	
+	
+	<!-- Permite agregar una nueva seccion -->
 	<h2>Agregar nueva Secci&oacuten</h2>
 	<form name="addSectionForm" id="addSectionForm">
 		<label for="SectionName">Nombre de la secci&oacuten</label>
@@ -11,9 +26,34 @@
 </div>
 
 <script type="text/javascript">
+	
+	// Agrega una nueva seccion
 	$('#addSectionForm').submit(function(e) {
     	$.post('${pageContext.request.contextPath}/section/addSection', $(this).serialize(), function(response) {
       	$('#responseSectionForm').text(response); });
     	e.preventDefault(); // prevent actual form submit and page reload
   	});
+	
+	// Obtiene las secciones y las muestra
+	 $( window ).load(function() {
+		 $.getJSON('${pageContext.request.contextPath}/section/getSections', function(response) {
+			 for (var i=0; i<response.length();++i){
+				var row = document.createElement("tr");
+				var cell = document.createElement("td");
+				var contenido = document.createTextNode(response[i].sectionName);
+				cell.appendChild(contenido);
+				row.appendChild(cell);
+				cell =document.createElement("td");
+				var boton= document.createElement("input");
+				boton.type="button";
+				boton.value=" - ";
+				boton.onclick= function(){
+					alert('Se eliminara la seccion');
+				};
+				$('table#listaSecciones').childNodes.appendChild(row);
+			 };}
+		);
+	});
+	 
+
 </script>
