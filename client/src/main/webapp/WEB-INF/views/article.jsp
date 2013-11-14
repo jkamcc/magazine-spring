@@ -3,19 +3,19 @@
 
 <h2>Article</h2>
 
-<c:if test="${!empty article}">
+<c:if test="${!empty myArticle}">
 	<p>
 		Título:
-		<c:out value="${article.subject}"/>
+		<c:out value="${myArticle.subject}"/>
 	</p>
 	
 	<p>
 		Fecha:
-		<c:out value="${article.datearticle}"/>
+		<c:out value="${myArticle.datearticle}"/>
 	</p>
 	
 	<p>
-		<c:out value="${article.article}"/>
+		<c:out value="${myArticle.article}"/>
 	</p>
 	
 </c:if>
