@@ -2,8 +2,11 @@ package org.jks.web;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
+import org.jks.domain.Article;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -55,16 +58,6 @@ public class HomeController {
     public String logout(Model model) {
 
         return "login";
-    }
-
-    @RequestMapping(value="/article", method = RequestMethod.GET)
-    public String article(Model model) {
-        return "article";
-    }
-
-    @RequestMapping(value="/editarticle", method = RequestMethod.GET)
-    public String editarticle() {
-        return "editarticle";
     }
     
     @ExceptionHandler(Exception.class)
