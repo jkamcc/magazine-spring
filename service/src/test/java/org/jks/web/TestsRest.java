@@ -50,10 +50,10 @@ public class TestsRest {
         String createScript = "src/main/resources/sql/insert-data.sql";
         JdbcTestUtils.executeSqlScript(jdbcTemplate, new FileSystemResource(createScript), false);
 
-        jdbcTemplate.execute("INSERT INTO UserArticle (userid, username, email,profile,profileid, name, password)\n" +
-                "values (2, \"test\",\"test@example.com\",\"admin\",0, \"test user user\", SHA1('admin'));");
-        jdbcTemplate.execute("INSERT INTO Article (articleid, datearticle,subject,article,author,sectionid)\n" +
-                "values (0, CURRENT_TIMESTAMP,\"Primera Prueba\",\"Este es el articulo de prueba de la aplicación de Juan Camilo Carrillo, Sharon Corrales, Karen Miranda.\",\"Todos\",1);");
+//        jdbcTemplate.execute("INSERT INTO UserArticle (userid, username, email,profile,profileid, name, password)\n" +
+//                "values (2, \"test\",\"test@example.com\",\"admin\",0, \"test user user\", SHA1('admin'));");
+//        jdbcTemplate.execute("INSERT INTO Article (articleid, datearticle,subject,article,author,sectionid)\n" +
+//                "values (0, CURRENT_TIMESTAMP,\"Primera Prueba\",\"Este es el articulo de prueba de la aplicación de Juan Camilo Carrillo, Sharon Corrales, Karen Miranda.\",\"Todos\",1);");
 
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
