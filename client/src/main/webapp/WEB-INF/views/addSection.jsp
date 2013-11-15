@@ -1,8 +1,10 @@
 <%@include file="init.jsp"%>
 
+<h2>Hola</h2>
+
+<!--
 <div>
 	<h1> Edici&oacuten de secciones </h1>
-	<!-- Muestra las secciones de la pagina -->
 	<form name="sectionsForm" id="sectionsForm">
 		<table name="listaSecciones" id="listaSecciones">
 			<thead>
@@ -15,7 +17,6 @@
 	</form>
 	
 	
-	<!-- Permite agregar una nueva seccion -->
 	<h2>Agregar nueva Secci&oacuten</h2>
 	<form name="addSectionForm" id="addSectionForm">
 		<label for="SectionName">Nombre de la secci&oacuten</label>
@@ -54,6 +55,6 @@
 			 };}
 		);
 	});
-	 
+	
 
-</script>
+</script> -->

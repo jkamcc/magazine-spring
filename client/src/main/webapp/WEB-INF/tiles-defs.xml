@@ -32,5 +32,13 @@
     <definition name="error" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/error.jsp" />
     </definition>
+    
+    <definition name="showSections" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/showSections.jsp" />
+    </definition>
+    
+    <definition name="addSection" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/addSection.jsp" />
+    </definition>
 	
 </tiles-definitions>
