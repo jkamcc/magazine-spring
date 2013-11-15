@@ -7,9 +7,9 @@
 		<h2 class="form-signin-heading"><s:message code="sign-in" /></h2>
 
 		<c:if test="${not empty error}">
-			<div class="message error">
-				Your login attempt was not successful, try again.<br /> Caused :
-				${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+			<div class="alert alert-error">
+				<s:message code="login-attempt"/><br />
+				<s:message code='${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}'/>
 			</div>
 		</c:if>
 		

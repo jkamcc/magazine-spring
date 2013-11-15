@@ -83,6 +83,14 @@ public class TestsRest {
     }
 
     @Test
+    public void getUserByUsername() throws Exception {
+        mockMvc.perform(get("/user?username=test"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.username", is("test")));
+    }
+
+    @Test
     public void createUser() throws Exception {
         User user = new User();
         user.setUsername("user12");

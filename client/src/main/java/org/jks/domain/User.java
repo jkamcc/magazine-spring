@@ -1,8 +1,10 @@
 package org.jks.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -21,7 +23,8 @@ import java.security.NoSuchAlgorithmException;
  */
 @javax.persistence.Table(name = "UserArticle", schema = "", catalog = "magazine")
 @Entity
-public class User implements Serializable {
+@JsonIgnoreProperties("authority")
+public class User implements GrantedAuthority, Serializable {
     private long userid;
 
     @javax.persistence.Column(name = "userid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
@@ -156,5 +159,11 @@ public class User implements Serializable {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    @Transient
+    public String getAuthority() {
+        return this.profile;
     }
 }

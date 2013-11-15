@@ -9,6 +9,7 @@ import java.util.Map;
 import org.jks.domain.Article;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,26 +39,13 @@ public class HomeController {
 
         model.addAttribute("serverTime", formattedDate );
 
+        if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+
+            String currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("currentUser", currentUser);
+        }
+
         return "home";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-
-        return "login";
-    }
-
-    @RequestMapping(value="/loginfailed", method = RequestMethod.GET)
-    public String loginerror(Model model) {
-
-        model.addAttribute("error", "true");
-        return "login";
-    }
-
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logout(Model model) {
-
-        return "login";
     }
     
     @ExceptionHandler(Exception.class)
