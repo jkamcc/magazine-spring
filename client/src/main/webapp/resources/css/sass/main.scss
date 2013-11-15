@@ -1,6 +1,6 @@
-/*@import url('bootstrap.css');
+@import url('bootstrap.css');
 @import url('bootstrap-responsive.css');
-*/
+
 body {
 	padding-top: 60px;
     padding-bottom: 40px;
@@ -32,8 +32,13 @@ body {
 }
 
 footer {
-	padding-top: 30px; bottom:0px; position: fixed;	right: 0;
-	left: 0;z-index: 1030;	margin-bottom: 0;
+	padding-top: 30px;
+    bottom:0px;
+    position: fixed;
+    right: 0;
+	left: 0;
+    z-index: 1030;
+    margin-bottom: 0;
     background-color: #000033;
     color: White;
     .footerText, .footerHour {
@@ -66,7 +71,13 @@ label {
         margin-top: 2px;
     }
 }
-	
+
+#user-image {
+  position: absolute;
+  left: 600px;
+  top: 200px;
+  width: 320px;
+}
 
 /*
 html {

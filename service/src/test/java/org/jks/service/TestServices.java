@@ -1,5 +1,5 @@
 package org.jks.service;
-
+/*
 import org.jks.domain.*;
 import org.jks.service.UserService;
 import org.junit.Before;
@@ -204,3 +204,4 @@ public class TestServices extends AbstractJUnit4SpringContextTests {
         assertEquals(pass, user.getPassword());
     }
 }
+*/

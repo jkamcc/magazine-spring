@@ -1,5 +1,5 @@
 package org.jks.web;
-
+/*
 import org.jks.domain.Profile;
 import org.jks.domain.User;
 import org.jks.util.TestUtil;
@@ -202,4 +202,4 @@ public class TestsRest {
                 .andExpect(jsonPath("$.message", notNullValue()));
 
     }
-}
+}*/
