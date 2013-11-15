@@ -37,5 +37,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/showSections.jsp" />
     </definition>
     
+    <definition name="addSection" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/addSection.jsp" />
+    </definition>
 	
 </tiles-definitions>
