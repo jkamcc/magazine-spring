@@ -23,9 +23,9 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("section")
-public class SectionController {
+public class SectionServiceController {
 	
-	 private static final Logger logger = LoggerFactory.getLogger(SectionController.class);
+	 private static final Logger logger = LoggerFactory.getLogger(SectionServiceController.class);
 
 	    @Inject
 	    private SectionService sectionService;
@@ -37,7 +37,7 @@ public class SectionController {
 	        return new RestMessage( "Seccion agregada: "+section.getSectionArticle()); 
 	    }
 	    
-	    @RequestMapping(value="/showSections", method= RequestMethod.GET)
+	    @RequestMapping(value="/get", method= RequestMethod.GET)
 	    @ResponseBody
 	    public List<Section> getSections() {
 	        return sectionService.getSections();

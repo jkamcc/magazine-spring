@@ -23,7 +23,7 @@ import com.google.inject.Inject;
 
 @Controller
 @RequestMapping("comment")
-public class CommentController {
+public class CommentServiceController {
 	
 	@Inject
 	private CommentService commentService;

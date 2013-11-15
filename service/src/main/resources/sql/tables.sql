@@ -1,4 +1,4 @@
-CREATE TABLE UserArticle(
+CREATE TABLE magazine.UserArticle(
   userid bigint AUTO_INCREMENT,
   username varchar(20) unique,
   email varchar(50) unique,
@@ -9,13 +9,13 @@ CREATE TABLE UserArticle(
   CONSTRAINT pk_user PRIMARY KEY (userid)
 );
 
-CREATE TABLE SectionArticle (
+CREATE TABLE magazine.SectionArticle (
 	sectionid bigint AUTO_INCREMENT,
-	sectionArticle varchar(50),
+	sectionArticle varchar(50) unique,
 	CONSTRAINT pk_section PRIMARY KEY (sectionid)
 );
 
-CREATE TABLE Article(
+CREATE TABLE magazine.Article(
 	articleid bigint AUTO_INCREMENT,
 	datearticle datetime,
 	subject varchar (50),
@@ -25,10 +25,11 @@ CREATE TABLE Article(
 
 	CONSTRAINT pk_article PRIMARY KEY (articleid),
 	CONSTRAINT fk_section_article FOREIGN KEY
-	(sectionid) REFERENCES SectionArticle(sectionid)
+	(sectionid) REFERENCES SectionArticle(sectionid) 
+	ON DELETE CASCADE
 );
 
-CREATE TABLE CommentArticle(
+CREATE TABLE magazine.CommentArticle(
 	commentid bigint AUTO_INCREMENT,
 	dateComment datetime,
 	commentarticle longtext,
@@ -37,9 +38,11 @@ CREATE TABLE CommentArticle(
 
 	CONSTRAINT pk_comment PRIMARY KEY (commentid),
 	CONSTRAINT fk_comment_article FOREIGN KEY
-	(articleid) REFERENCES Article(articleid) ,
+	(articleid) REFERENCES Article(articleid) 
+	ON DELETE CASCADE,
   CONSTRAINT fk_author FOREIGN KEY
   (author) REFERENCES UserArticle(userid)
+  ON DELETE CASCADE
 );
 
 INSERT INTO UserArticle (userid, username, email,profile,profileid, password, name)

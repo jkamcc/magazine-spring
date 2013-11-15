@@ -22,7 +22,7 @@ import com.google.common.base.Preconditions;
  */
 @Controller
 @RequestMapping("article")
-public class ArticleController {
+public class ArticleServiceController{
 	@Inject
     private ArticleService articleService;
     
@@ -78,6 +78,7 @@ public class ArticleController {
 
         return listArticles;
     }
+    
     
     @RequestMapping(value = "/completeall/{quantity}/{comments}", method = RequestMethod.GET)
     @ResponseBody
