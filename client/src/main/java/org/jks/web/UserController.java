@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method= RequestMethod.POST)
-    public String createUser(User user, BindingResult result, Model model) {
+    public String createUser(@Valid User user, BindingResult result, Model model) {
 
         try {
             restTemplate.postForObject("http://localhost:8080/service/user/create", user, User.class);

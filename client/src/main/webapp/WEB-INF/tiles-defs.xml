@@ -33,7 +33,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/error.jsp" />
     </definition>
     
-    <definition name="showSections" extends="template">
+    <definition name="sections" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/showSections.jsp" />
     </definition>
     

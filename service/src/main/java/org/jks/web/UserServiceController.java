@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import java.util.List;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 @RequestMapping("user")
-public class UserController {
+public class UserServiceController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceController.class);
 
     @Inject
     private UserService userService;
@@ -69,6 +71,12 @@ public class UserController {
         Preconditions.checkNotNull(user, "User with username "+ username + " cannot be found.");
 
         return user;
+    }
+
+    @RequestMapping(value = "/all", params = {"start","end"}, method = RequestMethod.GET)
+    public List<User> getUsers(@RequestParam(value = "start") String start, @RequestParam(value = "end") String end){
+
+        return userService.getUsers();
     }
 
 }

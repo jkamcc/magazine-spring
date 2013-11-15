@@ -30,11 +30,11 @@
 		
 		<div>
 			<h2> Noticias recientes </h2>
-				<p> El triunfo de la Selección Nacional ante México le dio un día perfecto a Costa Rica </p>
-				<p> Astronautas espian nuve extraña en el espacio </p>
+				<p> El triunfo de la Selecciï¿½n Nacional ante Mï¿½xico le dio un dï¿½a perfecto a Costa Rica </p>
+				<p> Astronautas espian nuve extraï¿½a en el espacio </p>
 				<p> 10 tips para proteger la vision de tus ojos </p>
 				<p><a class="btn" href="#">View details &raquo;</a></p>
 		</div>
 	</div>
 
- </div> <!-- /container -->
+ </div>

@@ -32,16 +32,9 @@ public class HomeController {
     public String home(Locale locale, Model model) {
         logger.info("Welcome home! The client locale is {}.", locale);
 
-        Date date = new Date();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+        String currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        String formattedDate = dateFormat.format(date);
-
-        model.addAttribute("serverTime", formattedDate );
-
-        if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
-
-            String currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!currentUser.equals("anonymousUser")) {
             model.addAttribute("currentUser", currentUser);
         }
 

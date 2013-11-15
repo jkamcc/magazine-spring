@@ -18,6 +18,7 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,17 +29,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("sections")
 public class SectionController {
+
 	@Autowired
     private RestTemplate restTemplate;
 	
 	/* Obtiene la lista de todas las secciones en la BD */
-	@RequestMapping(value="/getSections", method = RequestMethod.GET)
-	public ModelAndView showSections() {
+	@RequestMapping(value="/", method = RequestMethod.GET)
+	public String showSections(Model model) {
 		Section[] list = restTemplate.getForObject("http://localhost:8080/service/section/showSections", Section[].class);
-		List<Section> slist = Arrays.asList(list);
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("sectionList",  slist);
-		return new ModelAndView("showSections", model);
+//		List<Section> slist = Arrays.asList(list);
+//		Map<String, Object> model = new HashMap<String, Object>();
+		model.addAttribute("sectionList",  list);
+		return "showSections";
 	}
 	
 	/* Obtiene la lista de todas las secciones en la BD */
