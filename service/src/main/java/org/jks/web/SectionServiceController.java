@@ -32,9 +32,14 @@ public class SectionServiceController {
 	    
 	    @RequestMapping(value="/create", method= RequestMethod.POST)
 	    @ResponseBody
-	    public RestMessage saveSection(@Valid @RequestBody Section section) {
-	        sectionService.addSection(section);
-	        return new RestMessage( "Seccion agregada: "+section.getSectionArticle()); 
+	    public RestMessage saveSection(@Valid @RequestBody Section section) throws Exception {
+	        try{
+	    	sectionService.addSection(section);
+	        }
+	        catch(Exception e){
+	        	System.out.println("Fallo");
+	        }
+	        return new RestMessage( "Seccion agregada: "+section); 
 	    }
 	    
 	    @RequestMapping(value="/get", method= RequestMethod.GET)

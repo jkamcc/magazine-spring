@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * @author juancarrillo
  */
@@ -25,9 +27,10 @@ public class Section {
 
     private String sectionArticle;
 
+    @NotBlank
+    @Size(max=50)
     @javax.persistence.Column(name = "sectionArticle", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
-    @Size(max=50)
     public String getSectionArticle() {
         return sectionArticle;
     }
