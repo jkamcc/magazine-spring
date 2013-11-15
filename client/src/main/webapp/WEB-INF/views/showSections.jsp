@@ -10,7 +10,7 @@
 			<c:if test="${!empty sectionList}">
 				<table border="1">
 					<tr>
-						<th>Nombre de la secci&oacuten</th>
+						<th>Nombre de la secci&oacute;n</th>
 						<th> Acci&oacuten </th>
 					</tr>
 					<c:forEach items="${sectionList}" var="section">

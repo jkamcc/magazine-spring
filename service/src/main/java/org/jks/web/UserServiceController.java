@@ -74,7 +74,7 @@ public class UserServiceController {
     }
 
     @RequestMapping(value = "/all", params = {"start","end"}, method = RequestMethod.GET)
-    public List<User> getUsers(@RequestParam(value = "start") String start, @RequestParam(value = "end") String end){
+    public List<User> getUsers(@RequestParam(value = "start") int start, @RequestParam(value = "end") int end){
 
         return userService.getUsers();
     }

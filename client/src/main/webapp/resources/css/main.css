@@ -1,6 +1,5 @@
-/*@import url('bootstrap.css');
-@import url('bootstrap-responsive.css');
-*/
+@import url("bootstrap.css");
+@import url("bootstrap-responsive.css");
 body {
   padding-top: 60px;
   padding-bottom: 40px;
@@ -66,6 +65,13 @@ label.error {
   color: red;
   padding: 2px 8px;
   margin-top: 2px;
+}
+
+#user-image {
+  position: absolute;
+  left: 600px;
+  top: 200px;
+  width: 320px;
 }
 
 /*

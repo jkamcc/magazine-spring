@@ -1,8 +1,8 @@
 <%@include file="init.jsp"%>
 
-<div id="login" class="auth-form">
+<div id="login">
 
-	<form class="form-signin" name='login_fm' action="<c:url value='j_spring_security_check' />" method='POST'>
+	<form class="form-signin" name='login_fm' action="<c:url value='/j_spring_security_check' />" method='POST'>
 
 		<h2 class="form-signin-heading"><s:message code="sign-in" /></h2>
 

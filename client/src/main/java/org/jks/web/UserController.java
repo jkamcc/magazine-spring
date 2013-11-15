@@ -26,20 +26,20 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public String login(Model model) {
 
         return "login";
     }
 
-    @RequestMapping(value="/loginfailed", method = RequestMethod.GET)
+    @RequestMapping(value="/signfailed", method = RequestMethod.GET)
     public String loginerror(Model model) {
 
         model.addAttribute("error", "true");
         return "login";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    @RequestMapping(value="/signout", method = RequestMethod.GET)
     public String logout(Model model) {
 
         return "login";

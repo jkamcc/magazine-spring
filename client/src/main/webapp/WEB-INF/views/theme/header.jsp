@@ -34,7 +34,7 @@
                             <a href='<c:url value="/users/signout"/>'><s:message code="sign-out"/></a>
                         </c:when>
                         <c:otherwise>
-                            <a href='<c:url value="/users/login"/>'><s:message code="sign-in"/></a>
+                            <a href='<c:url value="/users/signin"/>'><s:message code="sign-in"/></a>
                             <a href='<c:url value="/users/register"/>'><s:message code="register"/></a>
                         </c:otherwise>
                     </c:choose>

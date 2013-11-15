@@ -11,9 +11,12 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/WEB-INF/spring" access="permitAll" />
-		<form-login login-page="/login" default-target-url="/"
-			authentication-failure-url="/loginfailed"/>
-		<logout logout-success-url="/logout"/>
+		<form-login login-page="/users/signin"
+                    default-target-url="/"
+			        authentication-failure-url="/users/signfailed"
+                    login-processing-url="/j_spring_security_check"
+        />
+		<logout logout-success-url="/users/signout"/>
 	</http>
 
 	<authentication-manager>
