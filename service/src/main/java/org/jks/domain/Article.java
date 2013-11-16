@@ -4,6 +4,10 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -31,6 +35,7 @@ public class Article {
         this.articleid = articleid;
     }
 
+    @NotBlank
     @javax.persistence.Column(name = "datearticle", nullable = true, insertable = true, updatable = true, length = 19, precision = 0)
     @Basic
     public Timestamp getDatearticle() {
@@ -40,7 +45,8 @@ public class Article {
     public void setDatearticle(Timestamp datearticle) {
         this.datearticle = datearticle;
     }
-
+    
+    @NotBlank
     @javax.persistence.Column(name = "subject", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getSubject() {
@@ -50,7 +56,9 @@ public class Article {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-
+    
+    @NotBlank
+    @Size(min=20)
     @javax.persistence.Column(name = "article", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Basic
     public String getArticle() {
@@ -60,7 +68,8 @@ public class Article {
     public void setArticle(String article) {
         this.article = article;
     }
-
+    
+    @NotBlank
     @javax.persistence.Column(name = "author", nullable = true, insertable = true, updatable = true, length = 100, precision = 0)
     @Basic
     public String getAuthor() {
@@ -70,7 +79,8 @@ public class Article {
     public void setAuthor(String author) {
         this.author = author;
     }
-
+    
+    @NotBlank
     @javax.persistence.Column(name = "sectionid", nullable = true, insertable = true, updatable = true, length = 19, precision = 0)
     @Basic
     public Long getSectionid() {
