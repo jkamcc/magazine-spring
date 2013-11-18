@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.jks.domain.Section;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
@@ -27,7 +29,9 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 
 @Controller
 @RequestMapping("sections")
-public class SectionController extends SimpleFormController {
+public class SectionController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SectionController.class);
 	
 	@Autowired
     private RestTemplate restTemplate;
@@ -46,14 +50,13 @@ public class SectionController extends SimpleFormController {
 	@RequestMapping(value="/", method = RequestMethod.POST)
 	public void addSection(Section section, BindingResult result, Model model) throws Exception{
 		 restTemplate.postForObject("http://localhost:8080/service/section/create", section, Section.class);
+		 //return "redirect:/";
 	}
 	
 	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public String deleteSection(Section section, BindingResult result, Model model)  {
-		int a=10;
-		section.getSectionid();
-		restTemplate.delete("http://localhost:8080/service/section/delete/{id}",section.getSectionid());
-		return "sections";
+		restTemplate.delete("http://localhost:8080/service/section/delete/{id}",50);
+		return "redirect(http://localhost:8080/client/sections)";
 	}
 }
