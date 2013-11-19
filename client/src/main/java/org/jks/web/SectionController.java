@@ -53,11 +53,4 @@ public class SectionController {
 		 return "redirect:/";
 	}
 	
-	
-	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public String deleteSection(Section section, BindingResult result, Model model)  {
-		long id= section.getSectionid();
-		restTemplate.delete("http://localhost:8080/service/section/delete/{id}",id);
-		return "redirect:/";
-	}
 }

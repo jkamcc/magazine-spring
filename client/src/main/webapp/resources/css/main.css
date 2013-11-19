@@ -31,7 +31,7 @@ body {
 footer {
   padding-top: 30px;
   bottom: 0px;
-  position: fixed;
+  position: relative;
   right: 0;
   left: 0;
   z-index: 1030;
