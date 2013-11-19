@@ -48,15 +48,16 @@ public class SectionController {
 	
 	/* Almacena una nueva Seccion en la BD */
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	public void addSection(Section section, BindingResult result, Model model) throws Exception{
+	public String addSection(Section section, BindingResult result, Model model) throws Exception{
 		 restTemplate.postForObject("http://localhost:8080/service/section/create", section, Section.class);
-		 //return "redirect:/";
+		 return "redirect:/";
 	}
 	
 	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public String deleteSection(Section section, BindingResult result, Model model)  {
-		restTemplate.delete("http://localhost:8080/service/section/delete/{id}",50);
-		return "redirect(http://localhost:8080/client/sections)";
+		long id= section.getSectionid();
+		restTemplate.delete("http://localhost:8080/service/section/delete/{id}",id);
+		return "redirect:/";
 	}
 }

@@ -9,7 +9,7 @@
 		<c:if test="${!empty sectionList}">
 			<table border="1">
 				<tr>
-					<th><s:message code="section-id"/><th>
+					<th><s:message code="section-id"/></th>
 					<th><s:message code="section-name"/></th>
 					<th></th>
 				</tr>
@@ -18,20 +18,21 @@
 					<td><c:out value="${section.sectionid}" /></td>
 					<td><c:out value="${section.sectionArticle}" /></td>
 					<td>
-						<a href="localhost:8080/client/sections/delete/<c:out value="${section.sectionid}"/>"><s:message code="button-delete"/></a>
+						<input type="radio" name="sectionid" id="sectionid" value="${section.sectionid}"/>
 					</td>
 				</tr>
 				</c:forEach>
 			</table>
 		</c:if>
 		</br>
+		<input type="submit" value="Eliminar"/>
 	</form>
 
-	<!-- <form action="<c:url value="/sections/"/>" method="post" name="agregar">
+	<form action="<c:url value="/sections/"/>" method="post" name="agregar">
 		<h4>Agregar Secci&oacuten:</h4>
 		<input type="text" name="sectionArticle" id="sectionArticle"/>
 		<input type="submit" value=<s:message code="button-add"/>/>
-	</form>  -->
+	</form> 
 </div>
 
 <script type="text/javascript">
