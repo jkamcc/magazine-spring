@@ -32,7 +32,7 @@ public class ArticleController {
 	@RequestMapping(value="/savearticle", method = RequestMethod.POST)
 	public String savearticle(@Valid Article article, BindingResult result, Model model) {
 		try {
-            restTemplate.postForObject("http://localhost:8080/service/user/create", article, Article.class);
+            restTemplate.postForObject("http://localhost:8080/service/article/create", article, Article.class);
 
         } catch (RestClientException e) {
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class ArticleController {
 	//Este metodo lleva al usuario a editarticle.jsp para que pueda crear un articulo
     @RequestMapping(value="/newarticle", method = RequestMethod.GET)
     public String newarticle(Model model) {
-    	Section[] sections = restTemplate.getForObject("http://localhost:8080/service/section/showSections", Section[].class);
+    	Section[] sections = restTemplate.getForObject("http://localhost:8080/service/section/get", Section[].class);
 
 		model.addAttribute("sectionList",  sections);
 		

@@ -1,5 +1,5 @@
 package org.jks.util;
-/*
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
@@ -7,11 +7,10 @@ import org.springframework.http.MediaType;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-*/
+
 /**
  * @author juan carrillo
  */
-/*
 public class TestUtil {
 
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
@@ -39,4 +38,3 @@ public class TestUtil {
         return builder.toString();
     }
 }
-*/

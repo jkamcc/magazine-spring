@@ -1,17 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h2>Artículo Nuevo </h2>
+<h2>Artï¿½culo Nuevo </h2>
 
 <div id="editarticlediv">
 
 <form id="editarticle_fm" name="editarticle_fm" action="<c:url value='/articles/savearticle' />" method='POST'>
+        <input name="sectionName" type="hidden">
 		<div>
-			<input name="subject" type="text" class="input-block-level" placeholder="Título">
+			<input name="subject" type="text" class="input-block-level" placeholder="Tï¿½tulo">
 		</div>
 		<div>
 			<c:if test="${!empty sectionList}">
-				Indique la sección del artículo:
-				<select name="sectionid">
+				Indique la secciï¿½n del artï¿½culo:
+				<select id="sectionid" name="sectionid">
 					<c:forEach items="${sectionList}" var="section">
 						<option value="<c:out value="${section.sectionid}"/>">
 							<c:out value="${section.sectionArticle}"/>
@@ -21,19 +22,21 @@
 			</c:if>
 		</div>
 		<div>
-			<input name="author" type="text" class="input-block-level" placeholder="Autor del artículo" >
+			<input name="author" type="text" class="input-block-level" placeholder="Autor del artï¿½culo" >
 		</div>
 		<div>
-			<textarea rows="7" cols="50" name="article" class="input-block-level" placeholder="Contendio del artículo">
+			<textarea rows="7" cols="50" name="article" class="input-block-level" placeholder="Contendio del artï¿½culo">
 			</textarea>
 		</div>
-		<button id="btn-editarticle" type="submit">Crear Artículo</button>
+		<button id="btn-editarticle" type="submit">Crear Artï¿½culo</button>
 	</form>
 </div>
 
-<script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'>
+<script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
+<script type="text/javascript">
     $(document).ready(function(){
-        $('#editarticle_fm').validate({
+        var form = $('#editarticle_fm');
+        form.validate({
             rules: {
                 article: {
                     required: true
@@ -46,5 +49,12 @@
                 }
             }
         });
+
+        form.submit(function(event){
+            var id = $('#sectionid option:selected').attr('name')
+            $('input[name="sectionName"]').val(id);
+        });
     });
+
+
 </script>

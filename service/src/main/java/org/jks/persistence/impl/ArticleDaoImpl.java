@@ -41,12 +41,16 @@ public class ArticleDaoImpl extends AbstractHibernateDAO<Article, Long> implemen
     public List<Article> find(int start, int end) {
 
         String hsql = "FROM " + Article.class.getName() + " as a ORDER BY a.datearticle desc";
+        Query q = getCurrentSession().createQuery(hsql);
 
-        Query query = getCurrentSession().createQuery(hsql);
-        query.setFirstResult(start);
-        query.setMaxResults(end);
+        if (start > 0) {
+            q.setFirstResult(start);
+        }
 
-        return super.find(start, end);
+        if (end > 0) {
+            q.setMaxResults(end);
+        }
+        return q.list();
     }
 
     @Override

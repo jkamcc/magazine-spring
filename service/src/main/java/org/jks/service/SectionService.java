@@ -10,7 +10,9 @@ public interface SectionService {
     public Section getSectionById(long sectionId);
 
     public List<Section> getSections();
-    
+
+    public List<Section> getSections(int start, int end);
+
     public Section getSectionByName(String subject);
 
     public void updateSection(Section section);

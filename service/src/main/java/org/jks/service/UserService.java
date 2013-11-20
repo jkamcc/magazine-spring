@@ -18,6 +18,8 @@ public interface UserService {
 
     public List<User> getUsers();
 
+    public List<User> getUsers(int start, int end);
+
     public User getUserByUsername(String username);
 
     public boolean checkExistUsername(String username);

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -48,22 +49,27 @@ public class UserController {
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String register(Model model) {
 
-        User user = restTemplate.getForObject("http://localhost:8080/service/user/1", User.class);
-        System.out.println("user.getUsername() = " + user.getUsername());
-        
         return "register";
     }
 
     @RequestMapping(value = "/register", method= RequestMethod.POST)
+    @ResponseBody
     public String createUser(@Valid User user, BindingResult result, Model model) {
 
-        try {
-            restTemplate.postForObject("http://localhost:8080/service/user/create", user, User.class);
+        String returnText = "Sorry an error has occurred";
 
-        } catch (RestClientException e) {
-            e.printStackTrace();
+        if (!result.hasErrors()) {
+
+            try {
+                restTemplate.postForObject("http://localhost:8080/service/user/create", user, User.class);
+
+            } catch (RestClientException e) {
+                e.printStackTrace();
+            }
+
+            returnText = "User created successfully";
         }
 
-        return "register";
+        return returnText;
     }
 }

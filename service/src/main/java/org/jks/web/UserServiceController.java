@@ -26,7 +26,7 @@ public class UserServiceController {
     @Inject
     private UserService userService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     @ResponseBody
     public User getById(@PathVariable Long id) {
 
@@ -43,7 +43,7 @@ public class UserServiceController {
     @ResponseBody
     public RestMessage createUser(@Valid @RequestBody User user) throws Exception {
         userService.addUser(user);
-        return new RestMessage("Created user " + user);
+        return new RestMessage("Created user " + user.getUsername());
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
@@ -60,9 +60,9 @@ public class UserServiceController {
         return  new RestMessage("Deleted user "+ id);
     }
 
-    @RequestMapping(params = "username", method = RequestMethod.GET)
+    @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
     @ResponseBody
-    public User getByUsername(@RequestParam(value="username") String username) {
+    public User getByUsername(@PathVariable String username) {
 
         logger.info("Requesting Username "+ username);
 
@@ -73,10 +73,12 @@ public class UserServiceController {
         return user;
     }
 
-    @RequestMapping(value = "/all", params = {"start","end"}, method = RequestMethod.GET)
-    public List<User> getUsers(@RequestParam(value = "start") int start, @RequestParam(value = "end") int end){
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> getUsers(@RequestParam(value = "start", defaultValue = "0") int start,
+                               @RequestParam(value = "end", defaultValue = "0") int end){
 
-        return userService.getUsers();
+        return userService.getUsers(start, end);
     }
 
 }

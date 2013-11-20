@@ -1,11 +1,14 @@
 package org.jks.persistence.impl;
 
 import com.google.common.base.Preconditions;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.jks.domain.User;
 import org.jks.persistence.UserDao;
 import org.jks.persistence.common.AbstractHibernateDAO;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author juancarrillo
@@ -55,5 +58,21 @@ public class UserDaoImpl extends AbstractHibernateDAO<User, Long> implements Use
         }
 
         return existPassword;
+    }
+
+    @Override
+    public List<User> find(int start, int end) {
+
+        String hsql = "FROM " + User.class.getName() + " as a ORDER BY a.username asc ";
+        Query q = getCurrentSession().createQuery(hsql);
+
+        if (start > 0) {
+            q.setFirstResult(start);
+        }
+
+        if (end > 0) {
+            q.setMaxResults(end);
+        }
+        return q.list();
     }
 }

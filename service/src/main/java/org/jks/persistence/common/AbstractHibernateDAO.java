@@ -42,8 +42,13 @@ public abstract class AbstractHibernateDAO<T, E extends Serializable> implements
     @Override
     public List<T> find(int start, int end) {
         Query q = getCurrentSession().createQuery("FROM " + clazz.getName());
-        q.setFirstResult(start);
-        q.setMaxResults(end);
+
+        if (start > 0) {
+            q.setFirstResult(start);
+        }
+        if (end > 0) {
+            q.setMaxResults(end);
+        }
         return q.list();
     }
 

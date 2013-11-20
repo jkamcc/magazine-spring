@@ -31,7 +31,12 @@ public class SectionServiceImpl implements SectionService {
     public List<Section> getSections(){
     	return sectionDao.findAll();
     }
-    
+
+    @Override
+    public List<Section> getSections(int start, int end) {
+        return sectionDao.find(start, end);
+    }
+
     @Override
     public Section getSectionByName(String subject){
     	return sectionDao.getSectionByName(subject);

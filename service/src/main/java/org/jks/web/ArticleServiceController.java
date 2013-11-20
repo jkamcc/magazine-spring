@@ -9,11 +9,7 @@ import org.jks.domain.Article;
 import org.jks.service.ArticleService;
 import org.jks.web.common.RestMessage;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.google.common.base.Preconditions;
 
@@ -57,26 +53,13 @@ public class ArticleServiceController{
 
         return article;
     }
-    
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Article> getAll() {
+    public List<Article> getArticles(@RequestParam(value = "start", defaultValue = "0") int start,
+                                    @RequestParam(value = "end", defaultValue = "0") int end){
 
-    	List<Article> listArticles = articleService.getArticles();
-
-        Preconditions.checkNotNull(listArticles, "Articles cannot be found.");
-
-        return listArticles;
-    }
-      
-    @RequestMapping(value = "/all/{start}/{end}", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Article> getArticles(@PathVariable int start, @PathVariable int end){
-    	List<Article> listArticles = articleService.getArticles(start, end);
-
-        Preconditions.checkNotNull(listArticles, "Articles cannot be found.");
-
-        return listArticles;
+        return articleService.getArticles(start, end);
     }
     
     

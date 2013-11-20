@@ -6,7 +6,7 @@
 
     <h1><s:message code="join-message"/></h1>
 
-	<form id="register_fm" name="register_fm" action="<c:url value="/users/register"/>" method="post" class="well form-horizontal">
+    <form id="register_fm" name="register_fm" action="javascript:;" method="post" class="well form-horizontal">
         <fieldset>
 
             <legend><s:message code="register-message"/></legend>
@@ -59,42 +59,20 @@
 
         </fieldset>
 
-	</form>
+    </form>
 
     <img id="user-image" src='<c:url value="/resources/img/user-icon.jpg"/> ' alt="user-icon.jpg" />
 
 </div>
 
-<script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'>
+<script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/resources/js/register.js"/>'></script>
+<script type="text/javascript">
     $(document).ready(function(){
-        $('#register_fm').validate({
-            rules: {
-                username: {
-                    required: true
-                },
-                name: {
-                    required: true
-                },
-                email: {
-                    required : true,
-                    email : true
-                },
-                password: {
-                    minLength: 5
-                }
-            }
+        var form = $('#register_fm');
+        form.validate(registerUserValidaton);
+        form.submit(function(e){
+            submitUser(document.register_fm);
         });
     });
-    //
-    //    $('#register_fm').submit(function(e) {
-    //        var form = document.register_fm;
-    //        var user1 = {
-    //            username : form.username,
-    //            password: form.password,
-    //            name:
-    //        };
-    //        user1.username = document.register_fm.username.value;
-    //        e.preventDefault();
-    //
-    //    });
 </script>

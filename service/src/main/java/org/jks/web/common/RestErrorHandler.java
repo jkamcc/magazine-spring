@@ -1,5 +1,6 @@
 package org.jks.web.common;
 
+import org.codehaus.jackson.map.exc.UnrecognizedPropertyException;
 import org.jks.web.UserServiceController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +45,9 @@ public class RestErrorHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public void processUrlNotValid(Exception e) {
+    public RestMessage processUrlNotValid(Exception e) {
         logger.error(e.getMessage(), e);
+        return new RestMessage(e.getMessage());
     }
 
     private void processFieldErrors(RestErrorMessage errorMessage, List<FieldError> errors) {
