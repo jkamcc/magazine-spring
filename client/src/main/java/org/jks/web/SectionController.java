@@ -46,11 +46,4 @@ public class SectionController {
 		return "sections";
 	}
 	
-	/* Almacena una nueva Seccion en la BD */
-	@RequestMapping(value="/", method = RequestMethod.POST)
-	public String addSection(Section section, BindingResult result, Model model) throws Exception{
-		 restTemplate.postForObject("http://localhost:8080/service/section/create", section, Section.class);
-		 return "redirect:/";
-	}
-	
 }
