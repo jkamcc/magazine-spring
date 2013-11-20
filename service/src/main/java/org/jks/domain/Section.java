@@ -2,6 +2,7 @@ package org.jks.domain;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
@@ -17,6 +18,7 @@ public class Section {
 
     @javax.persistence.Column(name = "sectionid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
     @Id
+    @GeneratedValue
     public long getSectionid() {
         return sectionid;
     }
