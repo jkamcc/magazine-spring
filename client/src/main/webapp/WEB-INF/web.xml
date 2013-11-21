@@ -45,5 +45,133 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!--  <security-constraint>
+                <display-name>Todo</display-name>
+                <web-resource-collection>
+                        <web-resource-name>Todo</web-resource-name>
+                        <description>Acceder todos los recursos</description>
+                        <url-pattern>/*</url-pattern>
+                        <url-pattern>/ConsultarDeuda.do</url-pattern>
+                        <http-method>GET</http-method>
+                        <http-method>PUT</http-method>
+                        <http-method>HEAD</http-method>
+                        <http-method>TRACE</http-method>
+                        <http-method>POST</http-method>
+                        <http-method>DELETE</http-method>
+                        <http-method>OPTIONS</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <description>Todos</description>
+                        <role-name>Administradores</role-name>
+                        <role-name>Abogados</role-name>
+                        <role-name>Contadores</role-name>
+                        <role-name>Investigadores</role-name>
+                </auth-constraint>
+        </security-constraint>
+        
+        <security-constraint>
+                <display-name>Administrator</display-name>
+                <web-resource-collection>
+                        <web-resource-name>Administrator</web-resource-name>
+                        <description>Administrator</description>
+                        <url-pattern>Inicio.do</url-pattern>
+                        <url-pattern>Salir.do</url-pattern>-->
+                        <!-- Catalogos  -->
+                     <!--   <url-pattern>/AprobarCasos.do</url-pattern>
+                        <url-pattern>/ListarCasos.do</url-pattern>
+                        <http-method>GET</http-method>
+                        <http-method>PUT</http-method>
+                        <http-method>HEAD</http-method>
+                        <http-method>TRACE</http-method>
+                        <http-method>POST</http-method>
+                        <http-method>DELETE</http-method>
+                        <http-method>OPTIONS</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <description>Administrator</description>
+                        <role-name>Administrator</role-name>
+                </auth-constraint>
+        </security-constraint>
+        
+        <security-constraint>
+                <display-name></display-name>
+                <web-resource-collection>
+                        <web-resource-name>Guest</web-resource-name>
+                        <description>Guest</description>
+                        <url-pattern>Inicio.do</url-pattern>
+                        <url-pattern>Salir.do</url-pattern>-->
+                        <!-- Catalogos  -->
+                       <!--  <url-pattern>/ListarCasosEnSeguimiento.do</url-pattern>
+                        <url-pattern>/ListarAsignacionesAbogado.do</url-pattern>
+                        <http-method>GET</http-method>
+                        <http-method>PUT</http-method>
+                        <http-method>HEAD</http-method>
+                        <http-method>TRACE</http-method>
+                        <http-method>POST</http-method>
+                        <http-method>DELETE</http-method>
+                        <http-method>OPTIONS</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <description>Guest</description>
+                        <role-name>Guest</role-name>
+                </auth-constraint>
+        </security-constraint>
+        
+        <security-constraint>
+                <display-name>Contador</display-name>
+                <web-resource-collection>
+                        <web-resource-name>Contador</web-resource-name>
+                        <description>Contador</description>
+                        <url-pattern>Inicio.do</url-pattern>
+                        <url-pattern>Salir.do</url-pattern>--> 
+                        <!-- Catalogos  -->
+                    <!--     <url-pattern>/PCAprobacionContable.do</url-pattern>
+                        <url-pattern>/AprobarCasos.do</url-pattern>
+                        <url-pattern>/ListarAsignacionesAbogado.do</url-pattern>
+                        <url-pattern>/BuscarCasoReimpresionCI.do</url-pattern>
+                        <url-pattern>/BuscarCIxCliente.do</url-pattern>
+                        <url-pattern>/ListarCasos.do</url-pattern>
+                        <url-pattern>/BuscarCasoReimpresionCI.do</url-pattern>
+                        <url-pattern>/GenerarResumenCertificacionIntegral.do</url-pattern>
+                        <url-pattern>/BuscarCIxCliente.do</url-pattern>
+                        <url-pattern>/ConsultarAdendumsxCI.do</url-pattern>
+                        <url-pattern>/ConsultarAdendumsxAbogado.do</url-pattern>
+                        <http-method>GET</http-method>
+                        <http-method>PUT</http-method>
+                        <http-method>HEAD</http-method>
+                        <http-method>TRACE</http-method>
+                        <http-method>POST</http-method>
+                        <http-method>DELETE</http-method>
+                        <http-method>OPTIONS</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <description>contador</description>
+                        <role-name>Contadores</role-name>
+                </auth-constraint>
+        </security-constraint>
+        
+        <security-constraint>
+                <display-name>Investigador</display-name>
+                <web-resource-collection>
+                        <web-resource-name>Investigador</web-resource-name>
+                        <description>Investigador</description>
+                        <url-pattern>Inicio.do</url-pattern>
+                        <url-pattern>Salir.do</url-pattern>
+                        <url-pattern>/ListarAccionxUsuario.do</url-pattern>
+                        <url-pattern>/ListarAccionxCaso.do</url-pattern>
+                        <http-method>GET</http-method>
+                        <http-method>PUT</http-method>
+                        <http-method>HEAD</http-method>
+                        <http-method>TRACE</http-method>
+                        <http-method>POST</http-method>
+                        <http-method>DELETE</http-method>
+                        <http-method>OPTIONS</http-method>
+                </web-resource-collection>
+                <auth-constraint>
+                        <description>investigador</description>
+                        <role-name>Investigadores</role-name>
+                </auth-constraint>
+        </security-constraint>-->
 
 </web-app>

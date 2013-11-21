@@ -59,5 +59,12 @@ public class SectionServiceController {
             return sectionService.getSections(start, end);
         }
 
+        
+        @RequestMapping(value="/get/{name}", method= RequestMethod.GET)
+	    @ResponseBody
+	    public Section getSectionByName(@PathVariable String name) {
+	    	Section section=sectionService.getSectionByName(name);
+	        return section; 
+	    }
 
 }

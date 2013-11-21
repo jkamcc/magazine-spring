@@ -8,12 +8,13 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="brand" href="#">Project name</a>
+			<a class="brand" href='<c:url value="/"/>'>Project name</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li class="active"><a href='<c:url value="/"/>'>Home</a></li>
 					<li><a href="#about">About</a></li>
 					<li><a href="#contact">Contact</a></li>
+					<li><a href='<c:url value="/sections/"/>'>Section</a><li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 						<ul class="dropdown-menu">
