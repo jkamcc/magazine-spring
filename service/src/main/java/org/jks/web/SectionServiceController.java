@@ -66,5 +66,4 @@ public class SectionServiceController {
 	    	Section section=sectionService.getSectionByName(name);
 	        return section; 
 	    }
-
 }
