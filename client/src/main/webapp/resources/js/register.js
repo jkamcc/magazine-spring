@@ -18,8 +18,15 @@ var registerUserValidaton = {
             equalTo: "#password"
         }
 
+    }, //custom variables
+    message: null,
+    successMessage: null,
+    errorMessage: null,
+    inputNodes: null,
+    submitHandler: function (form) {
+        submitUser(form, registerUserValidaton.message);
     },
-    errorClass: "error help-inline"
+    errorClass: "error"
 };
 
 function UserArticle(username, name, password, profile, profileid, email) {
@@ -31,18 +38,18 @@ function UserArticle(username, name, password, profile, profileid, email) {
     this.email = email;
 };
 
-function submitUser(nodeForm) {
-    var userArticle = new UserArticle(nodeForm.username.value, nodeForm.name.value,
-        nodeForm.password.value, nodeForm.profile.value,
-        nodeForm.profileid.value, nodeForm.email.value);
-
+function submitUser(form) {
+    var userArticle = new UserArticle(form.username.value, form.name.value,
+        form.password.value, form.profile.value,
+        form.profileid.value, form.email.value);
     console.info(userArticle);
-    registerUser(userArticle);
-}
+    registerUser(userArticle, message);
+};
 
 function registerUser(userArticle) {
     var user = JSON.stringify(userArticle);
-    console.info(user);
+    var message = registerUserValidaton.message;
+
     $.ajax({
         type: 'POST',
         url: "http://localhost:8080/service/user/create",
@@ -50,10 +57,19 @@ function registerUser(userArticle) {
         dataType: "json",
         data: JSON.stringify(userArticle),
         success: function(response) {
-            console.info(response);
+            if (message) {
+                message.removeClass('hide').addClass('alert-success');
+                message.children().text(registerUserValidaton.successMessage);
+            }
+
+            if (inputNodes) inputNodes.hide();
         },
-        error: function(e) {
-            console.error(e.responseText);
+        error: function(response) {
+            console.error(response.responseText);
+            if (message) {
+                message.removeClass('hide').addClass('alert-error');
+                message.children().text(registerUserValidaton.errorMessage +' '+response.responseJSON.message);
+            }
         }
     });
 }
