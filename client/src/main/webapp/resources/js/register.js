@@ -17,9 +17,22 @@ var registerUserValidaton = {
         "confirm-password": {
             equalTo: "#password"
         }
-
     },
-    errorClass: "error help-inline"
+    submitHandler: function (form) {
+        submitUser(form, registerUserValidaton.message);
+    },
+    errorClass: "error"
+};
+
+var UserVariables = {
+    message: null,
+    successMessage: null,
+    errorMessage: null,
+    inputs: null,
+    redirect: {
+        url: null,
+        message: null
+    }
 };
 
 function UserArticle(username, name, password, profile, profileid, email) {
@@ -31,18 +44,18 @@ function UserArticle(username, name, password, profile, profileid, email) {
     this.email = email;
 };
 
-function submitUser(nodeForm) {
-    var userArticle = new UserArticle(nodeForm.username.value, nodeForm.name.value,
-        nodeForm.password.value, nodeForm.profile.value,
-        nodeForm.profileid.value, nodeForm.email.value);
-
+function submitUser(form) {
+    var userArticle = new UserArticle(form.username.value, form.name.value,
+        form.password.value, form.profile.value,
+        form.profileid.value, form.email.value);
     console.info(userArticle);
     registerUser(userArticle);
-}
+};
 
 function registerUser(userArticle) {
     var user = JSON.stringify(userArticle);
-    console.info(user);
+    var message = UserVariables.message;
+    var inputs = UserVariables.inputs;
     $.ajax({
         type: 'POST',
         url: "http://localhost:8080/service/user/create",
@@ -50,10 +63,20 @@ function registerUser(userArticle) {
         dataType: "json",
         data: JSON.stringify(userArticle),
         success: function(response) {
-            console.info(response);
+            if (message) {
+                message.removeClass('hide').addClass('alert-success');
+                message.children().text(UserVariables.successMessage);
+            }
+
+            if ($('.user-info')) inputs.hide();
         },
-        error: function(e) {
-            console.error(e.responseText);
+        error: function(response) {
+            console.error(response.responseText);
+            if (message) {
+                message.removeClass('hide').addClass('alert-error');
+                message.children().text(UserVariables.errorMessage +' '+response.responseJSON.message);
+            }
+            if (UserVariables.inputs) UserVariables.inputs.hide();
         }
     });
 }
