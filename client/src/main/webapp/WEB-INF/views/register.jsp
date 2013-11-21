@@ -86,9 +86,10 @@
 <script type="text/javascript" src='<c:url value="/resources/js/register.js"/>'></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        registerUserValidaton.message = $('#form-message');
-        registerUserValidaton.errorMessage = '<s:message code="error-created-user"/>';
-        registerUserValidaton.successMessage = '<s:message code="success-created-user"/>';
+        UserVariables.message = $('#form-message');
+        UserVariables.errorMessage = '<s:message code="error-created-user"/>';
+        UserVariables.successMessage = '<s:message code="success-created-user"/>';
+        UserVariables.inputs = $('.user-info');
         $('#register_fm').validate(registerUserValidaton);
     });
 </script>

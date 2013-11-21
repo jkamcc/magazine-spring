@@ -17,16 +17,22 @@ var registerUserValidaton = {
         "confirm-password": {
             equalTo: "#password"
         }
-
-    }, //custom variables
-    message: null,
-    successMessage: null,
-    errorMessage: null,
-    inputNodes: null,
+    },
     submitHandler: function (form) {
         submitUser(form, registerUserValidaton.message);
     },
     errorClass: "error"
+};
+
+var UserVariables = {
+    message: null,
+    successMessage: null,
+    errorMessage: null,
+    inputs: null,
+    redirect: {
+        url: null,
+        message: null
+    }
 };
 
 function UserArticle(username, name, password, profile, profileid, email) {
@@ -43,13 +49,13 @@ function submitUser(form) {
         form.password.value, form.profile.value,
         form.profileid.value, form.email.value);
     console.info(userArticle);
-    registerUser(userArticle, message);
+    registerUser(userArticle);
 };
 
 function registerUser(userArticle) {
     var user = JSON.stringify(userArticle);
-    var message = registerUserValidaton.message;
-
+    var message = UserVariables.message;
+    var inputs = UserVariables.inputs;
     $.ajax({
         type: 'POST',
         url: "http://localhost:8080/service/user/create",
@@ -59,17 +65,18 @@ function registerUser(userArticle) {
         success: function(response) {
             if (message) {
                 message.removeClass('hide').addClass('alert-success');
-                message.children().text(registerUserValidaton.successMessage);
+                message.children().text(UserVariables.successMessage);
             }
 
-            if (inputNodes) inputNodes.hide();
+            if ($('.user-info')) inputs.hide();
         },
         error: function(response) {
             console.error(response.responseText);
             if (message) {
                 message.removeClass('hide').addClass('alert-error');
-                message.children().text(registerUserValidaton.errorMessage +' '+response.responseJSON.message);
+                message.children().text(UserVariables.errorMessage +' '+response.responseJSON.message);
             }
+            if (UserVariables.inputs) UserVariables.inputs.hide();
         }
     });
 }
