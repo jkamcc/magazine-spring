@@ -2,13 +2,18 @@
 
 <style type="text/css">
     #user-image {
-        position: absolute;
-        left: 600px;
-        top: 200px;
         width: 320px;
+        margin-left: 140px;
     }
     #form-message {
         width: 350px;
+        float: left;
+    }
+    .user-info {
+        float: left;
+    }
+    .right-square {
+        float: left;
     }
 </style>
 
@@ -17,6 +22,7 @@
     <h1><s:message code="join-message"/></h1>
 
     <form id="register_fm" name="register_fm" action="javascript:;" method="post" class="well form-horizontal">
+
         <fieldset>
 
             <legend><s:message code="register-message"/></legend>
@@ -75,10 +81,14 @@
 
             </div>
 
+            <div class="right-square">
+                <img id="user-image" src='<c:url value="/resources/img/user-icon.jpg"/> ' alt="user-icon.jpg" />
+            </div>
+
+            <div style="clear:both"></div>
+
         </fieldset>
-        <div class="right-square">
-            <img id="user-image" src='<c:url value="/resources/img/user-icon.jpg"/> ' alt="user-icon.jpg" />
-        </div>
+
     </form>
 </div>
 

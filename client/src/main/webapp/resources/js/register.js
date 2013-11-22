@@ -68,10 +68,10 @@ function registerUser(userArticle) {
                 message.children().text(UserVariables.successMessage);
             }
 
-            if ($('.user-info')) inputs.hide();
+            if (inputs) inputs.hide();
         },
         error: function(response) {
-            console.error(response.responseText);
+            if(console) console.error(response.responseText);
             if (message) {
                 message.removeClass('hide').addClass('alert-error');
                 message.children().text(UserVariables.errorMessage +' '+response.responseJSON.message);

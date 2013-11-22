@@ -43,7 +43,7 @@ public class UserServiceController {
     @ResponseBody
     public RestMessage createUser(@Valid @RequestBody User user) throws Exception {
         userService.addUser(user);
-        return new RestMessage("Created user " + user.getUsername());
+        return new RestMessage("Created user " + user.getUsername() +" successfully");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
