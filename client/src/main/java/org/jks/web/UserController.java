@@ -1,19 +1,23 @@
 package org.jks.web;
 
+import org.jks.domain.Profile;
 import org.jks.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 /**
  * @author juancarrillo
@@ -26,6 +30,9 @@ public class UserController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    MessageSource messageSource;
 
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public String login(Model model) {
@@ -54,22 +61,38 @@ public class UserController {
 
     @RequestMapping(value = "/register", method= RequestMethod.POST)
     @ResponseBody
-    public String createUser(@Valid User user, BindingResult result, Model model) {
+    public String createUser(@Valid @RequestBody User user, Locale locale) {
 
-        String returnText = "Sorry an error has occurred";
+        boolean userCreated = true;
 
-        if (!result.hasErrors()) {
+        try {
+            user.setPassword(User.sha1(user.getPassword()));
+            user.setProfile(Profile.NORMAL.toString());
+            user.setProfileid(Profile.NORMAL.getValue());
 
-            try {
-                restTemplate.postForObject("http://localhost:8080/service/user/create", user, User.class);
+            restTemplate.postForLocation("http://localhost:8080/service/user/create", user);
 
-            } catch (RestClientException e) {
-                e.printStackTrace();
-            }
+        } catch (RestClientException e) {
+            userCreated = false;
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            userCreated = false;
+            logger.error(e.getMessage(), e);
+        } catch (Exception e) {
+            userCreated = false;
+            logger.error(e.getMessage(), e);
+        }
 
-            returnText = "User created successfully";
+        String returnText = "";
+
+        if (userCreated) {
+            returnText = messageSource.getMessage("success-created-user", null, locale);
+        } else {
+            returnText = messageSource.getMessage("system-error", null, locale);
         }
 
         return returnText;
     }
+
 }

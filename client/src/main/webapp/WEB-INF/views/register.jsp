@@ -5,7 +5,7 @@
         width: 320px;
         margin-left: 140px;
     }
-    #form-message {
+    .form-message {
         width: 350px;
         float: left;
     }
@@ -27,8 +27,12 @@
 
             <legend><s:message code="register-message"/></legend>
 
-            <div id="form-message" class="control-group alert hide">
+            <div id="message" class="form-message control-group alert hide">
                 <label>ajax</label>
+            </div>
+
+            <div id="redirect-message" class="form-message alert alert-info hide">
+                <label><s:message code="register-redirect"/></label>
             </div>
 
             <div class="user-info">
@@ -96,7 +100,8 @@
 <script type="text/javascript" src='<c:url value="/resources/js/register.js"/>'></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        UserVariables.message = $('#form-message');
+        UserVariables.message = $('#message');
+        UserVariables.redirect = {url : "signin", message: $("#redirect-message")};
         UserVariables.errorMessage = '<s:message code="error-created-user"/>';
         UserVariables.successMessage = '<s:message code="success-created-user"/>';
         UserVariables.inputs = $('.user-info');

@@ -32,7 +32,7 @@ public class RestAuthenticationProvider implements AuthenticationProvider {
         User user = null;
 
         try {
-            user = restTemplate.getForObject("http://localhost:8080/service/user?username="+username, User.class);
+            user = restTemplate.getForObject("http://localhost:8080/service/user/username/"+username, User.class);
 
         } catch (RestClientException e) {
             e.printStackTrace();

@@ -70,6 +70,4 @@
             $('input[name="sectionName"]').val(id);
         });
     });
-
-
 </script>

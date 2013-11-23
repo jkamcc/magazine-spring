@@ -42,41 +42,50 @@ function UserArticle(username, name, password, profile, profileid, email) {
     this.profile = profile;
     this.profileid = profileid;
     this.email = email;
-};
-
+}
 function submitUser(form) {
     var userArticle = new UserArticle(form.username.value, form.name.value,
         form.password.value, form.profile.value,
         form.profileid.value, form.email.value);
     console.info(userArticle);
     registerUser(userArticle);
-};
+}
 
 function registerUser(userArticle) {
-    var user = JSON.stringify(userArticle);
-    var message = UserVariables.message;
-    var inputs = UserVariables.inputs;
     $.ajax({
         type: 'POST',
-        url: "http://localhost:8080/service/user/create",
+        url: "register",
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify(userArticle),
-        success: function(response) {
-            if (message) {
-                message.removeClass('hide').addClass('alert-success');
-                message.children().text(UserVariables.successMessage);
+        complete: function(xhr) {
+            if (xhr.status === 200) {
+                doSuccessfullRegister();
+            } else {
+                doFailRegister();
             }
-
-            if (inputs) inputs.hide();
-        },
-        error: function(response) {
-            if(console) console.error(response.responseText);
-            if (message) {
-                message.removeClass('hide').addClass('alert-error');
-                message.children().text(UserVariables.errorMessage +' '+response.responseJSON.message);
-            }
-            if (UserVariables.inputs) UserVariables.inputs.hide();
         }
     });
+}
+
+function doSuccessfullRegister() {
+    if (UserVariables.message) {
+        UserVariables.message.removeClass('hide').addClass('alert-success');
+        UserVariables.message.children().text(UserVariables.successMessage);
+    }
+    if (UserVariables.inputs) UserVariables.inputs.hide();
+    if (UserVariables.redirect) {
+        UserVariables.redirect.message.removeClass('hide');
+        setTimeout(function(){
+            self.location = UserVariables.redirect.url;
+        }, 3000);
+    }
+}
+
+function doFailRegister() {
+    if(console) console.error(response.responseText);
+    if (message) {
+        message.removeClass('hide').addClass('alert-error');
+        message.children().text(UserVariables.errorMessage + ' ' + xhr.responseText);
+    }
 }
