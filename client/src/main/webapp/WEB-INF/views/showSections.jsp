@@ -1,147 +1,101 @@
-<!--  	
-	$('#agregarButton').click(
-		function(){
-			var tabla =$('#sectionTable');
-			var name= $('#sectionArticle').val();
-			var serviceUrl = "http://localhost:8080/service/section/create";
-			var datos=  '{"sectionArticle":'+'"'+name+'"}';
-			$.ajax({
-	            type: "POST",
-	            url: serviceUrl,
-	            async: false,
-	            data: datos,
-	            contentType:"application/json",
-	            dataType: "json",
-	            success: function(data) {
-	            	var row = document.createElement("tr");
-					var cell = document.createElement("td");
-					var contenido = document.createTextNode(data.sectionid);
-					cell.appendChild(contenido);
-					row.appendChild(cell);
-					
-					cell = document.createElement("td");
-					contenido = document.createTextNode(name);
-					cell.appendChild(contenido);
-					row.appendChild(cell);
-					
-					cell =document.createElement("td");
-					var boton= document.createElement("input");
-					boton.type="submit";
-					boton.class= "deleteButton";
-					boton.value="Eliminar";
-					cell.appendChild(boton);
-					row.appendChild(cell);
-					tabla.append(row);
-					$('#sectionArticle').val('');
-	            },
-	            error: function (e) {
-	                alert("Error: " + e);
-	            }
-	        });
-	        return false;
-		}
-	);-->
-
-
-
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="init.jsp" %>
 
-<div name="divSections" id="divSections" >
-</div>
 <div style="margin-left:30px;" class="container">
-	<div class="hero-unit">
+	<div class="hero-unit" style="padding-left: 20%;">
 		<!-- Para mostrar las sections existentes en la BD -->
 		<h2>Sections</h2>  
-		<h4><s:message code="list-sections"/></h4>
-		<c:if test="${!empty sectionList}">
-			<table border="1" name="sectionTable" id="sectionTable">
-				<tr>
-					<th><s:message code="section-id"/></th>
-					<th><s:message code="section-name"/></th>
-					<th></th>
-				</tr>
-				<c:forEach items="${sectionList}" var="section">
-				<tr>
-					<td><c:out value="${section.sectionid}" /></td>
-					<td><c:out value="${section.sectionArticle}" /></td>
-					<td>
-						<input type="submit" class="deleteButton btn btn-primary" value="Eliminar"/>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-		</c:if>
-		</br>
-		
 		<form name="add" id="add" nonvalidate>
 			<h4>Add Section</h4>
 			<input type="text" name="sectionArticle" id="sectionArticle"/>
 			<input type="button" value=<s:message code="button-add"/> name="agregarButton" id="agregarButton" class="btn btn-primary"/>
 		</form>
+		&nbsp;
+		<h4><s:message code="list-sections"/></h4>
+		<button id="deleteButton">Delete </button> 
+		<c:if test="${!empty sectionList}">
+			<table border="1" name="sectionTable" id="sectionTable">
+				<thead>
+					<tr>
+					<th><s:message code="section-id"/></th>
+					<th><s:message code="section-name"/></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</c:if>
+		</br>
 	</div>
 </div>
 
 <script src='<c:url value="/resources/js/jquery-1.10.2.js"/>'></script>
+<script src='<c:url value="/resources/DataTables-1.9.4/media/js/jquery.dataTables.js"/>'></script>
+<script src='<c:url value="/resources/DataTables-1.9.4/media/js/jquery.dataTables.min.js"/>'></script>
+<script src='<c:url value="/resources/DataTables-1.9.4/media/js/jquery.dataTables.editable.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.min.js"/>'></script>
+<script src='<c:url value="/resources/DataTables-1.9.4/media/js/jquery.jeditable.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/resources/js/jquery-ui.js"/>'></script>
 <script type="text/javascript">
-	$('.deleteButton').click(function(){
-		var rowD=this.parentNode.parentNode;
-		var id= rowD.childNodes[1].textContent;
-		var serviceUrl = "http://localhost:8080/service/section/delete/".concat(id);
-	    $.ajax({
-	        type: "DELETE",
-	        url: serviceUrl,
-	        async: false,
-	        data: '',
-	        success: function(data) {
-	            rowD.parentNode.removeChild(rowD);
-	        },
-	        error: function (e) {
-	            alert("No se ha podido eliminar la seccion");
-	        }
-	    });
-	    return false;
-	});
-
 	$(document).ready(function(){
 		// Valida contra expresion regular
 		$.validator.addMethod("regx", function(value, element, regexpr) {          
 		    return regexpr.test(value);
 		}, "Please enter a valid name");
 		
-		// Valida existencia de otra section con el mismo nombre
-	    $.validator.addMethod(
-	        "uniqueSectionName", 
-	        function(value, element) {
-	        	var response;
-	            $.ajax({
-	                type: "GET",
-	                url: "http://localhost:8080/service/section/get/"+value,
-	                data:  '{"sectionArticle":'+'"'+$('#sectionArticle').val()+'"}',
-	                contentType:"application/json",
+		var dataAjax;
+		var $tableS= $('#sectionTable').dataTable( {
+			    "bProcessing": true,
+			    "aaSorting": [[ 1, "asc" ]],
+			    "sAjaxSource": $.ajax({
+				   	type: "GET",
+				    url: "http://localhost:8080/service/section/all",
+				    async: false,
+				    data: ' ',
+				    contentType:"application/json",
 				    dataType: "json",
-	                success: function(data)  {
-	                   if (data.sectionid!=0){
-	                	   response=true;
-	                   }
-	                   else{
-	                	   response=false;
-	                	   
-	                   }
-	                }
-	             });
-	            return response;
-	        }, "Username is Already Taken");
-	    
+				    success: function(data) {
+				    	dataAjax=  $.makeArray(data);
+				    },
+		         }),
+		         "aaData": dataAjax,
+		 aoColumns: [
+                       { mData: 'sectionid' },
+                       { mData: 'sectionArticle' },
+               ],
+		 "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+	            $(nRow).attr("id",aData[0]);
+	            return nRow;
+			}
+		}).makeEditable({
+				sDeleteRowButtonId: "deleteButton",
+				fnOnDeleting: function(tr, id) {       
+					var row= (tr.children())[0];
+					var id= row.textContent;
+					$.ajax({
+						type: "DELETE",
+						url: "http://localhost:8080/service/section/delete/".concat(id),
+						async: false,
+						data: '',
+						success: function(data) {
+							//$('#sectionTable').dataTable().fnDeleteRow(1); 
+							//$tableS.fnGetData();
+							//$tableS.fnDraw();
+						},
+						error: function (e) {
+							alert("No se ha podido eliminar la seccion");
+						}
+					});
+                    return true;
+                },
+		}); 
+		
 		$("#add").validate({
 			rules: {
 				sectionArticle: {
 					required: true,
 					maxlength: 50,
 					regx: /^[a-zA-Z]+(?=\d?)/,
-					uniqueSectionName: true
 				}
 			},
 			messages:{
@@ -149,7 +103,6 @@
 					required:"* Required field",
 					maxlength:"* El campo no puede exceder los 50 caracteres",
 					regx: "* El campo debe contener al menos una letra",
-					uniqueSectionName:"* Ya existe una section con ese nombre"
 				}
 			},
 		});
@@ -165,12 +118,11 @@
 				    contentType:"application/json",
 				    dataType: "json",
 				    success: function(data) {
-				     	var row='<tr><td>'+data.sectionid+'</td><td>'+data.sectionArticle+'</td>';
-				        row= row+'<td>'+'<input type="submit" class="deleteButton" value="Eliminar"/></td></tr>';
-				        $('#sectionTable').append(row);
-						$('#sectionArticle').val('');
+						$('#sectionTable').dataTable().fnAddData($.makeArray(data));
+						$('#sectionArticle').val(' ');
+						$tableS.fnDraw();
 				    },
-				    error: function (e) {
+				    error: function (e){
 				      	alert("Se ha producido un error al insertar");
 				    	}
 				});
@@ -181,31 +133,7 @@
 			}
 		    return false;
 			}
-		);
-		
-		$('#divSections').jtable({
-            title: 'Sections',
-            actions: {
-                listAction: '/GettingStarted/PersonList',
-                createAction: '/GettingStarted/CreatePerson',
-                updateAction: '/GettingStarted/UpdatePerson',
-                deleteAction: '/GettingStarted/DeletePerson'
-            },
-            fields: {
-                SectionId: {
-                    key: true,
-                    list: false
-                },
-                SectionName: {
-                    title: 'Section Name',
-                    width: '40%'
-                },
-                Action: {
-                    title: 'Age',
-                    width: '20%'
-                },
-            }
-        });
+		);  
 	});
-	
+		
 </script>
