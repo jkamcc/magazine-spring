@@ -11,8 +11,6 @@ public interface SectionService {
 
     public List<Section> getSections();
 
-    public List<Section> getSections(int start, int end);
-
     public Section getSectionByName(String subject);
 
     public void updateSection(Section section);

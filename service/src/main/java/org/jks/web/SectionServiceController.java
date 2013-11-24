@@ -51,14 +51,6 @@ public class SectionServiceController {
             return new RestMessage( "Seccion eliminada");
         }
 
-        @RequestMapping(value = "/all", method = RequestMethod.GET)
-        @ResponseBody
-        public List<Section> getSection(@RequestParam(value = "start", defaultValue = "0") int start,
-                                        @RequestParam(value = "end", defaultValue = "0") int end){
-
-            return sectionService.getSections(start, end);
-        }
-
         
         @RequestMapping(value="/get/{name}", method= RequestMethod.GET)
 	    @ResponseBody
