@@ -19,7 +19,7 @@ var registerUserValidaton = {
         }
     },
     submitHandler: function (form) {
-        submitUser(form, registerUserValidaton.message);
+        submitUser(form);
     },
     errorClass: "error"
 };
