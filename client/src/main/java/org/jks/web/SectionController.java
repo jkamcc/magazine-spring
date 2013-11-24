@@ -40,10 +40,15 @@ public class SectionController {
 	/* Obtiene la lista de todas las secciones en la BD */
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String showSections(Model model) {
-		Section[] list = restTemplate.getForObject("http://localhost:8080/service/section/get", Section[].class);
+		Section[] list = restTemplate.getForObject("http://localhost:8080/service/section/all", Section[].class);
 		List<Section> slist = Arrays.asList(list);
 		model.addAttribute("sectionList",  slist);
 		return "sections";
+	}
+	
+	@RequestMapping(value="/DeleteData", method = RequestMethod.POST)
+	public void DeleteData() {
+		int a=0;
 	}
 	
 }

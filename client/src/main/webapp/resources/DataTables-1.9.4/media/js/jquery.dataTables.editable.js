@@ -373,7 +373,7 @@
            
             sUpdateURL: "UpdateData",
             sAddURL: "AddData",
-            sDeleteURL: "DeleteData",
+           // sDeleteURL: "DeleteData",
             height: "14px",
             sAddNewRowFormId: "formAddNewRow",
             sAddNewRowButtonId: "btnAddNewRow",

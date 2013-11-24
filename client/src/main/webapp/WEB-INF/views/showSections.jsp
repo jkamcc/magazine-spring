@@ -19,6 +19,7 @@
 					<tr>
 					<th><s:message code="section-id"/></th>
 					<th><s:message code="section-name"/></th>
+					<th>Accion</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,18 +57,21 @@
 				    dataType: "json",
 				    success: function(data) {
 				    	dataAjax=  $.makeArray(data);
+				    	for(i=0; i<dataAjax.length;++i){
+							dataAjax[i].boton='<button class="deleteButton">Delete </button>';
+						}
 				    },
 		         }),
 		         "aaData": dataAjax,
 		 aoColumns: [
                        { mData: 'sectionid' },
                        { mData: 'sectionArticle' },
+					   { "fnRender": function (oObj) {
+                   			return '<input type="button" class="deleteButton" value="Delete"/>';
+						}
+						}
                ],
-		 "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
-	            $(nRow).attr("id",aData[0]);
-	            return nRow;
-			}
-		}).makeEditable({
+		});/*.makeEditable({
 				sDeleteRowButtonId: "deleteButton",
 				fnOnDeleting: function(tr, id) {       
 					var row= (tr.children())[0];
@@ -80,7 +84,7 @@
 						success: function(data) {
 							//$('#sectionTable').dataTable().fnDeleteRow(1); 
 							//$tableS.fnGetData();
-							//$tableS.fnDraw();
+							$tableS.fnDraw();
 						},
 						error: function (e) {
 							alert("No se ha podido eliminar la seccion");
@@ -89,7 +93,7 @@
                     return true;
                 },
 		}); 
-		
+		*/
 		$("#add").validate({
 			rules: {
 				sectionArticle: {
@@ -134,6 +138,28 @@
 		    return false;
 			}
 		);  
+		
+		$('.deleteButton').click(function(){
+			var tabla =$('#sectionTable');
+			var row= this.parentNode.parentNode;
+			var nose=row.children;
+			var id= nose[0].textContent;
+			$.ajax({
+				   	type: "DELETE",
+				    url: "http://localhost:8080/service/section/delete/"+id,
+				    async: false,
+				    data: '',
+				    contentType:"application/json",
+				    dataType: "json",
+				    success: function(data) {
+						alert('Exito');
+				    },
+				    error: function (e){
+				      	alert("Se ha producido un error al insertar");
+				    	}
+				});
+			}
+		);
 	});
 		
 </script>
