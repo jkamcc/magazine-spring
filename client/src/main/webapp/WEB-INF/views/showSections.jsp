@@ -12,17 +12,16 @@
 		</form>
 		&nbsp;
 		<h4><s:message code="list-sections"/></h4>
-		<button id="deleteButton">Delete </button> 
 		<c:if test="${!empty sectionList}">
 			<table border="1" name="sectionTable" id="sectionTable">
 				<thead>
 					<tr>
 					<th><s:message code="section-id"/></th>
 					<th><s:message code="section-name"/></th>
-					<th>Accion</th>
+					<th><s:message code="action"/></th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tableB">
 				</tbody>
 			</table>
 		</c:if>
@@ -58,7 +57,7 @@
 				    success: function(data) {
 				    	dataAjax=  $.makeArray(data);
 				    	for(i=0; i<dataAjax.length;++i){
-							dataAjax[i].boton='<button class="deleteButton">Delete </button>';
+							dataAjax[i].boton='<input type="button" class="deleteButton" value="Delete"/>';
 						}
 				    },
 		         }),
@@ -66,34 +65,10 @@
 		 aoColumns: [
                        { mData: 'sectionid' },
                        { mData: 'sectionArticle' },
-					   { "fnRender": function (oObj) {
-                   			return '<input type="button" class="deleteButton" value="Delete"/>';
-						}
-						}
+					   {mData:'boton',"fnRender": function( oObj ) {return '<input type="button" class="deleteButton" value="Delete"/>';}}
                ],
-		});/*.makeEditable({
-				sDeleteRowButtonId: "deleteButton",
-				fnOnDeleting: function(tr, id) {       
-					var row= (tr.children())[0];
-					var id= row.textContent;
-					$.ajax({
-						type: "DELETE",
-						url: "http://localhost:8080/service/section/delete/".concat(id),
-						async: false,
-						data: '',
-						success: function(data) {
-							//$('#sectionTable').dataTable().fnDeleteRow(1); 
-							//$tableS.fnGetData();
-							$tableS.fnDraw();
-						},
-						error: function (e) {
-							alert("No se ha podido eliminar la seccion");
-						}
-					});
-                    return true;
-                },
-		}); 
-		*/
+		})
+		
 		$("#add").validate({
 			rules: {
 				sectionArticle: {
@@ -122,9 +97,12 @@
 				    contentType:"application/json",
 				    dataType: "json",
 				    success: function(data) {
-						$('#sectionTable').dataTable().fnAddData($.makeArray(data));
+						dataAjax=  $.makeArray(data);
+						dataAjax[0].boton='<input type="button" class="deleteButton" value="Delete"/>';
+						$('#sectionTable').dataTable().fnAddData(dataAjax);
 						$('#sectionArticle').val(' ');
-						$tableS.fnDraw();
+						$tableS.fnGetData();
+						$('#sectionTable').dataTable().fnDraw();
 				    },
 				    error: function (e){
 				      	alert("Se ha producido un error al insertar");
@@ -140,10 +118,14 @@
 		);  
 		
 		$('.deleteButton').click(function(){
-			var tabla =$('#sectionTable');
-			var row= this.parentNode.parentNode;
-			var nose=row.children;
-			var id= nose[0].textContent;
+			var id=(this.parentNode.parentNode.children)[0].textContent;
+			var tableRows= this.parentNode.parentNode.parentNode.children;
+			var posicion=0;
+			for(i=0; i<tableRows.length;++i){
+				if((tableRows.item(i)).children.item(0).textContent==id){
+					posicion=i;
+				}
+			}
 			$.ajax({
 				   	type: "DELETE",
 				    url: "http://localhost:8080/service/section/delete/"+id,
@@ -152,7 +134,9 @@
 				    contentType:"application/json",
 				    dataType: "json",
 				    success: function(data) {
-						alert('Exito');
+						$('#sectionTable').dataTable().fnDeleteRow(posicion); 
+						$tableS.fnGetData();
+						$('#sectionTable').dataTable().fnDraw();
 				    },
 				    error: function (e){
 				      	alert("Se ha producido un error al insertar");
