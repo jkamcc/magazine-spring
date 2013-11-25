@@ -81,7 +81,7 @@ public class ArticleServiceController{
     @ResponseBody
     public RestMessage updateArticle(@Valid @RequestBody Article article){
     	articleService.updateArticle(article);
-    	 return new RestMessage("Updated article " + article);
+    	 return new RestMessage("Updated article " + article.getSubject());
     }
     
     @RequestMapping(value = "/delete/{articleId}", method = RequestMethod.DELETE)
@@ -89,11 +89,11 @@ public class ArticleServiceController{
     	articleService.deleteArticleById(articleId);  //TODAVIA FALTA PROBAR
     }
     
-    @RequestMapping(value = "/create", method = RequestMethod.POST, 
-    		headers = "Accept=application/json", consumes = "application/json")
+    @RequestMapping(value = "/create", method = RequestMethod.POST,
+            headers = "Accept=application/json", consumes = "application/json")
     @ResponseBody
     public RestMessage createArticle(@Valid @RequestBody Article article){ 
     	articleService.addArticle(article);
-    	 return new RestMessage("Created Article " + article);  	
+    	 return new RestMessage("Created Article " + article.getSubject());
     }
 }

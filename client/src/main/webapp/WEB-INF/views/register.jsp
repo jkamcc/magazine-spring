@@ -7,12 +7,14 @@
     }
     .form-message {
         width: 350px;
-        float: left;
     }
     .user-info {
         float: left;
     }
     .right-square {
+        float: left;
+    }
+    .messages {
         float: left;
     }
 </style>
@@ -27,12 +29,14 @@
 
             <legend><s:message code="register-message"/></legend>
 
-            <div id="message" class="form-message control-group alert hide">
-                <label>ajax</label>
-            </div>
+            <div class="messages">
+                <div id="message" class="form-message control-group alert hide">
+                    <label>ajax</label>
+                </div>
 
-            <div id="redirect-message" class="form-message alert alert-info hide">
-                <label><s:message code="register-redirect"/></label>
+                <div id="redirect-message" class="form-message alert alert-info hide">
+                    <label><s:message code="register-redirect"/></label>
+                </div>
             </div>
 
             <div class="user-info">
