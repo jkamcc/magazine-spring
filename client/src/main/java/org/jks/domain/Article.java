@@ -4,6 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,7 +25,7 @@ public class Article {
     private Long sectionid;
     private String sectionName;
     private List<Comment> comments;
-
+    
     @javax.persistence.Column(name = "articleid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
     @Id
     public long getArticleid() {
@@ -31,6 +36,7 @@ public class Article {
         this.articleid = articleid;
     }
 
+    @NotNull
     @javax.persistence.Column(name = "datearticle", nullable = true, insertable = true, updatable = true, length = 19, precision = 0)
     @Basic
     public Timestamp getDatearticle() {
@@ -41,6 +47,8 @@ public class Article {
         this.datearticle = datearticle;
     }
 
+    @NotBlank
+    @Size(max=50)
     @javax.persistence.Column(name = "subject", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getSubject() {
@@ -51,6 +59,7 @@ public class Article {
         this.subject = subject;
     }
 
+    @NotBlank
     @javax.persistence.Column(name = "article", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Basic
     public String getArticle() {
@@ -61,6 +70,8 @@ public class Article {
         this.article = article;
     }
 
+    @NotBlank
+    @Size(max=100)
     @javax.persistence.Column(name = "author", nullable = true, insertable = true, updatable = true, length = 100, precision = 0)
     @Basic
     public String getAuthor() {
@@ -71,6 +82,7 @@ public class Article {
         this.author = author;
     }
 
+    @NotNull
     @javax.persistence.Column(name = "sectionid", nullable = true, insertable = true, updatable = true, length = 19, precision = 0)
     @Basic
     public Long getSectionid() {
