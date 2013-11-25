@@ -30,8 +30,8 @@
 		
 		<div>
 			<h2> Noticias recientes </h2>
-				<p> El triunfo de la Selecci�n Nacional ante M�xico le dio un d�a perfecto a Costa Rica </p>
-				<p> Astronautas espian nuve extra�a en el espacio </p>
+				<p> El triunfo de la Selección Nacional ante México le dio un día perfecto a Costa Rica </p>
+				<p> Astronautas espian nube extraña en el espacio </p>
 				<p> 10 tips para proteger la vision de tus ojos </p>
 				<p><a class="btn" href="#">View details &raquo;</a></p>
 		</div>

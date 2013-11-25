@@ -20,8 +20,24 @@
 
     <context:component-scan base-package="org.jks.web" />
 
-    <!-- Tiles Resolver -->
-    <bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
+    <mvc:interceptors>
+        <bean class="org.jks.web.common.HeaderInterceptor"/>
+    </mvc:interceptors>
+
+    <!-- View Resolver -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.tiles2.TilesView</value>
+        </property>
+        <property name="order" value="0" />
+    </bean>
+
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="1" />
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
         <property name="definitions">

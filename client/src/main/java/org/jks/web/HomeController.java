@@ -32,12 +32,6 @@ public class HomeController {
     public String home(Locale locale, Model model) {
         logger.info("Welcome home! The client locale is {}.", locale);
 
-        String currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (!currentUser.equals("anonymousUser")) {
-            model.addAttribute("currentUser", currentUser);
-        }
-
         return "home";
     }
     
