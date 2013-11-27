@@ -5,15 +5,15 @@
     <div class="hero-unit" style="padding-left: 20%;">
         <!-- Para mostrar las sections existentes en la BD -->
         <h2>Sections</h2>
-        <form name="add_fm" id="add_fm" nonvalidate>
+        <form name="add_fm" id="add_fm" novalidate>
             <h4>Add Section</h4>
             <input type="text" name="sectionArticle" id="sectionArticle"/>
-            <input type="button" value=<s:message code="button-add"/> name="addButton" id="addButton" class="btn btn-primary"/>
+            <input type="button" value='<s:message code="button-add"/>' name="addButton" id="addButton" class="btn btn-primary"/>
         </form>
-        &nbsp;
+
         <h4><s:message code="list-sections"/></h4>
         <table border="1" name="sectionTable" id="sectionTable">
-            <thead  class="btn btn-primary">
+            <thead  class="btn-primary">
             <tr>
                 <th><s:message code="section-id"/></th>
                 <th><s:message code="section-name"/></th>

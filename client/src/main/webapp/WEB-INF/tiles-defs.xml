@@ -44,5 +44,9 @@
     <definition name="addSection" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/addSection.jsp" />
     </definition>
+
+    <definition name="articles" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/articles.jsp" />
+    </definition>
 	
 </tiles-definitions>

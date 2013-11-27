@@ -78,4 +78,10 @@ public class ArticleController {
         }
 
     }
+
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public String editArticles() {
+        return "articles";
+    }
+
 }

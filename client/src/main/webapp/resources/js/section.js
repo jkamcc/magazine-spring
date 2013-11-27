@@ -21,14 +21,14 @@ $(document).ready(function(){
                 for(i=0; i<dataAjax.length;++i){
                     dataAjax[i].boton='<input type="button" class="deleteButton" value="Delete"/>';
                 }
-            },
+            }
         }),
         "aaData": dataAjax,
         aoColumns: [
             { mData: 'sectionid' },
             { mData: 'sectionArticle' },
             {mData:'boton',"fnRender": function( oObj ) {return '<input type="button" class="deleteButton" value="Delete"/>';}}
-        ],
+        ]
     })
 
     $("#add_fm").validate({
@@ -36,7 +36,7 @@ $(document).ready(function(){
             sectionArticle: {
                 required: true,
                 maxlength: 50,
-                regx: /^[a-zA-Z]+(?=\d?)/,
+                regx: /^[a-zA-Z]+(?=\d?)/
             }
         },
         messages:{
