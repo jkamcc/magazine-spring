@@ -34,6 +34,12 @@ public class UserController {
     @Autowired
     MessageSource messageSource;
 
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public String showUsers(Model model) {
+
+        return "users";
+    }
+
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
     public String login(Model model) {
 
@@ -94,5 +100,4 @@ public class UserController {
 
         return returnText;
     }
-
 }

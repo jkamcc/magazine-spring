@@ -4,28 +4,39 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
 <tiles-definitions>
+
 	<definition name="template" template="/WEB-INF/views/theme/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/theme/header.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/theme/footer.jsp"/>
 	</definition>
+
+    <definition name="control_panel" template="/WEB-INF/views/theme/control_panel/control_panel.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/theme/header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/theme/control_panel/menu.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/theme/footer.jsp"/>
+    </definition>
 	
 	<definition name="home" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/home.jsp"/>
 	</definition>
 	
 	<definition name="login" extends="template">
-		<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/users/login.jsp" />
     </definition>
     
     <definition name="register" extends="template">
-		<put-attribute name="content" value="/WEB-INF/views/register.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/users/register.jsp" />
+    </definition>
+
+    <definition name="users" extends="control_panel">
+        <put-attribute name="content" value="/WEB-INF/views/users/users.jsp" />
     </definition>
     
     <definition name="article" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/article.jsp" />
     </definition>
     
-    <definition name="editarticle" extends="template">
+    <definition name="editarticle" extends="control_panel">
 		<put-attribute name="content" value="/WEB-INF/views/editarticle.jsp" />
     </definition>
     
@@ -33,7 +44,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/error.jsp" />
     </definition>
     
-    <definition name="sections" extends="template">
+    <definition name="sections" extends="control_panel">
 		<put-attribute name="content" value="/WEB-INF/views/showSections.jsp" />
     </definition>
     
@@ -45,7 +56,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/addSection.jsp" />
     </definition>
 
-    <definition name="articles" extends="template">
+    <definition name="articles" extends="control_panel">
         <put-attribute name="content" value="/WEB-INF/views/articles.jsp" />
     </definition>
 	

@@ -1,4 +1,4 @@
-<%@include file="init.jsp"%>
+<%@include file="../init.jsp"%>
 
 <style type="text/css">
     #user-image {
@@ -19,7 +19,7 @@
     }
 </style>
 
-<div id="register" class="container-fluid">
+<div id="users" class="container-fluid">
 
     <h1><s:message code="join-message"/></h1>
 
@@ -99,16 +99,3 @@
 
     </form>
 </div>
-
-<script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
-<script type="text/javascript" src='<c:url value="/resources/js/register.js"/>'></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        UserVariables.message = $('#message');
-        UserVariables.redirect = {url : "signin", message: $("#redirect-message")};
-        UserVariables.errorMessage = '<s:message code="error-created-user"/>';
-        UserVariables.successMessage = '<s:message code="success-created-user"/>';
-        UserVariables.inputs = $('.user-info');
-        $('#register_fm').validate(registerUserValidaton);
-    });
-</script>

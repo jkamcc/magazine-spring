@@ -1,5 +1,6 @@
 @import url('bootstrap.css');
 @import url('bootstrap-responsive.css');
+@import url('foundation-icons/foundation-icons.css');
 
 body {
 	padding-top: 60px;
@@ -72,6 +73,11 @@ label {
         padding: 2px 8px;
         margin-top: 2px;
     }
+}
+
+.control-menu {
+  position: fixed;
+  width: 300px;
 }
 
 /*
