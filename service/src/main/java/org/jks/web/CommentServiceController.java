@@ -2,11 +2,15 @@ package org.jks.web;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
 import org.jks.domain.Comment;
 import org.jks.service.CommentService;
 import org.jks.web.common.RestMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,15 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.base.Preconditions;
-import com.google.inject.Inject;
 
 /**
  * @author juancarrillo
  */
-
 @Controller
 @RequestMapping("comment")
 public class CommentServiceController {
+
+    private static final Logger logger = LoggerFactory.getLogger(CommentServiceController.class);
 	
 	@Inject
 	private CommentService commentService;
@@ -34,7 +38,7 @@ public class CommentServiceController {
 
         List<Comment> comments = commentService.getComments(articleId);
 
-        Preconditions.checkNotNull(comments, "The comments with the article"+ articleId + " cannot be found.");
+        Preconditions.checkNotNull(comments, "The comments with the article "+ articleId + " cannot be found.");
 
         return comments;
     }
@@ -45,7 +49,7 @@ public class CommentServiceController {
 
         List<Comment> comments = commentService.getComments(articleId, start, end);
 
-        Preconditions.checkNotNull(comments, "The comments with the article"+ articleId + " cannot be found.");
+        Preconditions.checkNotNull(comments, "The comments with the article "+ articleId + " cannot be found.");
 
         return comments;
     }

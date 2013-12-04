@@ -17,7 +17,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author juancarrillo
@@ -99,5 +101,34 @@ public class UserController {
         }
 
         return returnText;
+    }
+
+    @RequestMapping(value="new", method = RequestMethod.GET)
+    public String newUser(Model model) {
+
+        return "edit_user";
+    }
+
+    @RequestMapping(value="/edit/{userId}", method = RequestMethod.GET)
+    public String editUser(@PathVariable long userId,Model model) {
+
+        try {
+            User user = restTemplate.getForObject("http://localhost:8080/service/user/id/"+userId, User.class);
+            model.addAttribute("user", user);
+
+        } catch (RestClientException e) {
+            logger.error("The user with userId "+ userId + "could not be found");
+            model.addAttribute("error", true);
+        }
+
+        return "edit_user";
+    }
+
+    private void assignProfilesToModel(Model model) {
+        Map<String, Byte> profiles = new HashMap<String, Byte>();
+        profiles.put(Profile.NORMAL.toString(), Profile.NORMAL.getValue());
+        profiles.put(Profile.CONTENT_CREATOR.toString(), Profile.CONTENT_CREATOR.getValue());
+        profiles.put(Profile.ADMINISTRATOR.toString(), Profile.ADMINISTRATOR.getValue());
+        model.addAttribute("profiles", profiles);
     }
 }

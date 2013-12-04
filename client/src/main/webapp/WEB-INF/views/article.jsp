@@ -1,5 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ include file="/WEB-INF/views/init.jsp" %>
 
 <h2>Article</h2>
 

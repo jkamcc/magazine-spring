@@ -35,9 +35,11 @@ public class UserDaoImpl extends AbstractHibernateDAO<User, Long> implements Use
     @Override
     public boolean checkExistUsername(String username) {
         boolean existUsername = false;
-        String hql = "select u.username from "+ User.class.getName() +" as u where u.username = \'" + username + "\'";
+        String hsql = "select u.username from "+ User.class.getName() +" as u where u.username = :username";
 
-        String result = (String) getCurrentSession().createQuery(hql).uniqueResult();
+        Query query =  getCurrentSession().createQuery(hsql);
+        query.setParameter("username", username);
+        String result = (String) query.uniqueResult();
 
         if (result != null && !result.equals("")) {
             existUsername = true;
@@ -49,9 +51,12 @@ public class UserDaoImpl extends AbstractHibernateDAO<User, Long> implements Use
     public boolean checkExistPassword(String password) {
         boolean existPassword = false;
 
-        String hql = "select u.password from "+ User.class.getName() +" as u where u.password = \'" + password + "\'";
+        String hsql = "select u.password from "+ User.class.getName() +" as u where u.password = :password";
 
-        String result = (String) getCurrentSession().createQuery(hql).uniqueResult();
+        Query query =  getCurrentSession().createQuery(hsql);
+        query.setParameter("password", password);
+
+        String result = (String) query.uniqueResult();
 
         if (result != null && !result.equals("")) {
             existPassword = true;

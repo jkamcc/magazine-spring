@@ -5,20 +5,24 @@
        
 <tiles-definitions>
 
-	<definition name="template" template="/WEB-INF/views/theme/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/theme/header.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/views/theme/footer.jsp"/>
+	<definition name="template" template="/WEB-INF/views/theme/home/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/theme/common/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/theme/common/footer.jsp"/>
 	</definition>
 
     <definition name="control_panel" template="/WEB-INF/views/theme/control_panel/control_panel.jsp">
-        <put-attribute name="header" value="/WEB-INF/views/theme/header.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/views/theme/common/header.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/views/theme/control_panel/menu.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/views/theme/footer.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/theme/common/footer.jsp"/>
     </definition>
 	
 	<definition name="home" extends="template">
-		<put-attribute name="content" value="/WEB-INF/views/home.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/theme/home/home.jsp"/>
 	</definition>
+
+    <definition name="control_panel_home" extends="control_panel">
+        <put-attribute name="content" value="/WEB-INF/views/theme/control_panel/home.jsp"/>
+    </definition>
 	
 	<definition name="login" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/users/login.jsp" />
@@ -30,6 +34,10 @@
 
     <definition name="users" extends="control_panel">
         <put-attribute name="content" value="/WEB-INF/views/users/users.jsp" />
+    </definition>
+
+    <definition name="edit_user" extends="control_panel">
+        <put-attribute name="content" value="/WEB-INF/views/users/edit_user.jsp" />
     </definition>
     
     <definition name="article" extends="template">
@@ -46,10 +54,6 @@
     
     <definition name="sections" extends="control_panel">
 		<put-attribute name="content" value="/WEB-INF/views/showSections.jsp" />
-    </definition>
-    
-    <definition name="articlecreated" extends="template">
-		<put-attribute name="content" value="/WEB-INF/views/articlecreated.jsp" />
     </definition>
     
     <definition name="addSection" extends="template">

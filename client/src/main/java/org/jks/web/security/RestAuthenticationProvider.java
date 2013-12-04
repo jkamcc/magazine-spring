@@ -1,6 +1,8 @@
 package org.jks.web.security;
 
 import org.jks.domain.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -21,18 +23,23 @@ import java.util.Collection;
 @Component
 public class RestAuthenticationProvider implements AuthenticationProvider {
 
+    private static final Logger logger = LoggerFactory.getLogger(RestAuthenticationProvider.class);
+
     @Autowired
     private RestTemplate restTemplate;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
+
+        logger.info("Authenticating user "+username);
 
         User user = null;
 
         try {
-            user = restTemplate.getForObject("http://localhost:8080/service/user/username/"+username, User.class);
+            user = restTemplate.getForObject("http://localhost:8080/service/user/username/" + username, User.class);
 
         } catch (RestClientException e) {
             e.printStackTrace();

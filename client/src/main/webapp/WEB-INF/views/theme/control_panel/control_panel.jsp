@@ -1,4 +1,4 @@
-<%@ include file="../../init.jsp" %>
+<%@ include file="/WEB-INF/views/init.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,9 +18,11 @@
 <%--control panel class: container-fluid, home page: container--%>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div id="control-menu"><t:insertAttribute name="menu"/></div>
-        <div class="span3">
-            <div id="content"><t:insertAttribute name="content"/></div>
+        <div id="control-menu" class="span3">
+            <t:insertAttribute name="menu"/>
+        </div>
+        <div id="content" class="span8" >
+            <t:insertAttribute name="content"/>
         </div>
     </div>
     <footer>

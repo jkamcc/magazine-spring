@@ -1,10 +1,4 @@
-<%@include file="init.jsp"%>
-
-<style type="text/css">
-    .article-info {
-        float: left;
-    }
-</style>
+<%@ include file="/WEB-INF/views/init.jsp" %>
 
 <div id="editarticle">
 

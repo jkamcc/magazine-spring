@@ -1,4 +1,4 @@
-<%@include file="../init.jsp"%>
+<%@ include file="/WEB-INF/views/init.jsp" %>
 
 <div id="login">
 

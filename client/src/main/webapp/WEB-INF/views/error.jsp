@@ -1,4 +1,5 @@
-<%@include file="init.jsp" %>
+<%@ include file="/WEB-INF/views/init.jsp" %>
+
 <tiles:insert page="/theme/layout.jsp" flush="true">  
   <tiles:put name="header" value="/theme/header.jsp" />       
   <tiles:put name="footer" value="/theme/footer.jsp" />     

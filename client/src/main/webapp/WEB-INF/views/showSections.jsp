@@ -1,5 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="init.jsp" %>
+<%@ include file="/WEB-INF/views/init.jsp" %>
 
 <div style="margin-left:30px;" class="container">
     <div class="hero-unit" style="padding-left: 20%;">

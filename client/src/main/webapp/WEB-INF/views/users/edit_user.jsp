@@ -1,4 +1,4 @@
-<%@include file="../init.jsp"%>
+<%@ include file="/WEB-INF/views/init.jsp" %>
 
 <style type="text/css">
     #user-image {
@@ -19,23 +19,19 @@
     }
 </style>
 
-<div id="users" class="container-fluid">
+<div id="register" class="container-fluid">
 
-    <h1><s:message code="join-message"/></h1>
+    <h1><s:message code="users"/></h1>
 
-    <form id="register_fm" name="register_fm" action="javascript:;" method="post" class="well form-horizontal">
+    <form id="register_fm" name="edit_user_fm" action="javascript:;" method="post" class="well form-horizontal">
 
         <fieldset>
 
-            <legend><s:message code="register-message"/></legend>
+            <legend><s:message code="new-user"/></legend>
 
             <div class="messages">
                 <div id="message" class="form-message control-group alert hide">
-                    <label>ajax</label>
-                </div>
-
-                <div id="redirect-message" class="form-message alert alert-info hide">
-                    <label><s:message code="register-redirect"/></label>
+                    <label><!--ajax--></label>
                 </div>
             </div>
 
@@ -43,6 +39,10 @@
 
                 <input name="profile" value="<%=Profile.NORMAL.toString()%>" type="hidden">
                 <input name="profileid" value="<%=Profile.NORMAL.getValue()%>" type="hidden" >
+
+                <select>
+
+                </select>
 
                 <div class="control-group">
                     <label class="control-label" for="username"><s:message code="username"/></label>

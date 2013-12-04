@@ -18,9 +18,8 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Locale locale, Model model) {
-        logger.info("Welcome home! Service web locale is {}.", locale);
-
+    public String getHomePage() {
         return "home";
     }
+
 }

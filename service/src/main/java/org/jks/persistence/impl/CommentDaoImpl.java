@@ -21,7 +21,7 @@ public class CommentDaoImpl extends AbstractHibernateDAO<Comment, Long> implemen
     @Override
     public List<Comment> getCommentsByArticleId(long articleId) {
     	return getCurrentSession().createCriteria(Comment.class)
-                .add(Restrictions.eq("articleId", articleId))
+                .add(Restrictions.eq("articleid", articleId))
                 .addOrder(Order.desc("dateComment")).list();
     }
 
@@ -32,11 +32,12 @@ public class CommentDaoImpl extends AbstractHibernateDAO<Comment, Long> implemen
             return getCommentsByArticleId(articleId);
         }
 
-        String hsql = "FROM "+ Comment.class.getName() + " as ArticleT";
-        hsql += " where ArticleT.articleid = " + articleId;
-        hsql += " ORDER BY ArticleT.dateComment DESC";
+        String hsql = "FROM "+ Comment.class.getName()+" as commentT " +
+                      "WHERE commentT.articleid = :articleid " +
+                      "ORDER BY commentT.dateComment DESC";
 
         Query q = getCurrentSession().createQuery(hsql);
+        q.setParameter("articleid", articleId);
         q.setFirstResult(start);
         q.setMaxResults(end);
 
