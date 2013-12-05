@@ -1,9 +1,10 @@
-<%@ include file="/WEB-INF/views/init.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@include file="init.jsp" %>
 
-<div style="margin-left:5px;" class="container">
-    <div class="hero-unit" style="padding-left: 5%;">
-        <!-- Para mostrar las sections existentes en la BD -->
-        <h2><s:message code="articles"/></h2>
+<div class="container-fluid">
+	<h2><s:message code="articles"/></h2>
+      <fieldset>
+      <legend><s:message code="article-list"/></legend>
         <table border="1" name="articlesTable" id="articlesTable">
             <thead  class="btn-primary">
             <tr>
@@ -21,8 +22,7 @@
             <tbody>
             </tbody>
         </table>
-        </br>
-    </div>
+      	</fieldset>
 </div>
 
 <script src='<c:url value="/resources/js/jquery-1.10.2.js"/>'></script>
@@ -65,7 +65,7 @@
             ],
         });
 
-        $('.deleteButton').click(function(){
+        $(document).on("click", ".deleteButton", function() {
             var id=(this.parentNode.parentNode.children)[4].textContent;
             var tableRows= this.parentNode.parentNode.parentNode.children;
             var posicion=0;
@@ -77,7 +77,7 @@
             deleteArticle(id, posicion);
         });
 
-        $('.editButton').click(function(){
+    	$(document).on("click", ".editButton", function() {
             var id=(this.parentNode.parentNode.children)[4].textContent;
             editArticle(id);
         });

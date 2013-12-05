@@ -1,4 +1,3 @@
-
 function deleteArticle(id, posicion){
     $.ajax({
         type: "DELETE",
@@ -20,5 +19,5 @@ function deleteArticle(id, posicion){
 
 
 function editArticle(id){
-    document.location.href='http://localhost:8080/ /articles/edit/'+id;
+    document.location.href='/edit/'+id;
 };

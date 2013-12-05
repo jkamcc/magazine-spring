@@ -45,10 +45,4 @@ public class SectionController {
 		model.addAttribute("sectionList",  slist);
 		return "sections";
 	}
-	
-	@RequestMapping(value="/DeleteData", method = RequestMethod.POST)
-	public void DeleteData() {
-		int a=0;
-	}
-	
 }
