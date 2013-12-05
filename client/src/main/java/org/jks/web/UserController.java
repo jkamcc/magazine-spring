@@ -69,28 +69,12 @@ public class UserController {
 
     @RequestMapping(value = "/register", method= RequestMethod.POST)
     @ResponseBody
-    public String createUser(@Valid @RequestBody User user, Locale locale) {
+    public String registerUser(@Valid @RequestBody User user, Locale locale) {
 
-        boolean userCreated = true;
 
-        try {
-            user.setPassword(User.sha1(user.getPassword()));
-            user.setProfile(Profile.NORMAL.toString());
-            user.setProfileid(Profile.NORMAL.getValue());
-
-            restTemplate.postForLocation("http://localhost:8080/service/user/create", user);
-
-        } catch (RestClientException e) {
-            userCreated = false;
-            logger.error(e.getMessage(), e);
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            userCreated = false;
-            logger.error(e.getMessage(), e);
-        } catch (Exception e) {
-            userCreated = false;
-            logger.error(e.getMessage(), e);
-        }
+        user.setProfile(Profile.NORMAL.toString());
+        user.setProfileid(Profile.NORMAL.getValue());
+        boolean userCreated = modifyUser(user);
 
         String returnText = "";
 
@@ -103,9 +87,85 @@ public class UserController {
         return returnText;
     }
 
+    @RequestMapping(value = "/create", method= RequestMethod.POST)
+    @ResponseBody
+    public String createUser(@Valid @RequestBody User user, Locale locale) {
+
+        boolean userCreated = modifyUser(user );
+
+        String returnText = "";
+
+        if (userCreated) {
+            returnText = messageSource.getMessage("success-created-user", null, locale);
+        } else {
+            returnText = messageSource.getMessage("system-error", null, locale);
+        }
+
+        return returnText;
+    }
+
+    @RequestMapping(value = "/edit", method= RequestMethod.PUT)
+    @ResponseBody
+    public String editUser(@Valid @RequestBody User user, Locale locale) {
+
+        boolean userEdited = true;
+
+        try {
+            user.setPassword(User.sha1(user.getPassword()));
+
+            restTemplate.put("http://localhost:8080/service/user/update", user);
+
+        } catch (RestClientException e) {
+            userEdited = false;
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            userEdited = false;
+            logger.error(e.getMessage(), e);
+        } catch (Exception e) {
+            userEdited = false;
+            logger.error(e.getMessage(), e);
+        }
+
+        String returnText = "";
+
+        if (userEdited) {
+            returnText = messageSource.getMessage("success-edited-user", null, locale);
+        } else {
+            returnText = messageSource.getMessage("system-error", null, locale);
+        }
+
+        return returnText;
+    }
+
+    private boolean modifyUser(User user) {
+        boolean userModified = true;
+
+        try {
+            user.setPassword(User.sha1(user.getPassword()));
+
+            restTemplate.postForLocation("http://localhost:8080/service/user/create", user);
+
+        } catch (RestClientException e) {
+            userModified = false;
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            userModified = false;
+            logger.error(e.getMessage(), e);
+        } catch (Exception e) {
+            userModified = false;
+            logger.error(e.getMessage(), e);
+        }
+
+        return userModified;
+    }
+
     @RequestMapping(value="new", method = RequestMethod.GET)
     public String newUser(Model model) {
 
+        assignProfilesToModel(model);
+        model.addAttribute("action", "new");
         return "edit_user";
     }
 
@@ -120,6 +180,9 @@ public class UserController {
             logger.error("The user with userId "+ userId + "could not be found");
             model.addAttribute("error", true);
         }
+
+        model.addAttribute("action", "edit");
+        assignProfilesToModel(model);
 
         return "edit_user";
     }

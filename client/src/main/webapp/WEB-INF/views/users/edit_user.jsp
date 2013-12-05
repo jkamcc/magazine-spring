@@ -1,30 +1,10 @@
 <%@ include file="/WEB-INF/views/init.jsp" %>
 
-<style type="text/css">
-    #user-image {
-        width: 320px;
-        margin-left: 140px;
-    }
-    .form-message {
-        width: 350px;
-    }
-    .user-info {
-        float: left;
-    }
-    .right-square {
-        float: left;
-    }
-    .messages {
-        float: left;
-    }
-</style>
-
 <div id="register" class="container-fluid">
 
     <h1><s:message code="users"/></h1>
 
-    <form id="register_fm" name="edit_user_fm" action="javascript:;" method="post" class="well form-horizontal">
-
+    <form id="edit_user_fm" name="edit_user_fm" action="javascript:;" method="post" class="well form-horizontal">
         <fieldset>
 
             <legend><s:message code="new-user"/></legend>
@@ -37,17 +17,28 @@
 
             <div class="user-info">
 
-                <input name="profile" value="<%=Profile.NORMAL.toString()%>" type="hidden">
-                <input name="profileid" value="<%=Profile.NORMAL.getValue()%>" type="hidden" >
-
-                <select>
-
-                </select>
+                <div class="control-group">
+                    <label class="control-label" for="profile"><s:message code="profile"/></label>
+                    <div class="controls">
+                        <select id="profile" name="profile">
+                            <option></option>
+                            <c:forEach items="${profiles}" var="profile">
+                                <option value="${profile.value}"
+                                        <c:if test="${profile.value == user.profileid}">
+                                            selected
+                                        </c:if>
+                                        >
+                                    <s:message code="profile-${profile.key}"/>
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="control-group">
                     <label class="control-label" for="username"><s:message code="username"/></label>
                     <div class="controls">
-                        <input id="username" class="input-large" name="username" type="text" >
+                        <input id="username" class="input-large" name="username" value="${user.username}" type="text" >
                     </div>
 
                 </div>
@@ -55,14 +46,14 @@
                 <div class="control-group">
                     <label class="control-label" for="email"><s:message code="email" /></label>
                     <div class="controls">
-                        <input id="email" class="input-large" name="email" type="text">
+                        <input id="email" class="input-large" name="email" value="${user.email}" type="text">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="name"><s:message code="name"/></label>
                     <div class="controls">
-                        <input id="name" class="input-large" name="name" type="text">
+                        <input id="name" class="input-large" name="name" value="${user.name}" type="text">
                     </div>
                 </div>
 
@@ -84,18 +75,36 @@
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn btn-primary" type="submit">Create an account</button>
+                    <c:choose>
+                        <c:when test="${not empty user}">
+                            <button class="btn btn-primary" type="submit"><s:message code="update-user"/></button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="btn btn-primary" type="submit"><s:message code="register-button"/></button>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
-
             </div>
-
-            <div class="right-square">
-                <img id="user-image" src='<c:url value="/resources/img/user-icon.jpg"/> ' alt="user-icon.jpg" />
-            </div>
-
-            <div style="clear:both"></div>
-
         </fieldset>
 
     </form>
 </div>
+<script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/resources/js/register.js"/>'></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        UserVariables.message = $('#message');
+        UserVariables.action= '${action}';
+        if (UserVariables.action == 'new') {
+            UserVariables.errorMessage = '<s:message code="error-created-user"/>';
+            UserVariables.successMessage = '<s:message code="success-created-user"/>';
+        } else {
+            UserVariables.errorMessage = '<s:message code="error-edited-user"/>';
+            UserVariables.successMessage = '<s:message code="success-edited-user"/>';
+        }
+        UserVariables.inputs = $('.user-info');
+
+        $('#edit_user_fm').validate(registerUserValidaton);
+    });
+</script>

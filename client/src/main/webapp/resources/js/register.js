@@ -24,17 +24,6 @@ var registerUserValidaton = {
     errorClass: "error"
 };
 
-var UserVariables = {
-    message: null,
-    successMessage: null,
-    errorMessage: null,
-    inputs: null,
-    redirect: {
-        url: null,
-        message: null
-    }
-};
-
 function UserArticle(username, name, password, profile, profileid, email) {
     this.username = username;
     this.name = name;
@@ -43,18 +32,31 @@ function UserArticle(username, name, password, profile, profileid, email) {
     this.profileid = profileid;
     this.email = email;
 }
+
+UserVariables = {};
+
 function submitUser(form) {
     var userArticle = new UserArticle(form.username.value, form.name.value,
         form.password.value, form.profile.value,
         form.profileid.value, form.email.value);
     console.info(userArticle);
-    registerUser(userArticle);
+    switch (UserVariables.action) {
+        case 'new':
+            modifyUser(userArticle, 'create', 'POST');
+            break;
+        case 'edit':
+            modifyUser(userArticle, 'edit', 'PUT');
+            break;
+        case 'register':
+            modifyUser(userArticle, 'register', 'POST');
+            break;
+    }
 }
 
-function registerUser(userArticle) {
+function modifyUser(userArticle, urlVal, typeVal) {
     $.ajax({
-        type: 'POST',
-        url: "register",
+        type: type,
+        url: urlVal,
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify(userArticle),
