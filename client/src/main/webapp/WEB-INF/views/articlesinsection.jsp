@@ -17,7 +17,11 @@
 					<td  rowspan="<c:out value="${indexes[status.index]}"/>"><c:out value="${section.sectionArticle}"/></td>
 					<c:forEach items="${articlesList}" var="article" varStatus="statusArticle">
 						<c:if test="${article.sectionid == section.sectionid}">
-							<td><c:out value="${article.subject}"/></td>
+							<td>
+								<a class="menu-link" href='<c:url value="/articles/article/2"/>'>
+									<c:out value="${article.subject}"/>
+								</a>
+							</td>
 						</c:if>
 				</tr>
 				</c:forEach>
