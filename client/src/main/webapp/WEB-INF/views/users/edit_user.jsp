@@ -5,9 +5,22 @@
     <h1><s:message code="users"/></h1>
 
     <form id="edit_user_fm" name="edit_user_fm" action="javascript:;" method="post" class="well form-horizontal">
+
+        <input name="userid" value="${user.userid}" type="hidden">
+        <input name="profile" type="hidden">
+
         <fieldset>
 
-            <legend><s:message code="new-user"/></legend>
+            <legend>
+                <c:choose>
+                    <c:when test="${not empty user}">
+                        <s:message code="edit-user"/>
+                    </c:when>
+                    <c:otherwise>
+                        <s:message code="new-user"/>
+                    </c:otherwise>
+                </c:choose>
+            </legend>
 
             <div class="messages">
                 <div id="message" class="form-message control-group alert hide">
@@ -18,9 +31,9 @@
             <div class="user-info">
 
                 <div class="control-group">
-                    <label class="control-label" for="profile"><s:message code="profile"/></label>
+                    <label class="control-label" for="profileid"><s:message code="profile"/></label>
                     <div class="controls">
-                        <select id="profile" name="profile">
+                        <select id="profileid" name="profileid">
                             <option></option>
                             <c:forEach items="${profiles}" var="profile">
                                 <option value="${profile.value}"
@@ -104,6 +117,11 @@
             UserVariables.successMessage = '<s:message code="success-edited-user"/>';
         }
         UserVariables.inputs = $('.user-info');
+
+        $('#edit_user_fm').submit(function(){
+            document.edit_user_fm.profile.value = $('#profileid').find(':selected').text().trim();
+            console.info(document.edit_user_fm.profile.value);
+        });
 
         $('#edit_user_fm').validate(registerUserValidaton);
     });

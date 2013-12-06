@@ -104,7 +104,7 @@ public class UserController {
         return returnText;
     }
 
-    @RequestMapping(value = "/edit", method= RequestMethod.PUT)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public String editUser(@Valid @RequestBody User user, Locale locale) {
 

@@ -5,7 +5,7 @@
     <h1><s:message code="join-message"/></h1>
 
     <form id="register_fm" name="register_fm" action="javascript:;" method="post" class="well form-horizontal">
-
+        <input name="userid" type="hidden">
         <fieldset>
 
             <legend><s:message code="register-message"/></legend>

@@ -24,7 +24,8 @@ var registerUserValidaton = {
     errorClass: "error"
 };
 
-function UserArticle(username, name, password, profile, profileid, email) {
+function UserArticle(username, name, password, profile, profileid, email, userid) {
+    if (userid) this.userid = userid;
     this.username = username;
     this.name = name;
     this.password = password;
@@ -38,24 +39,24 @@ UserVariables = {};
 function submitUser(form) {
     var userArticle = new UserArticle(form.username.value, form.name.value,
         form.password.value, form.profile.value,
-        form.profileid.value, form.email.value);
+        form.profileid.value, form.email.value, form.userid.value);
     console.info(userArticle);
     switch (UserVariables.action) {
         case 'new':
-            modifyUser(userArticle, 'create', 'POST');
+            modifyUser(userArticle, 'create');
             break;
         case 'edit':
-            modifyUser(userArticle, 'edit', 'PUT');
+            modifyUser(userArticle, '/magazine/users/edit');
             break;
         case 'register':
-            modifyUser(userArticle, 'register', 'POST');
+            modifyUser(userArticle, 'register');
             break;
     }
 }
 
-function modifyUser(userArticle, urlVal, typeVal) {
+function modifyUser(userArticle, urlVal) {
     $.ajax({
-        type: type,
+        type: 'POST',
         url: urlVal,
         contentType: "application/json",
         dataType: "json",
