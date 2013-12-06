@@ -1,24 +1,5 @@
 <%@ include file="/WEB-INF/views/init.jsp" %>
 
-<style type="text/css">
-    #user-image {
-        width: 320px;
-        margin-left: 140px;
-    }
-    .form-message {
-        width: 350px;
-    }
-    .user-info {
-        float: left;
-    }
-    .right-square {
-        float: left;
-    }
-    .messages {
-        float: left;
-    }
-</style>
-
 <div id="register" class="container-fluid">
 
     <h1><s:message code="join-message"/></h1>
@@ -84,7 +65,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn btn-primary" type="submit">Create an account</button>
+                    <button class="btn btn-primary" type="submit"><s:message code="register-button"/> </button>
                 </div>
 
             </div>
@@ -109,6 +90,7 @@
         UserVariables.errorMessage = '<s:message code="error-created-user"/>';
         UserVariables.successMessage = '<s:message code="success-created-user"/>';
         UserVariables.inputs = $('.user-info');
+        UserVariables.action = 'register';
         $('#register_fm').validate(registerUserValidaton);
     });
 </script>

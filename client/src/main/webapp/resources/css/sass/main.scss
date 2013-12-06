@@ -7,6 +7,17 @@ body {
     padding-bottom: 40px;
 }
 
+
+.article-comment{
+	background-color: #CEE3F6;
+	width: 70%;
+	padding: 10px;
+	border-radius: 15px 15px 15px 15px;
+	margin:10px;
+	display:inline-block;
+	box-shadow: 7px 7px 5px #888888;
+}
+
 .form-signin {
 	max-width: 300px;
 	padding: 19px 29px 29px;
@@ -90,4 +101,21 @@ label {
     position: static;
     width: 90%;
   }
+}
+
+#user-image {
+  width: 320px;
+  margin-left: 140px;
+}
+.form-message {
+  width: 350px;
+}
+.user-info {
+  float: left;
+}
+.right-square {
+  float: left;
+}
+.messages {
+  float: left;
 }

@@ -85,8 +85,10 @@ public class ArticleServiceController{
     }
     
     @RequestMapping(value = "/delete/{articleId}", method = RequestMethod.DELETE)
-    public void deleteArticleById(@PathVariable long articleId){
+    @ResponseBody
+    public RestMessage deleteArticleById(@PathVariable long articleId){
     	articleService.deleteArticleById(articleId);  //TODAVIA FALTA PROBAR
+    	return new RestMessage( "Article deleted");
     }
     
     @RequestMapping(value = "/create", method = RequestMethod.POST,

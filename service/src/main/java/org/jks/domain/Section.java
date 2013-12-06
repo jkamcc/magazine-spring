@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -31,7 +32,8 @@ public class Section {
 
     @NotBlank
     @Size(max=50)
-    @javax.persistence.Column(name = "sectionArticle", nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
+    @Pattern(regexp="^[a-zA-Z]+[1-9]*")
+    @javax.persistence.Column(name = "sectionArticle", unique=true, nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getSectionArticle() {
         return sectionArticle;
