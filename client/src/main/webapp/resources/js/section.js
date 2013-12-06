@@ -90,13 +90,7 @@ $(document).ready(function(){
 	
 	function deleteRow(button, table){
 		var id=(button.parentNode.parentNode.children)[0].textContent;
-		var tableRows= button.parentNode.parentNode.parentNode.children;
-		var posicion=0;
-		for(i=0; i<tableRows.length;++i){
-			if((tableRows.item(i)).children.item(0).textContent==id){
-				posicion=i;
-			}
-		}
+		var row= button.parentNode.parentNode;
 		 $.ajax({
 			 type: "DELETE",
 			 url: "http://localhost:8080/service/section/delete/"+id,
@@ -106,7 +100,7 @@ $(document).ready(function(){
 			 dataType: "json",
 			 success: function(data) {
 				table.dataTable().fnDraw();
-				table.dataTable().fnDeleteRow(posicion);
+				table.dataTable().fnDeleteRow(row);
 				table.dataTable().fnGetData();
 				table.dataTable().fnDraw();
 			 },

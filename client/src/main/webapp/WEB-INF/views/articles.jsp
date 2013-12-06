@@ -66,15 +66,7 @@
         });
 
         $(document).on("click", ".deleteButton", function() {
-            var id=(this.parentNode.parentNode.children)[4].textContent;
-            var tableRows= this.parentNode.parentNode.parentNode.children;
-            var posicion=0;
-            for(i=0; i<tableRows.length;++i){
-                if((tableRows.item(i)).children.item(4).textContent==id){
-                    posicion=i;
-                }
-            }
-            deleteArticle(id, posicion);
+        	deleteArticle(this);
         });
 
     	$(document).on("click", ".editButton", function() {

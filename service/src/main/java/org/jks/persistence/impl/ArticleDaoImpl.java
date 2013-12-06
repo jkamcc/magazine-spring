@@ -59,10 +59,9 @@ public class ArticleDaoImpl extends AbstractHibernateDAO<Article, Long> implemen
                .addOrder(Order.desc("datearticle")).list();
     }
 
-	@Override
+    @Override
 	public void deleteArticleById(long articleId) {
-		Article article = (Article) getCurrentSession().createCriteria(Article.class)
-                .add(Restrictions.eq("articleId", articleId));
+		Article article = (Article) getCurrentSession().createCriteria(Article.class).add(Restrictions.eq("articleid", articleId)).uniqueResult();
 		delete(article);		
 	}   
     
