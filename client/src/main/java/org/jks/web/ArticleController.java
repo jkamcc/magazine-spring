@@ -84,4 +84,36 @@ public class ArticleController {
         return "articles";
     }
 
+    @RequestMapping(value="/articlesinsection", method = RequestMethod.GET)
+    public String showArticlesPerSection(Model model) {
+    	try{
+    		Article[] articles = restTemplate.getForObject("http://localhost:8080/service/article/all", Article[].class);
+    		Section[] sections = restTemplate.getForObject("http://localhost:8080/service/section/all", Section[].class);
+            
+            int contador= 0;
+            int[] indexes = new int[sections.length];
+           
+            for(int i = 0 ; i<sections.length ; i++){
+            	contador = 0;
+            	for(int a = 0 ; a < articles.length ; a++){
+            		if(articles[a].getSectionid()==sections[i].getSectionid()){
+            			contador++;
+            		}
+            	}
+            	if(contador == 0){
+            		contador = 1;
+            	}
+            	indexes[i] = contador;
+            }
+
+            model.addAttribute("articlesList",  articles);
+            model.addAttribute("sectionList",  sections);
+            model.addAttribute("indexes",  indexes);
+    	}catch (RestClientException e){
+    		logger.error("Sections could not be retrieved", e);
+    	}
+    	
+    	
+    	return "articlesinsection";
+    }
 }

@@ -63,5 +63,9 @@
     <definition name="articles" extends="control_panel">
         <put-attribute name="content" value="/WEB-INF/views/articles.jsp" />
     </definition>
+    
+     <definition name="articlesinsection" extends="control_panel">
+        <put-attribute name="content" value="/WEB-INF/views/articlesinsection.jsp" />
+    </definition>
 	
 </tiles-definitions>
