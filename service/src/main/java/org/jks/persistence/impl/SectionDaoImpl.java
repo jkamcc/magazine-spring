@@ -36,5 +36,10 @@ public class SectionDaoImpl  extends AbstractHibernateDAO<Section, Long> impleme
 
         return q.list();
     }
+    
+    @Override
+    public Section getSectionById(long id){
+    	return (Section) getCurrentSession().createCriteria(Section.class).add(Restrictions.eq("sectionid", id)).uniqueResult();
+    }
 	
 }

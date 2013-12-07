@@ -65,4 +65,11 @@ public class SectionServiceController {
         	sectionService.updateSection(section);
         	return new RestMessage( "Updated section");
         }
+        
+        @RequestMapping(value="/get/{id}", method= RequestMethod.PUT)
+        @ResponseBody
+        public Section updateSection(@Valid @RequestBody long id) throws Exception {
+        	Section section= sectionService.getSectionById(id);
+        	return section;
+        }
 }
