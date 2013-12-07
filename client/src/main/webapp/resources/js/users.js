@@ -25,5 +25,5 @@ function deleteUser(button){
 
 
 function editUser(id){
-    document.location.href=window.location.toString()+'edit/'+id;
+    document.location.href=window.location.toString()+'edit/'+id.trim();
 };

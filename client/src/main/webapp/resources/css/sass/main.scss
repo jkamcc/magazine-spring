@@ -105,19 +105,27 @@ label {
   width: 320px;
   margin-left: 140px;
 }
+
 .form-message {
   width: 350px;
 }
+
 .user-info {
   float: left;
 }
+
 .right-square {
   float: left;
 }
+
 .messages {
   float: left;
 }
 
 .element-add {
   margin: 30px 0 20px 0;
+}
+
+.paginate_disabled_previous, .paginate_enabled_previous{
+  margin-right: 20px;
 }
