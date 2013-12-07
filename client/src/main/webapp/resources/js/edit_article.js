@@ -21,13 +21,7 @@ var articleValidation = {
     errorClass: "error"
 };
 
-var ArticleVariables = {
-    message: null,
-    successMessage: null,
-    errorMessage: null,
-    inputs: null,
-    submitButton: null
-};
+var ArticleVariables = {};
 
 function Article(articleid, sectionid, subject, author, article, datearticle) {
 
@@ -48,7 +42,7 @@ function submitArticle(form) {
     var article = new Article(form.articleid.value,
         form.sectionid.value, form.subject.value,
         form.author.value, form.article.value, form.datearticle.value);
-    console.info(article);
+    //console.info(article);
 
     if (ArticleVariables.submitButton.hasClass('edit_article')) {
         editArticle(article);

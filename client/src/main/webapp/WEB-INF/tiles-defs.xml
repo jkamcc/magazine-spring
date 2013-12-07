@@ -41,11 +41,11 @@
     </definition>
     
     <definition name="article" extends="template">
-		<put-attribute name="content" value="/WEB-INF/views/article.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/articles/article.jsp" />
     </definition>
     
     <definition name="editarticle" extends="control_panel">
-		<put-attribute name="content" value="/WEB-INF/views/editarticle.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/articles/edit_article.jsp" />
     </definition>
     
     <definition name="error" extends="template">
@@ -53,13 +53,8 @@
     </definition>
     
     <definition name="sections" extends="control_panel">
-		<put-attribute name="content" value="/WEB-INF/views/showSections.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/sections/sections.jsp" />
     </definition>
-    
-    <definition name="addSection" extends="template">
-		<put-attribute name="content" value="/WEB-INF/views/addSection.jsp" />
-    </definition>
-
 
     <definition name="sectionandarticles" extends="control_panel">
         <put-attribute name="content" value="/WEB-INF/views/sectionandarticles.jsp" />
@@ -67,11 +62,11 @@
     
     
     <definition name="articles" extends="control_panel">
-        <put-attribute name="content" value="/WEB-INF/views/articles.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/articles/articles.jsp" />
     </definition>
     
      <definition name="articlesinsection" extends="control_panel">
-        <put-attribute name="content" value="/WEB-INF/views/articlesinsection.jsp" />
+        <put-attribute name="content" value="/WEB-INF/views/sections/articlesinsection.jsp" />
     </definition>
 	
 </tiles-definitions>

@@ -1,8 +1,12 @@
 <%@ include file="/WEB-INF/views/init.jsp" %>
 
-<div id="register" class="container-fluid">
+<div id="edit_user" class="container-fluid">
 
     <h1><s:message code="users"/></h1>
+
+    <div class="row">
+        <a class="pull-right" href='<c:url value="/users/"/>'> &lt; &lt; &nbsp;<s:message code="back"/> </a>
+    </div>
 
     <form id="edit_user_fm" name="edit_user_fm" action="javascript:;" method="post" class="well form-horizontal">
 

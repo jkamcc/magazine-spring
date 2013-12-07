@@ -1,4 +1,4 @@
-<%@include file="init.jsp" %>
+<%@include file="../init.jsp" %>
 
 <div class="container-fluid">
     <h2><s:message code="articles"/></h2>

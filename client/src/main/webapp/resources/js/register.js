@@ -40,7 +40,7 @@ function submitUser(form) {
     var userArticle = new UserArticle(form.username.value, form.name.value,
         form.password.value, form.profile.value,
         form.profileid.value, form.email.value, form.userid.value);
-    console.info(userArticle);
+    //console.info(userArticle);
     switch (UserVariables.action) {
         case 'new':
             modifyUser(userArticle, 'create');

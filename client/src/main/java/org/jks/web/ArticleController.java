@@ -25,7 +25,7 @@ public class ArticleController {
     private RestTemplate restTemplate;
 	
 	
-	//Este metodo lleva al usuario a editarticle.jsp para que pueda crear un articulo
+	//Este metodo lleva al usuario a edit_article.jsp para que pueda crear un articulo
     @RequestMapping(value="/new", method = RequestMethod.GET)
     public String newarticle(Model model) {
         addSectionsToModel(model);

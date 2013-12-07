@@ -1,19 +1,34 @@
 <%@ include file="/WEB-INF/views/init.jsp" %>
 
-<div id="editarticle">
+<div id="editarticle" class="container-fluid">
+
+    <h1><s:message code="articles"/></h1>
+
+    <div class="row">
+        <a class="pull-right" href='<c:url value="/articles/"/>'> &lt; &lt; &nbsp;<s:message code="back"/> </a>
+    </div>
 
     <form id="editarticle_fm" name="editarticle_fm" action="javascript:;" method='POST' class="well form-horizontal">
 
+        <input name="articleid" value="${article.articleid}" type="hidden">
+        <input name="datearticle" value="${article.datearticle}" type="hidden">
+
         <fieldset>
+            <legend>
+                <c:choose>
+                    <c:when test="${empty edit_article}">
+                        <s:message code="article-new"/>
+                    </c:when>
+                    <c:otherwise>
+                        <s:message code="article-edit"/>
+                    </c:otherwise>
+                </c:choose>
+            </legend>
             <div id="message" class="form-message control-group alert hide">
                 <label><!--ajax--></label>
             </div>
 
             <div class="article-info">
-                <input name="articleid" value="${article.articleid}" type="hidden">
-                <input name="datearticle" value="${article.datearticle}" type="hidden">
-
-                <legend><s:message code="article-new"/></legend>
 
                 <div class="control-group">
                     <label class="control-label" for="subject"><s:message code="article-title" /></label>

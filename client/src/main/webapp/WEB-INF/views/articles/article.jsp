@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="init.jsp" %>
+<%@include file="../init.jsp" %>
 
 <div class="container-fluid">
 	<article style="margin-bottom:40px;">
