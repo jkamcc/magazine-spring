@@ -21,7 +21,7 @@
                 <th><s:message code="user-email"/></th>
                 <th><s:message code="user-name2"/></th>
                 <th><s:message code="user-profile"/></th>
-                <th style="width:50%;"><s:message code="action"/></th>
+                <th><s:message code="action"/></th>
             </tr>
             </thead>
             <tbody>

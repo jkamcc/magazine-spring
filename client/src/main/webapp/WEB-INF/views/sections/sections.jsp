@@ -4,7 +4,7 @@
 <div class="container-fluid">
 		<!-- Para mostrar las sections existentes en la BD -->
 		<h2><s:message code="sections"/></h2>  
-		<form name="add_fm" id="add_fm" class="well form-horizontal"  nonvalidate>
+		<form name="add_fm" id="add_fm" class="well form-horizontal"  novalidate>
 			<fieldset>
 				<legend><s:message code="section-add"/></legend>
 				<div class="control-group">
@@ -15,10 +15,10 @@
                 </div>
 				
 				 <div class="form-actions">	
-					<input type="button" value=<s:message code="button-add"/> name="addButton" id="addButton" class="btn btn-primary">
-						<s:message code="new-user-add"/> &nbsp;
+					<button name="addButton" id="addButton" class="btn btn-primary btn-xxlarge">
+						<s:message code="button-add"/> &nbsp;
             			<i class="fa fa-plus"></i>
-            		</input>
+            		</button>
 				</div>
 			</fieldset>
 		</form>
@@ -40,6 +40,7 @@
 		</form>
 </div>
 
+<script src='<c:url value="/resources/js/jquery-1.10.2.js"/>'></script>
 <script src='<c:url value="/resources/DataTables-1.9.4/media/js/jquery.dataTables.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
 <script type="text/javascript"  src='<c:url value="/resources/js/section.js"/>'></script>

@@ -14,7 +14,7 @@
 
     <fieldset>
         <legend><s:message code="article-list"/></legend>
-        <table border="1" name="articlesTable" id="articlesTable">
+        <table border="1" name="articlesTable" id="articlesTable" style="text-align:center;width: auto;">
             <thead  class="btn-primary">
             <tr>
                 <th><s:message code="section-id"/></th>

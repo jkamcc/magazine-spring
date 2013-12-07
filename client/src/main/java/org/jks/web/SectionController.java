@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.jks.domain.Article;
@@ -42,6 +43,8 @@ public class SectionController {
 	/* Obtiene la lista de todas las secciones en la BD */
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String showSections(Model model) {
+		//HttpServletRequest request = null;
+		//String hola= request.getAttribute("currentUser");
 		Section[] list = restTemplate.getForObject("http://localhost:8080/service/section/all", Section[].class);
 		List<Section> slist = Arrays.asList(list);
 		model.addAttribute("sectionList",  slist);
