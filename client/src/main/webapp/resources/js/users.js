@@ -1,4 +1,4 @@
-function deleteArticle(button){
+function deleteUser(button){
 	var id=(button.parentNode.parentNode.children)[0].textContent;
 	var row= button.parentNode.parentNode;
     $.ajax({
@@ -24,6 +24,6 @@ function deleteArticle(button){
 };
 
 
-function editArticle(id){
+function editUser(id){
     document.location.href=window.location.toString()+'edit/'+id;
 };

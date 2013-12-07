@@ -62,13 +62,12 @@
         });
 
         $(document).on("click", ".deleteButton", function() {
-        	deleteArticle(this);
+        	deleteUser(this);
         });
 
     	$(document).on("click", ".editButton", function() {
-            var id=(this.parentNode.parentNode.children)[4].textContent;
-            editArticle(id);
+            var id=(this.parentNode.parentNode.children)[0].textContent;
+            editUser(id);
         });
-
     });
 </script>
