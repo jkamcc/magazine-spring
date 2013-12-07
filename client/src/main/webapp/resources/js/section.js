@@ -14,7 +14,9 @@ $(document).ready(function(){
             success: function(data) {
                 dataAjax=  $.makeArray(data);
                 for(i=0; i<dataAjax.length;++i){
-                    dataAjax[i].boton='<input type="button" class="deleteButton" value="Delete"/><input type="button" class="editButton" value="Edit"/>';
+                	var inputs= '<button class="btn btn-small editButton"><s:message code="button-edit"/>&nbsp;<i class="fa fa-edit"></i></button>';
+                    inputs= inputs+' <button class="btn btn-small deleteButton"><s:message code="button-delete"/>&nbsp;<i class="fa fa-trash-o"></i></button>';
+                    dataAjax[i].boton=inputs;
                 }
             },
         }),
