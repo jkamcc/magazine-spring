@@ -1,6 +1,6 @@
 <%@include file="../init.jsp" %>
 
-<div class="container-fluid">
+<div id="articles" class="container-fluid">
     <h2><s:message code="articles"/></h2>
 
     <div class="element-add">

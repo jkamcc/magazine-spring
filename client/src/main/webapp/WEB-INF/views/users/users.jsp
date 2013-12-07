@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/views/init.jsp" %>
 
-<div id="users" class="container-fluid well">
+<div id="users" class="container-fluid">
 
     <h2><s:message code="users"/></h2>
 
@@ -10,9 +10,7 @@
             <i class="fa fa-plus"></i>
         </button>
     </div>
-</div>
 
-<div class="container-fluid well">
     <fieldset>
         <legend><s:message code="users-list"/></legend>
         <table border="1" name="usersTable" id="usersTable" style="text-align:center;width: auto;">

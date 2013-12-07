@@ -1,6 +1,8 @@
 package org.jks.web.common;
 
+import com.google.common.base.Preconditions;
 import org.jks.domain.Section;
+import org.jks.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,21 +29,22 @@ public class HeaderInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         logger.debug("Header interceptor");
 
-        String user = addCurrentUserInfo();
+        addCurrentUserInfo(request);
         Section[] sections = loadSections();
 
-        request.setAttribute("currentUser", user);
         request.setAttribute("sectionList", sections);
     }
 
-    private String addCurrentUserInfo() {
+    private String addCurrentUserInfo(HttpServletRequest request) {
         String toReturn = "";
 
         String currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         logger.debug("Current user", currentUser);
 
         if (!currentUser.equals("anonymousUser")) {
-            toReturn = currentUser;
+            User user = getLoggedUser(currentUser);
+            request.setAttribute("currentUser", user);
         }
 
         return toReturn;
@@ -60,5 +63,25 @@ public class HeaderInterceptor extends HandlerInterceptorAdapter {
         }
 
         return sections;
+    }
+
+    private User getLoggedUser(String username) {
+
+        long userId = 0;
+
+        User user = null;
+
+        try {
+            user = restTemplate.getForObject("http://localhost:8080/service/user/username/" + username, User.class);
+            Preconditions.checkNotNull(user);
+
+        } catch (RestClientException e) {
+            logger.error("Failed loading userid for page authentication", e);
+
+        } catch (NullPointerException e) {
+            logger.error("No user exists with username "+username, e);
+        }
+
+        return user;
     }
 }

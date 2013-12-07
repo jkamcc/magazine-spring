@@ -88,14 +88,14 @@
     $(document).ready(function(){
         ArticleVariables.message = $('#message');
         <c:choose>
-        <c:when test="${empty edit_article}">
-        ArticleVariables.errorMessage = '<s:message code="error-created-article"/>';
-        ArticleVariables.successMessage = '<s:message code="success-created-article"/>';
-        </c:when>
-        <c:otherwise>
-        ArticleVariables.errorMessage = '<s:message code="error-edit-article"/>';
-        ArticleVariables.successMessage = '<s:message code="success-edited-article"/>';
-        </c:otherwise>
+            <c:when test="${empty edit_article}">
+                ArticleVariables.errorMessage = '<s:message code="error-created-article"/>';
+                ArticleVariables.successMessage = '<s:message code="success-created-article"/>';
+            </c:when>
+            <c:otherwise>
+                ArticleVariables.errorMessage = '<s:message code="error-edit-article"/>';
+                ArticleVariables.successMessage = '<s:message code="success-edited-article"/>';
+            </c:otherwise>
         </c:choose>
         ArticleVariables.inputs = $('.article-info');
         ArticleVariables.submitButton = $('#btn-editarticle');

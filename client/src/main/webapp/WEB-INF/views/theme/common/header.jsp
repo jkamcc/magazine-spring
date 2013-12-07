@@ -21,7 +21,9 @@
                         <c:when test="${not empty currentUser}">
                             <li><a href='<c:url value="/control_panel"/>'><s:message code="control-panel"/></a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown">${currentUser} <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown">${currentUser.username}
+                                    <b class="caret"></b>
+                                </a>
 
                                 <ul class="dropdown-menu">
                                     <li><a href='<c:url value="/users/signout"/>'><s:message code="sign-out"/></a></li>
