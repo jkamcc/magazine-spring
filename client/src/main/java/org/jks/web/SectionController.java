@@ -1,4 +1,5 @@
 package org.jks.web;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +7,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.jks.domain.Article;
 import org.jks.domain.Section;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,5 +46,26 @@ public class SectionController {
 		List<Section> slist = Arrays.asList(list);
 		model.addAttribute("sectionList",  slist);
 		return "sections";
+	}
+	
+	@RequestMapping(value="/section/{id}", method = RequestMethod.GET)
+	public String getArticlesWithSectionId(@PathVariable long id, Model model) {
+		
+		Section section = restTemplate.getForObject("http://localhost:8080/service/section/get/", Section.class);
+		Article[] articles = restTemplate.getForObject("http://localhost:8080/service/article/all", Article[].class);
+		
+		List<Article> articlesFinal = new ArrayList<Article>();
+		int contador = 0;
+		int index = 0;
+		
+		while (index < articles.length && contador < 10 ){
+    		if(articles[index].getSectionid() == section.getSectionid()){
+    			articlesFinal.add(articles[index]);
+    			contador++;
+    		}
+    	}
+		model.addAttribute("section",  section);
+		model.addAttribute("articles", articlesFinal);
+		return "sectionandarticles";
 	}
 }

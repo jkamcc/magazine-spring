@@ -60,6 +60,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/addSection.jsp" />
     </definition>
 
+
+    <definition name="sectionandarticles" extends="control_panel">
+        <put-attribute name="content" value="/WEB-INF/views/sectionandarticles.jsp" />
+    </definition>
+    
+    
     <definition name="articles" extends="control_panel">
         <put-attribute name="content" value="/WEB-INF/views/articles.jsp" />
     </definition>
