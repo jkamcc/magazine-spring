@@ -12,10 +12,10 @@
                 <th><s:message code="section-name"/></th>
                 <th><s:message code="created-date"/></th>
                 <th><s:message code="article-title"/></th>
-                <th>Article id</th>
+                <th><s:message code="article-id"/></th>
                 <th><s:message code="article-author"/></th>
                 <th><s:message code="article-content"/></th>
-                <th>Comments</th>
+                <th><s:message code="article-comments"/></th>
                 <th><s:message code="action"/></th>
             </tr>
             </thead>
