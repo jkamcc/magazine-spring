@@ -25,6 +25,7 @@ public class Article {
     private Long sectionid;
     private String sectionName;
     private List<Comment> comments;
+    private int commentsCount;
 
     @javax.persistence.Column(name = "articleid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
     @Id
@@ -139,5 +140,15 @@ public class Article {
     @Transient
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Transient
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+
+    @Transient
+    public void setCommentsCount(int commentsCount) {
+        this.commentsCount = commentsCount;
     }
 }

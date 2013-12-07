@@ -26,6 +26,16 @@ public class CommentDaoImpl extends AbstractHibernateDAO<Comment, Long> implemen
     }
 
     @Override
+    public int countComments(long articleId) {
+        String hsql = "SELECT count(*) FROM " + Comment.class.getName() + " as c WHERE c.articleid = :articleid";
+
+        Query q = getCurrentSession().createQuery(hsql);
+        q.setParameter("articleid", articleId);
+
+        return ((Long) q.uniqueResult()).intValue();
+    }
+
+    @Override
     public List<Comment> getCommentsByArticleId(long articleId, int start, int end) {
 
         if (end == -1) {

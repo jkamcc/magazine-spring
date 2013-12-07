@@ -13,7 +13,7 @@ public interface ArticleDao  extends GenericDao<Article, Long>  {
 	
 	public Article getArticleBySubject(String subject);
 	
-	public List<Article> getArticlesInSection(long section);
+	public List<Article> getArticlesBySection(long section, int start, int end);
 
     public void deleteArticleById(long articleId);
 }

@@ -29,6 +29,8 @@ public interface ArticleService {
 
     public List<Article> getCompleteArticles(int quantity, int comments);
 
+    public List<Article> getCompleteArticlesBySection(long sectionId, int start, int end, int comments);
+
     public Article getArticleBySubject(String subject);
 
     public void updateArticle(Article article);

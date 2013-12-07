@@ -31,10 +31,20 @@ public class ArticleDaoImpl extends AbstractHibernateDAO<Article, Long> implemen
 	}
 
 	@Override
-	public List<Article> getArticlesInSection(long section) {
-		return getCurrentSession().createCriteria(Article.class)
-                    .add(Restrictions.eq("section", section))
-                    .addOrder(Order.desc("datearticle")).list();
+	public List<Article> getArticlesBySection(long sectionId, int start, int end) {
+
+        String hsql = "FROM " + Article.class.getName() + " as a WHERE a.sectionid = :sectionid ORDER BY a.datearticle desc";
+        Query q = getCurrentSession().createQuery(hsql);
+        q.setParameter("sectionid", sectionId);
+
+        if (start > 0) {
+            q.setFirstResult(start);
+        }
+
+        if (end > 0) {
+            q.setMaxResults(end);
+        }
+        return q.list();
 	}
 
     @Override

@@ -26,7 +26,7 @@ public class ArticleController {
 	
 	
 	//Este metodo lleva al usuario a editarticle.jsp para que pueda crear un articulo
-    @RequestMapping(value="/newarticle", method = RequestMethod.GET)
+    @RequestMapping(value="/new", method = RequestMethod.GET)
     public String newarticle(Model model) {
         addSectionsToModel(model);
         model.addAttribute("edit-article", "");

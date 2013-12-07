@@ -81,8 +81,7 @@ label.error {
 }
 
 .control-menu {
-  position: fixed;
-  width: 18%;
+  width: 80%;
 }
 
 .menu-link {
@@ -115,4 +114,8 @@ label.error {
 
 .messages {
   float: left;
+}
+
+.element-add {
+  margin: 30px 0 20px 0;
 }

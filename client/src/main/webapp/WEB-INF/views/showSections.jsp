@@ -37,7 +37,6 @@
 		</form>
 </div>
 
-<script src='<c:url value="/resources/js/jquery-1.10.2.js"/>'></script>
 <script src='<c:url value="/resources/DataTables-1.9.4/media/js/jquery.dataTables.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
 <script src='<c:url value="/resources/DataTables-1.9.4/media/js/jquery.jeditable.js"/>'></script>

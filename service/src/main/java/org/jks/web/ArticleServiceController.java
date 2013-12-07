@@ -19,6 +19,7 @@ import com.google.common.base.Preconditions;
 @Controller
 @RequestMapping("article")
 public class ArticleServiceController{
+
 	@Inject
     private ArticleService articleService;
     
@@ -71,6 +72,20 @@ public class ArticleServiceController{
 
     	Preconditions.checkNotNull(listArticles, "Articles with quantity "+ quantity + " and "+
 				comments +" comments cannot be found.");
+
+        return listArticles;
+    }
+
+    @RequestMapping(value = "/bysection/{sectionId}/{start}/{end}/{comments}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Article> getCompleteArticlesBySection(@PathVariable long sectionId,
+                                                      @PathVariable int start, @PathVariable int end,
+                                                      @PathVariable int comments){
+
+        List<Article> listArticles = articleService.getCompleteArticlesBySection(sectionId, start, end, comments);
+
+        Preconditions.checkNotNull(listArticles, "Articles with quantity "+ (start+end) + " and "+
+                comments +" comments cannot be found.");
 
         return listArticles;
     }

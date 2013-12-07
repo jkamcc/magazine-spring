@@ -7,7 +7,6 @@ body {
     padding-bottom: 40px;
 }
 
-
 .article-comment{
 	background-color: #CEE3F6;
 	width: 70%;
@@ -87,8 +86,7 @@ label {
 }
 
 .control-menu {
-  position: fixed;
-  width: 18%;
+  width: 80%;
 }
 
 .menu-link {
@@ -118,4 +116,8 @@ label {
 }
 .messages {
   float: left;
+}
+
+.element-add {
+  margin: 30px 0 20px 0;
 }

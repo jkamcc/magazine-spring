@@ -1,10 +1,19 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="init.jsp" %>
 
 <div class="container-fluid">
-	<h2><s:message code="articles"/></h2>
-      <fieldset>
-      <legend><s:message code="article-list"/></legend>
+    <h2><s:message code="articles"/></h2>
+
+    <div class="element-add">
+        <button class="btn btn-primary btn-xxlarge" onclick="location.href='<c:url value="/articles/new"/>'">
+            <s:message code="article-add-new"/> &nbsp;
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+
+    <hr>
+
+    <fieldset>
+        <legend><s:message code="article-list"/></legend>
         <table border="1" name="articlesTable" id="articlesTable">
             <thead  class="btn-primary">
             <tr>
@@ -22,7 +31,7 @@
             <tbody>
             </tbody>
         </table>
-      	</fieldset>
+    </fieldset>
 </div>
 
 <script src='<c:url value="/resources/js/jquery-1.10.2.js"/>'></script>
@@ -66,10 +75,10 @@
         });
 
         $(document).on("click", ".deleteButton", function() {
-        	deleteArticle(this);
+            deleteArticle(this);
         });
 
-    	$(document).on("click", ".editButton", function() {
+        $(document).on("click", ".editButton", function() {
             var id=(this.parentNode.parentNode.children)[4].textContent;
             editArticle(id);
         });

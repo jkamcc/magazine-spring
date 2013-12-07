@@ -42,6 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = articleDao.findOne(articleId);
         article.setComments(commentDao.getCommentsByArticleId(articleId, 0, comments));
         article.setSectionName(sectionDao.findOne(article.getSectionid()).getSectionArticle());
+        article.setCommentsCount(commentDao.countComments(articleId));
 
         return article;
     }
@@ -64,6 +65,20 @@ public class ArticleServiceImpl implements ArticleService {
         for (Article article : articles) {
             article.setComments(commentDao.getCommentsByArticleId(article.getArticleid(), 0, comments));
             article.setSectionName(sectionDao.findOne(article.getSectionid()).getSectionArticle());
+            article.setCommentsCount(commentDao.countComments(article.getArticleid()));
+        }
+
+        return articles;
+    }
+
+    @Override
+    public List<Article> getCompleteArticlesBySection(long sectionId, int start, int end, int comments) {
+        List<Article> articles = articleDao.getArticlesBySection(sectionId, start, end);
+
+        for (Article article : articles) {
+            article.setComments(commentDao.getCommentsByArticleId(article.getArticleid(), 0, comments));
+            article.setSectionName(sectionDao.findOne(article.getSectionid()).getSectionArticle());
+            article.setCommentsCount(commentDao.countComments(article.getArticleid()));
         }
 
         return articles;
