@@ -1,6 +1,7 @@
 package org.jks.web;
 
 import org.jks.domain.Profile;
+import org.jks.domain.Section;
 import org.jks.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Locale;
@@ -38,7 +40,7 @@ public class UserController {
 
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String showUsers(Model model) {
-
+    	addUsersToModel(model);
         return "users";
     }
 
@@ -193,5 +195,16 @@ public class UserController {
         profiles.put(Profile.CONTENT_CREATOR.toString(), Profile.CONTENT_CREATOR.getValue());
         profiles.put(Profile.ADMINISTRATOR.toString(), Profile.ADMINISTRATOR.getValue());
         model.addAttribute("profiles", profiles);
+    }
+    
+    
+    private void addUsersToModel(Model model){
+    	 try {
+             User[] users = restTemplate.getForObject("http://localhost:8080/service/user/all", User[].class);
+             model.addAttribute("usersList",  users);
+         } 
+    	 catch (RestClientException e) {
+             logger.error("Users could not be retrieved", e);
+         }
     }
 }

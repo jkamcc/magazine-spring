@@ -13,7 +13,7 @@
                 <ul class="nav">
                     <li class="active"><a href='<c:url value="/"/>'>Home</a></li>
                     <c:forEach items="${sectionList}" var="section">
-                        <li><a href="#section">${section.sectionArticle}</a></li>
+                        <li><a href='<c:url value="/articlesinsection/"/>${section.sectionid}'>${section.sectionArticle}</a></li>
                     </c:forEach>
                 </ul>
                 <ul class="nav pull-right">

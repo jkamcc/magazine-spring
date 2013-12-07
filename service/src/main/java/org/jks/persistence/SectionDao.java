@@ -6,5 +6,5 @@ import org.jks.persistence.common.GenericDao;
 public interface SectionDao extends GenericDao<Section, Long>  {
 
 	public Section getSectionByName(String sectionArticle);
-	
+	public Section getSectionById(long id);
 }

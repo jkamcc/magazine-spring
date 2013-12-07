@@ -110,8 +110,6 @@ public class ArticleController {
     	}catch (RestClientException e){
     		logger.error("Sections could not be retrieved", e);
     	}
-    	
-    	
     	return "articlesinsection";
     }
 }
