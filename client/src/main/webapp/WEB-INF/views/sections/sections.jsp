@@ -15,7 +15,10 @@
                 </div>
 				
 				 <div class="form-actions">	
-					<input type="button" value=<s:message code="button-add"/> name="addButton" id="addButton" class="btn btn-primary"/>
+					<input type="button" value=<s:message code="button-add"/> name="addButton" id="addButton" class="btn btn-primary">
+						<s:message code="new-user-add"/> &nbsp;
+            			<i class="fa fa-plus"></i>
+            		</input>
 				</div>
 			</fieldset>
 		</form>
