@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="init.jsp" %>
-
+<%@ include file="/WEB-INF/views/init.jsp" %>
 
 
 <c:if test="${!empty articles}">
