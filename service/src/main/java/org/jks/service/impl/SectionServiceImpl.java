@@ -25,6 +25,7 @@ public class SectionServiceImpl implements SectionService {
     @Override
     public Section getSectionById(long sectionId){
     	return sectionDao.findOne(sectionId);
+    	//return sectionDao.getSectionById(sectionId);
     }
 
     @Override
