@@ -18,7 +18,7 @@
 					<c:forEach items="${articlesList}" var="article" varStatus="statusArticle">
 						<c:if test="${article.sectionid == section.sectionid}">
 							<td>
-								<a class="menu-link" href='<c:url value="/articles/article/2"/>'>
+								<a class="menu-link" href='<c:url value="/articles/article/"/>${article.articleid}'>
 									<c:out value="${article.subject}"/>
 								</a>
 							</td>

@@ -51,7 +51,7 @@ public class SectionController {
 	@RequestMapping(value="/section/{id}", method = RequestMethod.GET)
 	public String getArticlesWithSectionId(@PathVariable long id, Model model) {
 		
-		Section section = restTemplate.getForObject("http://localhost:8080/service/section/get/", Section.class);
+		Section section = restTemplate.getForObject("http://localhost:8080/service/section/get/id/"+id, Section.class);
 		Article[] articles = restTemplate.getForObject("http://localhost:8080/service/article/all", Article[].class);
 		
 		List<Article> articlesFinal = new ArrayList<Article>();
@@ -63,6 +63,7 @@ public class SectionController {
     			articlesFinal.add(articles[index]);
     			contador++;
     		}
+    		index++;
     	}
 		model.addAttribute("section",  section);
 		model.addAttribute("articles", articlesFinal);
