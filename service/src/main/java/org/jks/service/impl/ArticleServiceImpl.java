@@ -3,9 +3,11 @@ package org.jks.service.impl;
 import java.util.List;
 
 import org.jks.domain.Article;
+import org.jks.domain.Comment;
 import org.jks.persistence.ArticleDao;
 import org.jks.persistence.CommentDao;
 import org.jks.persistence.SectionDao;
+import org.jks.persistence.UserDao;
 import org.jks.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private CommentDao commentDao;
 
+    @Autowired
+    private UserDao userDao;
+    
     @Override
     public Article getArticleById(long articleId) {
         return articleDao.findOne(articleId);
@@ -40,10 +45,13 @@ public class ArticleServiceImpl implements ArticleService {
     public Article getCompleteArticle(long articleId, int comments) {
 
         Article article = articleDao.findOne(articleId);
-        article.setComments(commentDao.getCommentsByArticleId(articleId, 0, comments));
         article.setSectionName(sectionDao.findOne(article.getSectionid()).getSectionArticle());
         article.setCommentsCount(commentDao.countComments(articleId));
-
+        List<Comment> list = commentDao.getCommentsByArticleId(articleId, 0, comments);
+        for (Comment comment : list) {
+		 	comment.setAuthorName((userDao.findOne(comment.getAuthor())).getUsername());
+        }
+        article.setComments(list);
         return article;
     }
 
