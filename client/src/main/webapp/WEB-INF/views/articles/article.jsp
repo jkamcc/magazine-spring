@@ -27,18 +27,43 @@
 				</c:forEach>
 			</c:if>
 		</fieldset>
-		<form>
+		<form id="commentarticle_fm" name="commentarticle_fm" action="javascript:;" method='POST' class="well form-horizontal">
+			<!-- input filds -->
+			<input name="articleid" value="${article.articleid}" type="hidden">
+			<input name="author" value="1" type="hidden">
+
 			<fieldset>
-				<div class="control-group" style="margin-top:40px;">
-					<label class="control-label" for="content"><s:message code="create-comment"/>: </label>
-					<div class="controls">
-						<textarea id="content" rows="7" cols="50" name="article" class="input-xxlarge"></textarea></br>
-					</div>
+				<div id="message" class="form-message control-group alert hide">
+					<label><!--ajax--></label>
 				</div>
-				<div class="form-actions">	
-					<input type="button" class="commentButton btn btn-primary"" value="Comment"/>
+				<div class="comment-info">
+					<div class="control-group" style="margin-top:40px;">
+						<label class="control-label" for="content"><s:message code="create-comment"/>: </label>
+						<div class="controls">
+							<textarea id="commentarticle" rows="7" cols="50" name="article" class="input-xxlarge"></textarea></br>
+						</div>
+					</div>
+					<div class="form-actions">	
+						<!-- <input type="button" id="btn-comment" class="commentButton btn btn-primary"" value="Comment"/>-->
+						<button id="btn-comment" class="btn btn-primary" type="submit">
+                        Comment
+						</button>
+					</div>
 				</div>
 			</fieldset>
 		</form>
 	</div>
 </div>
+
+<script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/resources/js/articlecomment.js"/>'></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        CommentVariables.message = $('#message');
+        CommentVariables.errorMessage = '<s:message code="error-created-comment"/>';
+        CommentVariables.successMessage = '<s:message code="success-created-comment"/>';
+        CommentVariables.inputs = $('.comment-info');
+        $('#commentarticle_fm').validate(commentValidation);
+    });
+</script>
+
