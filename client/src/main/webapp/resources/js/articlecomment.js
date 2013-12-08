@@ -72,3 +72,7 @@ function displayErrorComment(message, response) {
         message.children().text(CommentVariables.errorMessage +' '+response.responseJSON.message);
     }
 }
+
+function goBack(){
+	window.history.back();
+}

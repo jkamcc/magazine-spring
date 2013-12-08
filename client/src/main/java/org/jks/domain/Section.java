@@ -30,7 +30,6 @@ public class Section {
 
     @NotBlank
     @Size(max=50)
-    @Pattern (regexp="[a-zA-Z]+")
     @javax.persistence.Column(name = "sectionArticle", nullable = true, unique=true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getSectionArticle() {

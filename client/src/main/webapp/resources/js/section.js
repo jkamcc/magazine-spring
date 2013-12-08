@@ -54,8 +54,8 @@ $(document).ready(function(){
                 success: function(data) {
 					if(data.sectionid!=0){
 						dataAjax=  $.makeArray(data);
-						dataAjax[0].boton='<input type="button" class="deleteButton" value="Delete"/><input type="button" class="editButton" value="Edit"/>';
-						$('#sectionTable').dataTable().fnAddData(dataAjax);
+						dataAjax[0].boton='<button class="btn btn-small editButton"><s:message code="button-edit"/>&nbsp;<i class="fa fa-edit"></i></button><button class="btn btn-small deleteButton"><s:message code="button-delete"/>&nbsp;<i class="fa fa-trash-o"></i></button>';
+			            $('#sectionTable').dataTable().fnAddData(dataAjax);
 						$('#sectionArticle').val(' ');
 						$tableS.fnGetData();
 						$('#sectionTable').dataTable().fnDraw();

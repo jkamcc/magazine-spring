@@ -32,7 +32,7 @@ public class Section {
 
     @NotBlank
     @Size(max=50)
-    @Pattern(regexp="^[a-zA-Z]+[1-9]*")
+    @Pattern (regexp="^[a-zA-Z]+[a-zA-Z0-9 ]*")
     @javax.persistence.Column(name = "sectionArticle", unique=true, nullable = true, insertable = true, updatable = true, length = 50, precision = 0)
     @Basic
     public String getSectionArticle() {

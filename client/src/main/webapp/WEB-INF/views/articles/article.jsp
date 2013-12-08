@@ -27,6 +27,9 @@
 				</c:forEach>
 			</c:if>
 		</fieldset>
+		<div class="row">
+        	<a class="pull-right" href='<c:url value="/articles/article/"/>${article.articleid}'> &lt; &lt; &nbsp;<s:message code="back"/> </a>
+    	</div>
 		<form id="commentarticle_fm" name="commentarticle_fm" action="javascript:;" method='POST' class="well form-horizontal">
 			<!-- input filds -->
 			<input name="articleid" value="${article.articleid}" type="hidden">
@@ -53,6 +56,9 @@
 			</fieldset>
 		</form>
 	</div>
+	<div class="row">
+        <a class="pull-right" href='#' onclick="goBack()"> &lt; &lt; &nbsp;<s:message code="back"/> </a>
+    </div>
 </div>
 
 <script type="text/javascript" src='<c:url value="/resources/js/jquery.validate.js"/>'></script>
