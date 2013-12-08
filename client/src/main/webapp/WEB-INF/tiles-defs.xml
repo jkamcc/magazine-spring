@@ -48,7 +48,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/articles/edit_article.jsp" />
     </definition>
     
-    <definition name="error" extends="template">
+    <definition name="error" extends="control_panel">
 		<put-attribute name="content" value="/WEB-INF/views/error.jsp" />
     </definition>
     

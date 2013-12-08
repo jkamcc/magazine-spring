@@ -26,7 +26,7 @@ public class HeaderInterceptor extends HandlerInterceptorAdapter {
     RestTemplate restTemplate;
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,  ModelAndView modelAndView) throws Exception {
         logger.debug("Header interceptor");
 
         addCurrentUserInfo(request);
@@ -35,7 +35,18 @@ public class HeaderInterceptor extends HandlerInterceptorAdapter {
         request.setAttribute("sectionList", sections);
     }
 
-    private String addCurrentUserInfo(HttpServletRequest request) {
+   @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        logger.debug("Header interceptor");
+
+        addCurrentUserInfo(request);
+        Section[] sections = loadSections();
+
+        request.setAttribute("sectionList", sections);
+		return true;
+    }
+    
+    public String addCurrentUserInfo(HttpServletRequest request) {
         String toReturn = "";
 
         String currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

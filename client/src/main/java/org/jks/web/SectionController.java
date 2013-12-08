@@ -6,15 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.jks.domain.Article;
 import org.jks.domain.Section;
+import org.jks.domain.User;
+import org.jks.web.common.HeaderInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,18 +46,20 @@ public class SectionController {
 	
 	/* Obtiene la lista de todas las secciones en la BD */
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String showSections(Model model) {
-		//HttpServletRequest request = null;
-		//String hola= request.getAttribute("currentUser");
-		Section[] list = restTemplate.getForObject("http://localhost:8080/service/section/all", Section[].class);
-		List<Section> slist = Arrays.asList(list);
-		model.addAttribute("sectionList",  slist);
-		return "sections";
+	public String showSections(Model model, HttpServletRequest request) {
+		if(usuarioAdministrador(request)){
+			Section[] list = restTemplate.getForObject("http://localhost:8080/service/section/all", Section[].class);
+			List<Section> slist = Arrays.asList(list);
+			model.addAttribute("sectionList",  slist);
+			return "sections";
+		}
+		else{
+			return "home";
+		}
 	}
 	
 	@RequestMapping(value="/section/{id}", method = RequestMethod.GET)
 	public String getArticlesWithSectionId(@PathVariable long id, Model model) {
-		
 		Section section = restTemplate.getForObject("http://localhost:8080/service/section/get/id/"+id, Section.class);
 		Article[] articles = restTemplate.getForObject("http://localhost:8080/service/article/all", Article[].class);
 		
@@ -72,4 +78,15 @@ public class SectionController {
 		model.addAttribute("articles", articlesFinal);
 		return "sectionandarticles";
 	}
+	
+	/*Verifica si el usuario logueado posee profile de Administrator*/
+	private boolean usuarioAdministrador(HttpServletRequest request){
+		boolean valido=false;
+		User user= (User) request.getAttribute("currentUser");
+		if(user!=null && user.getProfileid()==(byte)0){
+			valido=true;
+		}
+		return valido;
+	}
+	
 }

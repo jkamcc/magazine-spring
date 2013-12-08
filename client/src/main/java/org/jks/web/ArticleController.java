@@ -1,10 +1,13 @@
 package org.jks.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jks.domain.Article;
 import org.jks.domain.Comment;
 import org.jks.domain.Section;
+import org.jks.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +30,14 @@ public class ArticleController {
 	
 	//Este metodo lleva al usuario a edit_article.jsp para que pueda crear un articulo
     @RequestMapping(value="/new", method = RequestMethod.GET)
-    public String newarticle(Model model) {
-        addSectionsToModel(model);
-        model.addAttribute("edit-article", "");
-    	return "editarticle";
+    public String newarticle(Model model, HttpServletRequest request) {
+    	if(usuarioValido(request, (byte)0) || usuarioValido(request,(byte)1)){
+	        addSectionsToModel(model);
+	        model.addAttribute("edit-article", "");
+	    	return "editarticle";
+    	}else{
+    		return "home";
+    	}
     }
 
     @RequestMapping(value="/edit/{id}")
@@ -95,6 +102,16 @@ public class ArticleController {
     	}
     	return "articlesinsection";
     }
+    
+    /*Verifica si el usuario logueado posee profile de Administrator*/
+	private boolean usuarioValido(HttpServletRequest request, byte idvalido){
+		boolean valido=false;
+		User user= (User) request.getAttribute("currentUser");
+		if(user!=null && user.getProfileid()==(byte)idvalido){
+			valido=true;
+		}
+		return valido;
+	}
 }
 
 
