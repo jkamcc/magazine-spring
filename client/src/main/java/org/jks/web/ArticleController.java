@@ -85,7 +85,9 @@ public class ArticleController {
     }
     
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String editArticles() {
+    public String editArticles(Model model) {
+    	Article[] articles=restTemplate.getForObject("http://localhost:8080/service/article/completeall/0/0", Article[].class);
+    	model.addAttribute("articlesList", articles);
         return "articles";
     }
 
@@ -113,5 +115,6 @@ public class ArticleController {
 		return valido;
 	}
 }
+
 
 
