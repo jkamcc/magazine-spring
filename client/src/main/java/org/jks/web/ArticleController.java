@@ -87,6 +87,11 @@ public class ArticleController {
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String editArticles(Model model) {
     	Article[] articles=restTemplate.getForObject("http://localhost:8080/service/article/completeall/0/0", Article[].class);
+    	for (int i=0;i<articles.length;++i){
+    		if(articles[i].getArticle().length()>40){
+    			articles[i].setArticle(articles[i].getArticle().substring(0, 40));
+    		}
+    	}
     	model.addAttribute("articlesList", articles);
         return "articles";
     }
