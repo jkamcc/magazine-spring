@@ -3,6 +3,8 @@ package org.jks.domain;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import java.sql.Timestamp;
 
 /**
@@ -16,6 +18,7 @@ public class Comment {
     private String commentarticle;
     private Long articleid;
     private Long author;
+    private String auhtorName;
 
     @javax.persistence.Column(name = "commentid", nullable = false, insertable = true, updatable = true, length = 19, precision = 0)
     @Id
@@ -92,5 +95,15 @@ public class Comment {
         result = 31 * result + (articleid != null ? articleid.hashCode() : 0);
         result = 31 * result + (author != null ? author.hashCode() : 0);
         return result;
+    }
+    
+    @Transient
+    public String getAuthorName() {
+        return auhtorName;
+    }
+
+    @Transient
+    public void setAuthorName(String auhtorName) {
+        this.auhtorName = auhtorName;
     }
 }

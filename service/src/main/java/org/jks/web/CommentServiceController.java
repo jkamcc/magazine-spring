@@ -43,9 +43,9 @@ public class CommentServiceController {
         return comments;
     }
  
-	@RequestMapping(value = "/{articleId}/{start}/{end}", method = RequestMethod.GET)
+	@RequestMapping(value = "/get/{articleId}/{start}/{end}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Comment> getCommentsByArticleIdRange(@PathVariable Long articleId, int start, int end) {
+    public List<Comment> getCommentsByArticleIdRange(@PathVariable Long articleId, @PathVariable int start, @PathVariable int end) {
 
         List<Comment> comments = commentService.getComments(articleId, start, end);
 

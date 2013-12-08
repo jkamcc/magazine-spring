@@ -76,3 +76,28 @@ function displayErrorComment(message, response) {
 function goBack(){
 	window.history.back();
 }
+
+function showMore(){
+	var cantidad= $('#commentNumber').val();
+	var id=window.location.pathname.split('/')[4];
+	 $.ajax({
+	        type: 'GET',
+	        url: "http://localhost:8080/service/comment/get/"+id+'/'+cantidad+'/'+'3',
+	        contentType: "application/json",
+	        dataType: "json",
+	        data: '',
+	        success: function(data) {
+				var comentarios= $.makeArray(data);
+				for (i=0; i<comentarios.length;++i){
+					var newComment= '<div class="article-comment"><p><strong>'+comentarios[i].authorName;
+					newComment= newComment+'</strong>: '+comentarios[i].dateComment+'</br>'+comentarios[i].commentarticle+'</p></div>';
+					$('#commentsDiv').append(newComment);
+				}
+				$('#commentNumber').val(parseInt(cantidad,10)+comentarios.length);
+	           
+	        },
+	        error: function(response) {
+	        	
+	        }
+	});
+}

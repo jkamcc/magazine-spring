@@ -2,6 +2,7 @@
 <%@include file="../init.jsp" %>
 
 <div class="container-fluid">
+	<input name="commentNumber" id="commentNumber" value="3" type="hidden">
 	<article style="margin-bottom:40px;">
 		<c:if test="${!empty article}">
 			<header>
@@ -14,19 +15,23 @@
 			<p> <c:out value="${article.article}"/></p>
 		</c:if>
 	</article>
-	<div class="well form-horizontal">
+	<div id="commentsDiv" class="well form-horizontal" >
 		<fieldset>
 			<legend><s:message code="article-comments"/></legend>
 			<c:if test="${!empty article.comments}">
 				<c:forEach items="${article.comments}" var="comment">
 					<div class="article-comment">
 						<p>
-							<strong><c:out value="${comment.author}"/></strong>: <c:out value="${comment.dateComment}"/> </br><c:out value="${comment.commentarticle}"/>
+							<strong><c:out value="${comment.authorName}"/></strong>: <c:out value="${comment.dateComment}"/> </br><c:out value="${comment.commentarticle}"/>
 						</p>
 					</div>
 				</c:forEach>
 			</c:if>
 		</fieldset>
+		<div class="row">
+        	<a class="pull-right" href='#' onclick="showMore()"> &lt; &lt; &nbsp;Show More</a>
+    	</div>
+    	</br>
 		<div class="row">
         	<a class="pull-right" href='<c:url value="/articles/article/"/>${article.articleid}'> &lt; &lt; &nbsp;<s:message code="back"/> </a>
     	</div>
