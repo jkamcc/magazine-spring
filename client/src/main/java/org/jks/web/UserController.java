@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.validation.Valid;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -172,15 +173,15 @@ public class UserController {
     }
 
     @RequestMapping(value="/edit/{userId}", method = RequestMethod.GET)
-    public String editUser(@PathVariable long userId,Model model) {
+    public String editUser(@PathVariable long userId,Model model, Locale locale) {
 
         try {
             User user = restTemplate.getForObject("http://localhost:8080/service/user/id/"+userId, User.class);
             model.addAttribute("user", user);
 
         } catch (RestClientException e) {
-            logger.error("The user with userId "+ userId + "could not be found");
-            model.addAttribute("error", true);
+            logger.error("The user with userId "+ userId + " could not be found");
+            model.addAttribute("error", messageSource.getMessage("user-not-found-id", new Long[]{userId},locale));
         }
 
         model.addAttribute("action", "edit");

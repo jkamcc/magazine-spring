@@ -17,7 +17,7 @@
 
             <legend>
                 <c:choose>
-                    <c:when test="${not empty user}">
+                    <c:when test="${action eq 'edit'}">
                         <s:message code="edit-user"/>
                     </c:when>
                     <c:otherwise>
@@ -27,12 +27,13 @@
             </legend>
 
             <div class="messages">
-                <div id="message" class="form-message control-group alert hide">
-                    <label><!--ajax--></label>
+                <div id="message" class="form-message control-group alert 
+                    <c:choose> <c:when test="${empty error}"> hide </c:when><c:otherwise>alert-error </c:otherwise> </c:choose>">
+                    <label><!--ajax-->${error}</label>
                 </div>
             </div>
 
-            <div class="user-info">
+            <div class="user-info <c:if test="${not empty error}"> hide </c:if>">
 
                 <div class="control-group">
                     <label class="control-label" for="profileid"><s:message code="profile"/></label>
@@ -93,7 +94,7 @@
 
                 <div class="form-actions">
                     <c:choose>
-                        <c:when test="${not empty user}">
+                        <c:when test="${action eq 'edit'}">
                             <button class="btn btn-primary" type="submit"><s:message code="update-user"/></button>
                         </c:when>
                         <c:otherwise>
