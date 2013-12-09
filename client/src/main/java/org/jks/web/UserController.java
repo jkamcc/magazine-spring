@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import java.security.NoSuchAlgorithmException;
@@ -40,9 +41,13 @@ public class UserController {
     MessageSource messageSource;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String showUsers(Model model) {
-    	addUsersToModel(model);
-        return "users";
+    public String showUsers(Model model, HttpServletRequest request) {
+    	if(usuarioValido(request, (byte)0)){
+	    	addUsersToModel(model);
+	        return "users";
+    	}else{
+    		return "home";
+    	}
     }
 
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
@@ -92,52 +97,55 @@ public class UserController {
 
     @RequestMapping(value = "/create", method= RequestMethod.POST)
     @ResponseBody
-    public String createUser(@Valid @RequestBody User user, Locale locale) {
-
-        boolean userCreated = modifyUser(user );
-
-        String returnText = "";
-
-        if (userCreated) {
-            returnText = messageSource.getMessage("success-created-user", null, locale);
-        } else {
-            returnText = messageSource.getMessage("system-error", null, locale);
-        }
-
+    public String createUser(@Valid @RequestBody User user, Locale locale, HttpServletRequest request) {
+    	String returnText = "";
+    	if(usuarioValido(request, (byte)0)){
+	        boolean userCreated = modifyUser(user );
+	        if (userCreated) {
+	            returnText = messageSource.getMessage("success-created-user", null, locale);
+	        } else {
+	            returnText = messageSource.getMessage("system-error", null, locale);
+	        }
+    	}
+    	else{
+    		returnText = messageSource.getMessage("system-error", null, locale);
+    	}
         return returnText;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public String editUser(@Valid @RequestBody User user, Locale locale) {
-
-        boolean userEdited = true;
-
-        try {
-            user.setPassword(User.sha1(user.getPassword()));
-
-            restTemplate.put("http://localhost:8080/service/user/update", user);
-
-        } catch (RestClientException e) {
-            userEdited = false;
-            logger.error(e.getMessage(), e);
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            userEdited = false;
-            logger.error(e.getMessage(), e);
-        } catch (Exception e) {
-            userEdited = false;
-            logger.error(e.getMessage(), e);
-        }
-
-        String returnText = "";
-
-        if (userEdited) {
-            returnText = messageSource.getMessage("success-edited-user", null, locale);
-        } else {
-            returnText = messageSource.getMessage("system-error", null, locale);
-        }
-
+    public String editUser(@Valid @RequestBody User user, Locale locale, HttpServletRequest request) {
+    	String returnText = "";
+    	if(usuarioValido(request, (byte)0)){
+	        boolean userEdited = true;
+	
+	        try {
+	            user.setPassword(User.sha1(user.getPassword()));
+	
+	            restTemplate.put("http://localhost:8080/service/user/update", user);
+	
+	        } catch (RestClientException e) {
+	            userEdited = false;
+	            logger.error(e.getMessage(), e);
+	            e.printStackTrace();
+	        } catch (NoSuchAlgorithmException e) {
+	            userEdited = false;
+	            logger.error(e.getMessage(), e);
+	        } catch (Exception e) {
+	            userEdited = false;
+	            logger.error(e.getMessage(), e);
+	        }
+	
+	        if (userEdited) {
+	            returnText = messageSource.getMessage("success-edited-user", null, locale);
+	        } else {
+	            returnText = messageSource.getMessage("system-error", null, locale);
+	        }
+    	}
+    	else{
+    		 returnText = messageSource.getMessage("system-error", null, locale);
+    	}
         return returnText;
     }
 
@@ -173,21 +181,25 @@ public class UserController {
     }
 
     @RequestMapping(value="/edit/{userId}", method = RequestMethod.GET)
-    public String editUser(@PathVariable long userId,Model model, Locale locale) {
-
-        try {
-            User user = restTemplate.getForObject("http://localhost:8080/service/user/id/"+userId, User.class);
-            model.addAttribute("user", user);
-
-        } catch (RestClientException e) {
-            logger.error("The user with userId "+ userId + " could not be found");
-            model.addAttribute("error", messageSource.getMessage("user-not-found-id", new Long[]{userId},locale));
-        }
-
-        model.addAttribute("action", "edit");
-        assignProfilesToModel(model);
-
-        return "edit_user";
+    public String editUser(@PathVariable long userId,Model model, Locale locale, HttpServletRequest request) {
+    	if(usuarioValido(request, (byte)0)){
+	        try {
+	            User user = restTemplate.getForObject("http://localhost:8080/service/user/id/"+userId, User.class);
+	            model.addAttribute("user", user);
+	
+	        } catch (RestClientException e) {
+	            logger.error("The user with userId "+ userId + " could not be found");
+	            model.addAttribute("error", messageSource.getMessage("user-not-found-id", new Long[]{userId},locale));
+	        }
+	
+	        model.addAttribute("action", "edit");
+	        assignProfilesToModel(model);
+	
+	        return "edit_user";
+    	}
+    	else{
+    		return "home";
+    	}
     }
 
     private void assignProfilesToModel(Model model) {
@@ -208,4 +220,14 @@ public class UserController {
              logger.error("Users could not be retrieved", e);
          }
     }
+    
+    /*Verifica si el usuario logueado posee profile de Administrator*/
+	private boolean usuarioValido(HttpServletRequest request, byte idvalido){
+		boolean valido=false;
+		User user= (User) request.getAttribute("currentUser");
+		if(user!=null && user.getProfileid()==(byte)idvalido){
+			valido=true;
+		}
+		return valido;
+	}
 }

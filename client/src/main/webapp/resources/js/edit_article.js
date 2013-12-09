@@ -32,7 +32,8 @@ function Article(articleid, sectionid, subject, author, article, datearticle) {
     this.article = article;
 
     if (datearticle) {
-        this.datearticle = new Date(datearticle).getTime();
+		var tmp= datearticle.split(' ');
+        this.datearticle = new Date(tmp[0]).getTime();
     } else {
         this.datearticle = new Date().getTime();
     }

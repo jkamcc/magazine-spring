@@ -41,11 +41,16 @@ public class ArticleController {
     }
 
     @RequestMapping(value="/edit/{id}")
-    public String editArticle(@PathVariable long id, Model model) {
-        addSectionsToModel(model);
-        addArticleToModel(id, model);
-        model.addAttribute("edit_article", "edit_article");
-        return "editarticle";
+    public String editArticle(@PathVariable long id, Model model, HttpServletRequest request) {
+    	if(usuarioValido(request, (byte)0) || usuarioValido(request,(byte)1)){
+	        addSectionsToModel(model);
+	        addArticleToModel(id, model);
+	        model.addAttribute("edit_article", "edit_article");
+	        return "editarticle";
+    	}
+    	else{
+    		return "home";
+    	}
     }
 
 	@RequestMapping(value="/article/{articleId}", method = RequestMethod.GET)
@@ -85,15 +90,20 @@ public class ArticleController {
     }
     
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String editArticles(Model model) {
-    	Article[] articles=restTemplate.getForObject("http://localhost:8080/service/article/completeall/0/0", Article[].class);
-    	for (int i=0;i<articles.length;++i){
-    		if(articles[i].getArticle().length()>40){
-    			articles[i].setArticle(articles[i].getArticle().substring(0, 40));
-    		}
+    public String editArticles(Model model, HttpServletRequest request) {
+    	if(usuarioValido(request, (byte)0) || usuarioValido(request,(byte)1)){
+	    	Article[] articles=restTemplate.getForObject("http://localhost:8080/service/article/completeall/0/0", Article[].class);
+	    	for (int i=0;i<articles.length;++i){
+	    		if(articles[i].getArticle().length()>40){
+	    			articles[i].setArticle(articles[i].getArticle().substring(0, 40));
+	    		}
+	    	}
+	    	model.addAttribute("articlesList", articles);
+	        return "articles";
     	}
-    	model.addAttribute("articlesList", articles);
-        return "articles";
+    	else{
+    		return "home";
+    	}
     }
 
     @RequestMapping(value="/articlesinsection", method = RequestMethod.GET)
