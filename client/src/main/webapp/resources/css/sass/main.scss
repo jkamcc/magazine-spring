@@ -42,23 +42,20 @@ body {
 	}
 }
 
-footer {
+#footer {
 	padding-top: 30px;
-    clear: both;
-    position: absolute;
+    position: relative;
     bottom:0;
     width:100%;
-    z-index: 10;
  	height: 10em;
- 	margin-top: -3em;
     background-color: #000033;
     color: White;
-    display: none;
-    .footerText, .footerHour {
+}
+
+.footerText, .footerHour {
     	margin-left: 20px;
     	text-align: center;
-    }
-}
+ }
 
 .errorDiv {
 	margin-left: 60px;	
