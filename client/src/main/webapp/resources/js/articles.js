@@ -1,5 +1,5 @@
 function deleteArticle(button){
-	var id=(button.parentNode.parentNode.children)[4].textContent;
+	var id=(button.parentNode.parentNode.children)[3].textContent;
 	var row= button.parentNode.parentNode;
     $.ajax({
         type: "DELETE",

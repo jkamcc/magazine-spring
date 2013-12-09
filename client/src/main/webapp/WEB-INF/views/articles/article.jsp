@@ -38,7 +38,7 @@
 		<form id="commentarticle_fm" name="commentarticle_fm" action="javascript:;" method='POST' class="well form-horizontal">
 			<!-- input filds -->
 			<input name="articleid" value="${article.articleid}" type="hidden">
-			<input name="author" value="1" type="hidden">
+			<input name="author" value="${currentUser.userid}" type="hidden">
 
 			<fieldset>
 				<div id="message" class="form-message control-group alert hide">
