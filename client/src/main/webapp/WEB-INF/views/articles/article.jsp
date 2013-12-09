@@ -15,8 +15,8 @@
 			<p> <c:out value="${article.article}"/></p>
 		</c:if>
 	</article>
-	<div id="commentsDiv" class="well form-horizontal" >
-		<fieldset>
+	<div class="well form-horizontal" >
+		<fieldset id="commentsDiv" >
 			<legend><s:message code="article-comments"/></legend>
 			<c:if test="${!empty article.comments}">
 				<c:forEach items="${article.comments}" var="comment">
