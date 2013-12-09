@@ -54,7 +54,7 @@
 					<div class="form-actions">	
 						<!-- <input type="button" id="btn-comment" class="commentButton btn btn-primary"" value="Comment"/>-->
 						<button id="btn-comment" class="btn btn-primary" type="submit">
-                        Comment
+                        	<s:message code="comment"/>
 						</button>
 					</div>
 				</div>
