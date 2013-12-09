@@ -42,21 +42,31 @@ public class ArticleController {
 
     @RequestMapping(value="/edit/{id}")
     public String editArticle(@PathVariable long id, Model model, HttpServletRequest request) {
-    	if(usuarioValido(request, (byte)0) || usuarioValido(request,(byte)1)){
-	        addSectionsToModel(model);
-	        addArticleToModel(id, model);
-	        model.addAttribute("edit_article", "edit_article");
-	        return "editarticle";
+    	try{
+	    	if(usuarioValido(request, (byte)0) || usuarioValido(request,(byte)1)){
+		        addSectionsToModel(model);
+		        addArticleToModel(id, model);
+		        model.addAttribute("edit_article", "edit_article");
+		        return "editarticle";
+	    	}
+	    	else{
+	    		return "home";
+	    	}
     	}
-    	else{
+    	catch(RestClientException e){
     		return "home";
     	}
     }
 
 	@RequestMapping(value="/article/{articleId}", method = RequestMethod.GET)
 	public String showArticle(@PathVariable long articleId, Model model) {
-        addArticleToModel(articleId, model);
-		return "article";
+		try{
+	        addArticleToModel(articleId, model);
+			return "article";
+		}
+		catch(RestClientException e){
+			return "home";
+		}
 	}
 
     private void addSectionsToModel(Model model) {

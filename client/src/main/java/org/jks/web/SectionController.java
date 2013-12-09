@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
@@ -60,12 +61,14 @@ public class SectionController {
 	
 	@RequestMapping(value="/section/{id}", method = RequestMethod.GET)
 	public String getArticlesWithSectionId(@PathVariable long id, Model model) {
-		Section section = restTemplate.getForObject("http://localhost:8080/service/section/get/id/"+id, Section.class);
-		
-		Article[] articles = restTemplate.getForObject("http://localhost:8080/service/article/bysection/"+id+"/0/10/0", Article[].class);
-		
-		model.addAttribute("section",  section);
-		model.addAttribute("articles", articles);
+		try{
+			Section section = restTemplate.getForObject("http://localhost:8080/service/section/get/id/"+id, Section.class);
+			Article[] articles = restTemplate.getForObject("http://localhost:8080/service/article/bysection/"+id+"/0/10/0", Article[].class);
+			model.addAttribute("section",  section);
+			model.addAttribute("articles", articles);
+		}catch(RestClientException e){
+			return "home";
+		}
 		return "sectionandarticles";
 	}
 	
