@@ -79,7 +79,7 @@
         });
 
         $(document).on("click", ".editButton", function() {
-            var id=(this.parentNode.parentNode.children)[4].textContent;
+            var id=(this.parentNode.parentNode.children)[3].textContent;
             editArticle(id);
         });
 
